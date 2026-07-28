@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/css/tests.css">
+<script src="/css/tests.js"></script>
+<title>Е-пошта</title>
+<script>
+	var test={MinMark:1,MaxMark:6,IsPenalty:true,Questions:[{Text:"Як називають людину чи організацію, якій надсилають лист?",RndAnswers:true,Obj:"",Answers:[{Text:"блогер",cr:false,Select:false},{Text:"юзер",cr:false,Select:false},{Text:"відправник",cr:false,Select:false},{Text:"адресат",cr:true,Select:false},]},{Text:"Як називається пошта, що надходить без згоди користувача?",RndAnswers:true,Obj:"",Answers:[{Text:"банер",cr:false,Select:false},{Text:"троян",cr:false,Select:false},{Text:"вірус",cr:false,Select:false},{Text:"спам",cr:true,Select:false},]},{Text:"Як називається послуга поштового сервера, яка блокує задані користувачем адреси?",RndAnswers:true,Obj:"",Answers:[{Text:"«чорний» список",cr:true,Select:false},{Text:"автовідповідач",cr:false,Select:false},{Text:"сортувальник пошти",cr:false,Select:false},{Text:"переадресування",cr:false,Select:false},]},{Text:"Що використовують для передавання емоцій у листах?",RndAnswers:true,Obj:"",Answers:[{Text:"кольори",cr:false,Select:false},{Text:"різні розміри букв",cr:false,Select:false},{Text:"кнопки",cr:false,Select:false},{Text:"смайлики",cr:true,Select:false},]},{Text:"Які листи зазвичай зберігаються у папці «Чернетки»?",RndAnswers:true,Obj:"",Answers:[{Text:"ті, що не дійшли",cr:false,Select:false},{Text:"недописані",cr:true,Select:false},{Text:"ті, що мають вкладення",cr:false,Select:false},{Text:"підозрілі на вірус",cr:false,Select:false},]},{Text:"Виберіть назву поширеної загрози при роботі з електронною поштою.",RndAnswers:true,Obj:"",Answers:[{Text:"моніторинг",cr:false,Select:false},{Text:"булінг",cr:false,Select:false},{Text:"фішинг",cr:true,Select:false},{Text:"хостинг",cr:false,Select:false},]},{Text:"Виберіть правильне позначення електронної пошти.",RndAnswers:true,Obj:"",Answers:[{Text:"WWW",cr:false,Select:false},{Text:"E-mail",cr:true,Select:false},{Text:"Network",cr:false,Select:false},{Text:"Skype",cr:false,Select:false},]},{Text:"Виберіть правильно записану адресу електронної пошти.",RndAnswers:true,Obj:"",Answers:[{Text:"www.i.ua",cr:false,Select:false},{Text:"mail.ua\\stas",cr:false,Select:false},{Text:"korol@inbox.net",cr:true,Select:false},{Text:"http:\\\\google.com",cr:false,Select:false},]},{Text:"Чи можна до одного листа вкласти не один, а декілька файлів?",RndAnswers:false,Obj:"",Answers:[{Text:"так, можна",cr:true,Select:false},{Text:"ні, не можна",cr:false,Select:false},]},{Text:"Чи можна надіслати один лист одразу на декілька адрес?",RndAnswers:false,Obj:"",Answers:[{Text:"так, звичайно",cr:true,Select:false},{Text:"так, якщо їх об’єднати в групу",cr:false,Select:false},{Text:"ні, одночасно не можна",cr:false,Select:false},]},{Text:"Чи потрібно згідно етикету листування вказувати тему листа?",RndAnswers:false,Obj:"",Answers:[{Text:"так, для усіх",cr:true,Select:false},{Text:"тільки для важливих листів",cr:false,Select:false},{Text:"ні, не обов’язково",cr:false,Select:false},]},{Text:"Чи потрібно згідно етикету листування відповідати на всі листи?",RndAnswers:false,Obj:"",Answers:[{Text:"так, звичайно",cr:false,Select:false},{Text:"на «підозрілі» листи не треба",cr:true,Select:false},{Text:"ні, не треба",cr:false,Select:false},]},{Text:"Що означає текст у листі, записаний лише великими буквами?",RndAnswers:true,Obj:"",Answers:[{Text:"автор вважає лист дуже важливим",cr:false,Select:false},{Text:"автор листа «сміється» з вас",cr:false,Select:false},{Text:"автор листа «кричить» на вас",cr:true,Select:false},]},{Text:"Виберіть папки, які використовують поштові сервери для роботи з листами.",RndAnswers:true,Obj:"",Answers:[{Text:"особисті",cr:false,Select:false},{Text:"збережені",cr:false,Select:false},{Text:"непрочитані",cr:false,Select:false},{Text:"вхідні",cr:true,Select:false},{Text:"надіслані",cr:true,Select:false},]},{Text:"Як називається програма (додаток), яка призначена для роботи з електронною поштою?",RndAnswers:true,Obj:"",Answers:[{Text:"поштовий процесор",cr:false,Select:false},{Text:"поштовий браузер",cr:false,Select:false},{Text:"поштовий клієнт",cr:true,Select:false},{Text:"поштовий робот",cr:false,Select:false},]},{Text:"Які дані необхідно ввести, щоб увійти у власний обліковий запис?",RndAnswers:true,Obj:"",Answers:[{Text:"дату",cr:false,Select:false},{Text:"місцезнаходження",cr:false,Select:false},{Text:"пароль",cr:true,Select:false},{Text:"секретну відповідь",cr:false,Select:false},{Text:"логін",cr:true,Select:false},]},{Text:"Як називаються всі персональні дані користувача, що зберігаються на поштовому сервері?",RndAnswers:true,Obj:"",Answers:[{Text:"аватар",cr:false,Select:false},{Text:"записник",cr:false,Select:false},{Text:"акаунт",cr:true,Select:false},{Text:"нікнейм",cr:false,Select:false},]},{Text:"Де зберігаються всі контактні дані користувачів пошти?",RndAnswers:true,Obj:"",Answers:[{Text:"у карантині",cr:false,Select:false},{Text:"в адресній книзі",cr:true,Select:false},{Text:"у нотатках",cr:false,Select:false},{Text:"у «Вибраному»",cr:false,Select:false},]},]}
+</script>
+
+<body onload="StartTest()">
+
+<table class="page-header" id="tests_header">
+	<tr>
+		<td class="btn btn__exit-test" onclick="ExitTest()">x</td>
+		<td class="page-title">
+			<span class="sign-quest-num">№</span>
+			<span class="quest-num" id="questNum"></span>
+			<span class="quest-count" id="questCount"></span>
+		</td>
+		<td class="btn btn__next-quest" onclick="NextQuestion()">&#9658;&#9658;</td>
+	</tr>
+</table>
+
+<table class="content content--border-around" id="testForm">
+	<tr><td class="test-quest" id="quest"></td></tr>
+	<tr><td class="test-correct-count" id="correctCount"></td></tr>
+
+	<tr><td class="test-answer" id="answer0" onclick="CheckAnswer(0)">
+		<span class="test-answer-num">1.</span>
+		<input id="radio0" type="radio" name="answers">
+		<label id="label0" for="radio0"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer1" onclick="CheckAnswer(1)">
+		<span class="test-answer-num">2.</span>
+		<input id="radio1" type="radio" name="answers">
+		<label id="label1" for="radio1"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer2" onclick="CheckAnswer(2)">
+		<span class="test-answer-num">3.</span>
+		<input id="radio2" type="radio" name="answers">
+		<label id="label2" for="radio2"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer3" onclick="CheckAnswer(3)">
+		<span class="test-answer-num">4.</span>
+		<input id="radio3" type="radio" name="answers">
+		<label id="label3" for="radio3"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer4" onclick="CheckAnswer(4)">
+		<span class="test-answer-num">5.</span>
+		<input id="radio4" type="radio" name="answers">
+		<label id="label4" for="radio4"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer5" onclick="CheckAnswer(5)">
+		<span class="test-answer-num">6.</span>
+		<input id="radio5" type="radio" name="answers">
+		<label id="label5" for="radio5"></label>
+	</td></tr>
+</table>
+
+<div class="test-obj">
+	<img id="questImg" src="" alt="">
+</div>
+
+<div class="test-result" id="resForm" hidden>
+	<div>
+		<span class="test-result-title">Результат:</span>
+		<span class="test-result-percent" id="resPercent"></span>
+	</div>
+	<div class="test-result-mark" id="testMark"></div>
+</div>
+
+</body>

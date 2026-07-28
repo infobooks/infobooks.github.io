@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/tests.css">
+<script src="/tests.js"></script>
+<title>Кодування</title>
+<script>
+	var test={MinMark:2,MaxMark:12,IsPenalty:true,Questions:[{Text:"Скільки символів містять кодові таблиці «ASCII» і «Кирилиця»?",RndAnswers:false,Obj:"",Answers:[{Text:"64",cr:false,Select:false},{Text:"256",cr:true,Select:false},{Text:"2 048",cr:false,Select:false},{Text:"156 000",cr:false,Select:false},]},{Text:"Виберіть скорочене позначення найпопулярнішої кодової таблиці.",RndAnswers:true,Obj:"",Answers:[{Text:"INT",cr:false,Select:false},{Text:"UTF",cr:true,Select:false},{Text:"DOS",cr:false,Select:false},{Text:"ZIP",cr:false,Select:false},]},{Text:"Скільки байт займають українські букви, закодовані згідно найбільшої кодової таблиці Unicode?",RndAnswers:false,Obj:"",Answers:[{Text:"2",cr:true,Select:false},{Text:"3",cr:false,Select:false},{Text:"4",cr:false,Select:false},{Text:"16",cr:false,Select:false},]},{Text:"Якими одиницями вимірюють швидкість передавання даних комп’ютерною мережею?",RndAnswers:true,Obj:"",Answers:[{Text:"кВат на год",cr:false,Select:false},{Text:"Гбайт за добу",cr:false,Select:false},{Text:"пікселі на дюйм",cr:false,Select:false},{Text:"Мбіт за сек",cr:true,Select:false},]},{Text:"Як кодуються у комп’ютерах усі дані?",RndAnswers:true,Obj:"",Answers:[{Text:"файли і папки",cr:false,Select:false},{Text:"0 і 1",cr:true,Select:false},{Text:"букви і цифри",cr:false,Select:false},{Text:"біти і байти",cr:false,Select:false},]},{Text:"Виберіть правильну рівність.",RndAnswers:false,Obj:"",Answers:[{Text:"1 МБ = 100 Б",cr:false,Select:false},{Text:"1 МБ = 1 000 Б",cr:false,Select:false},{Text:"1 МБ = 1 000 000 Б",cr:true,Select:false},{Text:"1 МБ = 100 000 000 Б",cr:false,Select:false},{Text:"1 МБ = 1 000 000 000 Б",cr:false,Select:false},]},{Text:"Виберіть правильну рівність.",RndAnswers:false,Obj:"",Answers:[{Text:"1 байт = 4 біт",cr:false,Select:false},{Text:"1 байт = 8 біт",cr:true,Select:false},{Text:"1 байт = 128 біт",cr:false,Select:false},{Text:"1 байт = 1024 біт",cr:false,Select:false},]},{Text:"Виберіть найбільшу одиницю.",RndAnswers:true,Obj:"",Answers:[{Text:"мегабайт (Мб)",cr:false,Select:false},{Text:"гігабайт (Гб)",cr:false,Select:false},{Text:"кілобайт (кб)",cr:false,Select:false},{Text:"терабайт (Тб)",cr:true,Select:false},]},{Text:"Який символ є першим (під номером 32) у всіх кодових таблицях?",RndAnswers:true,Obj:"",Answers:[{Text:"цифра «0»",cr:false,Select:false},{Text:"англ. «а»",cr:false,Select:false},{Text:"«?»",cr:false,Select:false},{Text:"«пропуск»",cr:true,Select:false},]},{Text:"Як називається перетворення за певними правилами одного набору знаків іншим набором?",RndAnswers:true,Obj:"",Answers:[{Text:"архівування інформації",cr:false,Select:false},{Text:"групування інформації",cr:false,Select:false},{Text:"опрацювання інформації",cr:false,Select:false},{Text:"кодування інформації",cr:true,Select:false},]},{Text:"Що таке піксель (pixel)?",RndAnswers:true,Obj:"",Answers:[{Text:"пристрій зберігання",cr:false,Select:false},{Text:"крапка на екрані",cr:true,Select:false},{Text:"найменша пам\'ять",cr:false,Select:false},{Text:"код у комп’ютері",cr:false,Select:false},]},{Text:"Який з кольорів є синім?",RndAnswers:true,Obj:"",Answers:[{Text:"#00AA00",cr:false,Select:false},{Text:"#0000FF",cr:true,Select:false},{Text:"#F0F0F0",cr:false,Select:false},{Text:"#990099",cr:false,Select:false},]},{Text:"Яка з дій над графічними зображеннями означає «стискання»?",RndAnswers:true,Obj:"",Answers:[{Text:"convert",cr:false,Select:false},{Text:"compress",cr:true,Select:false},{Text:"resize",cr:false,Select:false},{Text:"crop",cr:false,Select:false},]},{Text:"Як скорочено називають знімок екрана?",RndAnswers:true,Obj:"",Answers:[{Text:"decoding",cr:false,Select:false},{Text:"insider",cr:false,Select:false},{Text:"screenshot",cr:true,Select:false},{Text:"upgrade",cr:false,Select:false},]},{Text:"Найменша частка кольору (у шістнадцятковій системі) – це «00». А найбільша?",RndAnswers:true,Obj:"",Answers:[{Text:"X1",cr:false,Select:false},{Text:"A0",cr:false,Select:false},{Text:"FF",cr:true,Select:false},{Text:"99",cr:false,Select:false},]},{Text:"Який з графічних форматів може зберігати зображення без тла?",RndAnswers:true,Obj:"",Answers:[{Text:"GIF",cr:false,Select:false},{Text:"BMP",cr:false,Select:false},{Text:"PNG",cr:true,Select:false},{Text:"JPG",cr:false,Select:false},]},{Text:"Якщо у колірній схемі RGB «змішати» 255 червоного, 255 синього і 255 зеленого кольорів, то який вийде колір?",RndAnswers:true,Obj:"",Answers:[{Text:"червоний",cr:false,Select:false},{Text:"жовтий",cr:false,Select:false},{Text:"чорний",cr:false,Select:false},{Text:"білий",cr:true,Select:false},]},{Text:"Скільки приблизно байт займають зображення, зроблені телефоном?",RndAnswers:false,Obj:"",Answers:[{Text:"400 Байт",cr:false,Select:false},{Text:"40 000 Байт",cr:false,Select:false},{Text:"4 000 000 Байт",cr:true,Select:false},{Text:"400 000 000 Байт",cr:false,Select:false},]},]}
+</script>
+
+<body onload="StartTest()">
+
+<table class="page-header" id="tests_header">
+	<tr>
+		<td class="btn btn__exit-test" onclick="ExitTest()">x</td>
+		<td class="page-title">
+			<span class="sign-quest-num">№</span>
+			<span class="quest-num" id="questNum"></span>
+			<span class="quest-count" id="questCount"></span>
+		</td>
+		<td class="btn btn__next-quest" onclick="NextQuestion()">&#9658;&#9658;</td>
+	</tr>
+</table>
+
+<table class="content content--border-around" id="testForm">
+	<tr><td class="test-quest" id="quest"></td></tr>
+	<tr><td class="test-correct-count" id="correctCount"></td></tr>
+
+	<tr><td class="test-answer" id="answer0" onclick="CheckAnswer(0)">
+		<span class="test-answer-num">1.</span>
+		<input id="radio0" type="radio" name="answers">
+		<label id="label0" for="radio0"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer1" onclick="CheckAnswer(1)">
+		<span class="test-answer-num">2.</span>
+		<input id="radio1" type="radio" name="answers">
+		<label id="label1" for="radio1"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer2" onclick="CheckAnswer(2)">
+		<span class="test-answer-num">3.</span>
+		<input id="radio2" type="radio" name="answers">
+		<label id="label2" for="radio2"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer3" onclick="CheckAnswer(3)">
+		<span class="test-answer-num">4.</span>
+		<input id="radio3" type="radio" name="answers">
+		<label id="label3" for="radio3"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer4" onclick="CheckAnswer(4)">
+		<span class="test-answer-num">5.</span>
+		<input id="radio4" type="radio" name="answers">
+		<label id="label4" for="radio4"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer5" onclick="CheckAnswer(5)">
+		<span class="test-answer-num">6.</span>
+		<input id="radio5" type="radio" name="answers">
+		<label id="label5" for="radio5"></label>
+	</td></tr>
+</table>
+
+<div class="test-obj"><img id="questImg" src="" alt=""></div>
+
+<div class="test-result" id="resForm" hidden>
+	<div>
+		<span class="test-result-title">Результат:</span>
+		<span class="test-result-percent" id="resPercent"></span>
+	</div>
+	<div class="test-result-mark" id="testMark"></div>
+</div>
+
+</body>

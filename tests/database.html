@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/tests.css">
+<script src="/tests.js"></script>
+<title>База даних</title>
+<script>
+	var test={MinMark:2,MaxMark:12,IsPenalty:true,Questions:[{Text:"Виберіть системи керування базами даних.",RndAnswers:true,Obj:"",Answers:[{Text:"CorelDraw",cr:false,Select:false},{Text:"WinZip",cr:false,Select:false},{Text:"Oracle",cr:true,Select:false},{Text:"Lazarus",cr:false,Select:false},{Text:"MySQL",cr:true,Select:false},]},{Text:"Перекладіть англійською «база даних».",RndAnswers:true,Obj:"",Answers:[{Text:"listbox",cr:false,Select:false},{Text:"password",cr:false,Select:false},{Text:"datetime",cr:false,Select:false},{Text:"database",cr:true,Select:false},]},{Text:"Виберіть зайве.",RndAnswers:true,Obj:"",Answers:[{Text:"список",cr:false,Select:false},{Text:"реєстр",cr:false,Select:false},{Text:"масив",cr:false,Select:false},{Text:"модель",cr:true,Select:false},{Text:"таблиця",cr:false,Select:false},]},{Text:"Головне поле таблиці, потрібне для зв’язування її з іншими таблицями – це...",RndAnswers:true,Obj:"",Answers:[{Text:"резерв",cr:false,Select:false},{Text:"примітка",cr:false,Select:false},{Text:"індекс",cr:false,Select:false},{Text:"ключ",cr:true,Select:false},]},{Text:"Як називається поле зі списком для вибору даних (як на фото)?",RndAnswers:true,Obj:"База даних-1.jpg",Answers:[{Text:"залежне поле",cr:false,Select:false},{Text:"повторювальне поле",cr:false,Select:false},{Text:"поле підстановки",cr:true,Select:false},{Text:"поле замінювання",cr:false,Select:false},]},{Text:"Виберіть зайве.",RndAnswers:true,Obj:"",Answers:[{Text:"вкладення",cr:false,Select:false},{Text:"так/ні",cr:false,Select:false},{Text:"текст",cr:false,Select:false},{Text:"число",cr:false,Select:false},{Text:"фігура",cr:true,Select:false},]},{Text:"Який зв’язок слід встановити між таблицею «Класні керівники» і таблицею «Класи» у школі?",RndAnswers:false,Obj:"",Answers:[{Text:"один до одного",cr:true,Select:false},{Text:"один до багатьох",cr:false,Select:false},{Text:"багато до багатьох",cr:false,Select:false},]},{Text:"Як називають властивість, яка не дозволяє вводити у таблиці бази даних що-попаде, бо усі таблиці зв’язані між собою?",RndAnswers:true,Obj:"",Answers:[{Text:"гнучкість",cr:false,Select:false},{Text:"множинність",cr:false,Select:false},{Text:"унікальність",cr:false,Select:false},{Text:"цілісність",cr:true,Select:false},]},{Text:"Рядки у таблицях бази даних називають...",RndAnswers:true,Obj:"",Answers:[{Text:"написами",cr:false,Select:false},{Text:"вкладеннями",cr:false,Select:false},{Text:"списками",cr:false,Select:false},{Text:"записами",cr:true,Select:false},]},{Text:"Чи можна залишати порожніми «клітинки» у таблицях бази даних?",RndAnswers:false,Obj:"",Answers:[{Text:"Так, звичайно",cr:false,Select:false},{Text:"Так, крім ключового поля",cr:true,Select:false},{Text:"Ні, «клітинки» повинні бути заповнені",cr:false,Select:false},]},{Text:"Що позначають знаки безмежності, які можна побачити при роботі з базою даних?",RndAnswers:true,Obj:"База даних-2.jpg",Answers:[{Text:"зв’язки між таблицями",cr:true,Select:false},{Text:"помилки у базі даних",cr:false,Select:false},{Text:"поля з формулами",cr:false,Select:false},{Text:"тип даних",cr:false,Select:false},]},{Text:"Виберіть об’єкт бази даних, призначений для пошуку інформації.",RndAnswers:true,Obj:"",Answers:[{Text:"макрос",cr:false,Select:false},{Text:"форма",cr:false,Select:false},{Text:"запит",cr:true,Select:false},{Text:"звіт",cr:false,Select:false},]},{Text:"Виберіть логічні дії, які можна використовувати у критеріях запитів.",RndAnswers:false,Obj:"",Answers:[{Text:"And",cr:true,Select:false},{Text:"Or",cr:true,Select:false},{Text:"Sqr",cr:false,Select:false},{Text:"In",cr:false,Select:false},{Text:"From",cr:false,Select:false},]},{Text:"Виберіть критерій, який треба ввести у запиті, щоб знайти порожні записи.",RndAnswers:true,Obj:"",Answers:[{Text:"Not",cr:false,Select:false},{Text:"Null",cr:true,Select:false},{Text:"Space",cr:false,Select:false},{Text:"Nil",cr:false,Select:false},]},{Text:"Виберіть види запитів у базах даних.",RndAnswers:true,Obj:"",Answers:[{Text:"вибірковий",cr:true,Select:false},{Text:"лінійний",cr:false,Select:false},{Text:"багаторівневий",cr:false,Select:false},{Text:"відносний",cr:false,Select:false},{Text:"перехресний",cr:true,Select:false},]},{Text:"Чи може запит змінити дані?",RndAnswers:false,Obj:"",Answers:[{Text:"Так, є такі види запитів",cr:true,Select:false},{Text:"Ні, запити тільки шукають дані",cr:false,Select:false},]},{Text:"Який об’єкт бази даних поданий на фото \n(призначений для зручного перегляду та редагування інформації)?",RndAnswers:true,Obj:"База даних-3.jpg",Answers:[{Text:"модуль",cr:false,Select:false},{Text:"форма",cr:true,Select:false},{Text:"звіт",cr:false,Select:false},{Text:"запит",cr:false,Select:false},]},]}
+</script>
+
+<body onload="StartTest()">
+
+<table class="page-header" id="tests_header">
+	<tr>
+		<td class="btn btn__exit-test" onclick="ExitTest()">x</td>
+		<td class="page-title">
+			<span class="sign-quest-num">№</span>
+			<span class="quest-num" id="questNum"></span>
+			<span class="quest-count" id="questCount"></span>
+		</td>
+		<td class="btn btn__next-quest" onclick="NextQuestion()">&#9658;&#9658;</td>
+	</tr>
+</table>
+
+<table class="content content--border-around" id="testForm">
+	<tr><td class="test-quest" id="quest"></td></tr>
+	<tr><td class="test-correct-count" id="correctCount"></td></tr>
+
+	<tr><td class="test-answer" id="answer0" onclick="CheckAnswer(0)">
+		<span class="test-answer-num">1.</span>
+		<input id="radio0" type="radio" name="answers">
+		<label id="label0" for="radio0"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer1" onclick="CheckAnswer(1)">
+		<span class="test-answer-num">2.</span>
+		<input id="radio1" type="radio" name="answers">
+		<label id="label1" for="radio1"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer2" onclick="CheckAnswer(2)">
+		<span class="test-answer-num">3.</span>
+		<input id="radio2" type="radio" name="answers">
+		<label id="label2" for="radio2"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer3" onclick="CheckAnswer(3)">
+		<span class="test-answer-num">4.</span>
+		<input id="radio3" type="radio" name="answers">
+		<label id="label3" for="radio3"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer4" onclick="CheckAnswer(4)">
+		<span class="test-answer-num">5.</span>
+		<input id="radio4" type="radio" name="answers">
+		<label id="label4" for="radio4"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer5" onclick="CheckAnswer(5)">
+		<span class="test-answer-num">6.</span>
+		<input id="radio5" type="radio" name="answers">
+		<label id="label5" for="radio5"></label>
+	</td></tr>
+</table>
+
+<div class="test-obj"><img id="questImg" src="" alt=""></div>
+
+<div class="test-result" id="resForm" hidden>
+	<div>
+		<span class="test-result-title">Результат:</span>
+		<span class="test-result-percent" id="resPercent"></span>
+	</div>
+	<div class="test-result-mark" id="testMark"></div>
+</div>
+
+</body>

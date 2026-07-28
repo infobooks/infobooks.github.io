@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/tests.css">
+<script src="/tests.js"></script>
+<title>Windows</title>
+<script>
+	var test={MinMark:2,MaxMark:12,IsPenalty:true,Questions:[{Text:"Іван намалював дерево і зберіг у файлі. Як правильно слід назвати цей файл?",RndAnswers:true,Obj:"",Answers:[{Text:"дерево",cr:true,Select:false},{Text:"Іван",cr:false,Select:false},{Text:"малюнок",cr:false,Select:false},{Text:"програма",cr:false,Select:false},]},{Text:"Вікна у Windows бувають програмні. Які ще?",RndAnswers:true,Obj:"Windows-1.jpg",Answers:[{Text:"діалогові",cr:true,Select:false},{Text:"запитальні",cr:false,Select:false},{Text:"внутрішні",cr:false,Select:false},{Text:"головні",cr:false,Select:false},]},{Text:"Виберіть операційні системи.",RndAnswers:true,Obj:"",Answers:[{Text:"iOS",cr:true,Select:false},{Text:"Java",cr:false,Select:false},{Text:"Android",cr:true,Select:false},{Text:"Delphi",cr:false,Select:false},{Text:"7zip",cr:false,Select:false},]},{Text:"Виберіть популярну на сьогодні версію Windows.",RndAnswers:true,Obj:"Windows-2.jpg",Answers:[{Text:"Windows 98",cr:false,Select:false},{Text:"Windows 2000",cr:false,Select:false},{Text:"Windows XP",cr:false,Select:false},{Text:"Windows 11",cr:true,Select:false},]},{Text:"Виберіть правильно позначені диски у комп’ютері.",RndAnswers:true,Obj:"Windows-3.jpg",Answers:[{Text:"C:    D:    E:",cr:true,Select:false},{Text:"д1    д2    д3",cr:false,Select:false},{Text:"\\f    \\g    \\h",cr:false,Select:false},{Text:"a!    b!    c!",cr:false,Select:false},]},{Text:"Виберіть правильну назву найбільшої частини Windows.",RndAnswers:true,Obj:"",Answers:[{Text:"робочий стіл",cr:true,Select:false},{Text:"робочий малюнок",cr:false,Select:false},{Text:"робочий інструмент",cr:false,Select:false},{Text:"робоче полотно",cr:false,Select:false},]},{Text:"Коли файли у Windows видаляють, то вони потрапляють у ...",RndAnswers:true,Obj:"",Answers:[{Text:"Панель керування",cr:false,Select:false},{Text:"Мережу",cr:false,Select:false},{Text:"Документи",cr:false,Select:false},{Text:"Кошик",cr:true,Select:false},]},{Text:"Чи можна папку вкласти в іншу папку?",RndAnswers:false,Obj:"",Answers:[{Text:"Так",cr:true,Select:false},{Text:"Ні",cr:false,Select:false},]},{Text:"Що таке Windows?",RndAnswers:true,Obj:"",Answers:[{Text:"комп’ютерна мережа",cr:false,Select:false},{Text:"операційна система",cr:true,Select:false},{Text:"пристрій зберігання",cr:false,Select:false},{Text:"назва процесора",cr:false,Select:false},]},{Text:"Як називається набір команд, виконуючи які комп’ютер вирішує певне завдання?",RndAnswers:true,Obj:"",Answers:[{Text:"піксель",cr:false,Select:false},{Text:"папка",cr:false,Select:false},{Text:"код",cr:false,Select:false},{Text:"програма",cr:true,Select:false},]},{Text:"Як називаються значки, які є лише посиланням на інші значки?",RndAnswers:true,Obj:"Windows-4.jpg",Answers:[{Text:"лічильники",cr:false,Select:false},{Text:"ярлики",cr:true,Select:false},{Text:"вкладки",cr:false,Select:false},{Text:"піктограми",cr:false,Select:false},]},{Text:"Як перекладається з англійської мови слово «windows»?",RndAnswers:true,Obj:"",Answers:[{Text:"робота",cr:false,Select:false},{Text:"програми",cr:false,Select:false},{Text:"швидкий",cr:false,Select:false},{Text:"вікна",cr:true,Select:false},]},{Text:"Що виконує сполучення клавіш «Ctrl+C»?",RndAnswers:true,Obj:"",Answers:[{Text:"видаляє файл",cr:false,Select:false},{Text:"відкриває файл",cr:false,Select:false},{Text:"перейменовує файл",cr:false,Select:false},{Text:"копіює файл",cr:true,Select:false},]},{Text:"Яка клавіша видаляє файли, папки, текст і навіть частини малюнків?",RndAnswers:true,Obj:"",Answers:[{Text:"Delete",cr:true,Select:false},{Text:"Insert",cr:false,Select:false},{Text:"Tab",cr:false,Select:false},{Text:"PrtScr",cr:false,Select:false},]},{Text:"В якому році з’явився перший комп’ютер для однієї людини (персональний)?",RndAnswers:false,Obj:"Windows-5.jpg",Answers:[{Text:"1860",cr:false,Select:false},{Text:"1900",cr:false,Select:false},{Text:"1940",cr:false,Select:false},{Text:"1980",cr:true,Select:false},]},{Text:"Як називались найдавніші пристрої для обчислень (теперішня рахівниця)?",RndAnswers:true,Obj:"Windows-6.jpg",Answers:[{Text:"арифмометр",cr:false,Select:false},{Text:"абак",cr:true,Select:false},{Text:"плотер",cr:false,Select:false},{Text:"модем",cr:false,Select:false},]},{Text:"Який з комп’ютерних пристроїв є найменшим?",RndAnswers:true,Obj:"",Answers:[{Text:"планшет",cr:false,Select:false},{Text:"ноутбук",cr:false,Select:false},{Text:"смартфон",cr:true,Select:false},{Text:"стаціонарний (той, що не переносять) комп’ютер",cr:false,Select:false},]},]}
+</script>
+
+<body onload="StartTest()">
+
+<table class="page-header" id="tests_header">
+	<tr>
+		<td class="btn btn__exit-test" onclick="ExitTest()">x</td>
+		<td class="page-title">
+			<span class="sign-quest-num">№</span>
+			<span class="quest-num" id="questNum"></span>
+			<span class="quest-count" id="questCount"></span>
+		</td>
+		<td class="btn btn__next-quest" onclick="NextQuestion()">&#9658;&#9658;</td>
+	</tr>
+</table>
+
+<table class="content content--border-around" id="testForm">
+	<tr><td class="test-quest" id="quest"></td></tr>
+	<tr><td class="test-correct-count" id="correctCount"></td></tr>
+
+	<tr><td class="test-answer" id="answer0" onclick="CheckAnswer(0)">
+		<span class="test-answer-num">1.</span>
+		<input id="radio0" type="radio" name="answers">
+		<label id="label0" for="radio0"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer1" onclick="CheckAnswer(1)">
+		<span class="test-answer-num">2.</span>
+		<input id="radio1" type="radio" name="answers">
+		<label id="label1" for="radio1"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer2" onclick="CheckAnswer(2)">
+		<span class="test-answer-num">3.</span>
+		<input id="radio2" type="radio" name="answers">
+		<label id="label2" for="radio2"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer3" onclick="CheckAnswer(3)">
+		<span class="test-answer-num">4.</span>
+		<input id="radio3" type="radio" name="answers">
+		<label id="label3" for="radio3"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer4" onclick="CheckAnswer(4)">
+		<span class="test-answer-num">5.</span>
+		<input id="radio4" type="radio" name="answers">
+		<label id="label4" for="radio4"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer5" onclick="CheckAnswer(5)">
+		<span class="test-answer-num">6.</span>
+		<input id="radio5" type="radio" name="answers">
+		<label id="label5" for="radio5"></label>
+	</td></tr>
+</table>
+
+<div class="test-obj"><img id="questImg" src="" alt=""></div>
+
+<div class="test-result" id="resForm" hidden>
+	<div>
+		<span class="test-result-title">Результат:</span>
+		<span class="test-result-percent" id="resPercent"></span>
+	</div>
+	<div class="test-result-mark" id="testMark"></div>
+</div>
+
+</body>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/css/tests.css">
+<script src="/css/tests.js"></script>
+
+<title>Повторення7-</title>
+<script>
+	var test={MinMark:2,MaxMark:12,IsPenalty:true,Questions:[{Text:"Виберіть папки, які використовують поштові вебсервери для роботи з електронними листами.",RndAnswers:true,Obj:"",Answers:[{Text:"збережені",cr:false,Select:false},{Text:"надіслані",cr:true,Select:false},{Text:"особисті",cr:false,Select:false},{Text:"непрочитані",cr:false,Select:false},{Text:"вхідні",cr:true,Select:false},]},{Text:"Виберіть правильне позначення електронної пошти.",RndAnswers:true,Obj:"",Answers:[{Text:"Skype",cr:false,Select:false},{Text:"Network",cr:false,Select:false},{Text:"WWW",cr:false,Select:false},{Text:"E-mail",cr:true,Select:false},]},{Text:"Виберіть правильно записану адресу електронної пошти.",RndAnswers:true,Obj:"",Answers:[{Text:"www.i.ua",cr:false,Select:false},{Text:"mail.ua\\stas",cr:false,Select:false},{Text:"http:\\\\google.com",cr:false,Select:false},{Text:"korol@ukr.net",cr:true,Select:false},]},{Text:"Чи потрібно згідно етикету листування вказувати тему електронного листа?",RndAnswers:false,Obj:"",Answers:[{Text:"так, для усіх",cr:true,Select:false},{Text:"тільки для важливих листів",cr:false,Select:false},{Text:"ні, не обов’язково",cr:false,Select:false},]},{Text:"Що використовують для передавання емоцій у електронних листах?",RndAnswers:true,Obj:"",Answers:[{Text:"кнопки",cr:false,Select:false},{Text:"кольори",cr:false,Select:false},{Text:"різні розміри букв",cr:false,Select:false},{Text:"смайлики",cr:true,Select:false},]},{Text:"Як називається електронна пошта, що надходить без згоди користувача?",RndAnswers:true,Obj:"",Answers:[{Text:"троян",cr:false,Select:false},{Text:"спам",cr:true,Select:false},{Text:"банер",cr:false,Select:false},{Text:"вірус",cr:false,Select:false},]},{Text:"Як називається послуга поштового вебсервера, яка блокує задані користувачем адреси?",RndAnswers:true,Obj:"",Answers:[{Text:"сортувальник пошти",cr:false,Select:false},{Text:"переадресація",cr:false,Select:false},{Text:"автовідповідач",cr:false,Select:false},{Text:"«чорний» список",cr:true,Select:false},]},{Text:"Виберіть команду виведення значення на екран у мові JavaScript.",RndAnswers:true,Obj:"",Answers:[{Text:"input1.innerHTML =",cr:false,Select:false},{Text:"let price =",cr:false,Select:false},{Text:"button id =",cr:false,Select:false},{Text:"output1.value =",cr:true,Select:false},]},{Text:"Виберіть правильне обчислення середнього значення двох змінних у мові JavaScript.",RndAnswers:true,Obj:"",Answers:[{Text:"bonus2 - bonus1 / 2",cr:false,Select:false},{Text:"2 * (bonus1 + bonus2)",cr:false,Select:false},{Text:"(bonus1 + bonus2) / 2",cr:true,Select:false},{Text:"bonus1 * bonus2",cr:false,Select:false},]},{Text:"Виберіть символ, яким позначається ділення у мові JavaScript та програмі Excel.",RndAnswers:true,Obj:"",Answers:[{Text:" @",cr:false,Select:false},{Text:" #",cr:false,Select:false},{Text:" *",cr:false,Select:false},{Text:" /",cr:true,Select:false},]},{Text:"До якої групи програм відноситься JavaScript?",RndAnswers:true,Obj:"",Answers:[{Text:"електронні таблиці",cr:false,Select:false},{Text:"графічний редактор",cr:false,Select:false},{Text:"середовище програмування",cr:true,Select:false},{Text:"текстовий процесор",cr:false,Select:false},]},{Text:"Яке зі слів у JavaScript заокруглює число до 2-х знаків після коми?",RndAnswers:true,Obj:"",Answers:[{Text:"toFixed(2)",cr:true,Select:false},{Text:"prompt(\'2\')",cr:false,Select:false},{Text:"let 2",cr:false,Select:false},{Text:"Number(2)",cr:false,Select:false},]},{Text:"Виберіть команду розгалуження у мові JavaScript.",RndAnswers:true,Obj:"",Answers:[{Text:"read ... write ... ;",cr:false,Select:false},{Text:"repeat ... until ... ;",cr:false,Select:false},{Text:"while ... do ...;",cr:false,Select:false},{Text:"if ... else ... ;",cr:true,Select:false},]},{Text:"Виберіть мовою JavaScript правильно записану умову того, що людина є повнолітньою.",RndAnswers:true,Obj:"",Answers:[{Text:"(age === 18)",cr:false,Select:false},{Text:"(age >= 18)",cr:true,Select:false},{Text:"(age <= 18)",cr:false,Select:false},{Text:"(age !== 18)",cr:false,Select:false},]},{Text:"Перекладіть службове слово мови JavaScript «if».",RndAnswers:true,Obj:"",Answers:[{Text:"доки",cr:false,Select:false},{Text:"початок",cr:false,Select:false},{Text:"якщо",cr:true,Select:false},{Text:"цілий",cr:false,Select:false},]},]}
+</script>
+
+<body onload="StartTest()">
+
+<table class="page-header" id="tests_header">
+	<tr>
+		<td class="btn btn__exit-test" onclick="ExitTest()">x</td>
+		<td class="page-title">
+			<span class="sign-quest-num">№</span>
+			<span class="quest-num" id="questNum"></span>
+			<span class="quest-count" id="questCount"></span>
+		</td>
+		<td class="btn btn__next-quest" onclick="NextQuestion()">&#9658;&#9658;</td>
+	</tr>
+</table>
+
+<table class="content content--border-around" id="testForm">
+	<tr><td class="test-quest" id="quest"></td></tr>
+	<tr><td class="test-correct-count" id="correctCount"></td></tr>
+
+	<tr><td class="test-answer" id="answer0" onclick="CheckAnswer(0)">
+		<span class="test-answer-num">1.</span>
+		<input id="radio0" type="radio" name="answers">
+		<label id="label0" for="radio0"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer1" onclick="CheckAnswer(1)">
+		<span class="test-answer-num">2.</span>
+		<input id="radio1" type="radio" name="answers">
+		<label id="label1" for="radio1"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer2" onclick="CheckAnswer(2)">
+		<span class="test-answer-num">3.</span>
+		<input id="radio2" type="radio" name="answers">
+		<label id="label2" for="radio2"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer3" onclick="CheckAnswer(3)">
+		<span class="test-answer-num">4.</span>
+		<input id="radio3" type="radio" name="answers">
+		<label id="label3" for="radio3"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer4" onclick="CheckAnswer(4)">
+		<span class="test-answer-num">5.</span>
+		<input id="radio4" type="radio" name="answers">
+		<label id="label4" for="radio4"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer5" onclick="CheckAnswer(5)">
+		<span class="test-answer-num">6.</span>
+		<input id="radio5" type="radio" name="answers">
+		<label id="label5" for="radio5"></label>
+	</td></tr>
+</table>
+
+<div class="test-obj"><img id="questImg" src="" alt=""></div>
+
+<div class="test-result" id="resForm" hidden>
+	<div>
+		<span class="test-result-title">Результат:</span>
+		<span class="test-result-percent" id="resPercent"></span>
+	</div>
+	<div class="test-result-mark" id="testMark"></div>
+</div>
+
+</body>

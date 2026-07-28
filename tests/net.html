@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/css/tests.css">
+<script src="/css/tests.js"></script>
+<title>Мережа</title>
+<script>
+	var test={MinMark:2,MaxMark:12,IsPenalty:true,Questions:[{Text:"Як називається комп\'ютерна мережа школи, будинку чи підприємства?",RndAnswers:true,Obj:"",Answers:[{Text:"загальнодоступна",cr:false,Select:false},{Text:"автономна",cr:false,Select:false},{Text:"місцева",cr:false,Select:false},{Text:"локальна",cr:true,Select:false},]},{Text:"Виберіть браузери.",RndAnswers:true,Obj:"",Answers:[{Text:"Google Chrome",cr:true,Select:false},{Text:"ESET NOD32",cr:false,Select:false},{Text:"Adobe Reader",cr:false,Select:false},{Text:"Turbo Pascal",cr:false,Select:false},{Text:"Microsoft Edge",cr:true,Select:false},]},{Text:"Виберіть головний комп\'ютер у мережі.",RndAnswers:true,Obj:"",Answers:[{Text:"сервер",cr:true,Select:false},{Text:"станція",cr:false,Select:false},{Text:"шлюз",cr:false,Select:false},{Text:"міст",cr:false,Select:false},]},{Text:"Виберіть що більше.",RndAnswers:true,Obj:"",Answers:[{Text:"вебсторінка",cr:false,Select:false},{Text:"вебсайт",cr:true,Select:false},]},{Text:"Для роботи у комп\'ютерній мережі використовують комутатори і ...",RndAnswers:true,Obj:"",Answers:[{Text:"процесори",cr:false,Select:false},{Text:"роутери",cr:true,Select:false},{Text:"навігатори",cr:false,Select:false},{Text:"сканери",cr:false,Select:false},]},{Text:"Для чого призначений браузер?",RndAnswers:true,Obj:"",Answers:[{Text:"для створення вебсторінок",cr:false,Select:false},{Text:"для перегляду вебсторінок",cr:true,Select:false},{Text:"для захисту вебсторінок",cr:false,Select:false},{Text:"для копіювання вебсторінок",cr:false,Select:false},]},{Text:"З яких символів найчастіше починається адреса сайту?",RndAnswers:true,Obj:"",Answers:[{Text:"mail://",cr:false,Select:false},{Text:"net://",cr:false,Select:false},{Text:"https://",cr:true,Select:false},{Text:"url://",cr:false,Select:false},]},{Text:"Усі сайти в мережі Інтернет об\'єднані у ... (WWW – World Wide Web)",RndAnswers:false,Obj:"",Answers:[{Text:"«Всесвітнє павутиння»",cr:true,Select:false},{Text:"«Всесвітній простір»",cr:false,Select:false},{Text:"«Всесвітню книгу»",cr:false,Select:false},{Text:"«Всесвітнє вікно»",cr:false,Select:false},]},{Text:"Що у перекладі з англійської означає слово «net»?",RndAnswers:true,Obj:"",Answers:[{Text:"сторінка",cr:false,Select:false},{Text:"мережа",cr:true,Select:false},{Text:"доступ",cr:false,Select:false},{Text:"зв\'язок",cr:false,Select:false},]},{Text:"Як називається найбільша комп\'ютерна мережа у світі?",RndAnswers:true,Obj:"",Answers:[{Text:"Нетбук",cr:false,Select:false},{Text:"Інтернет",cr:true,Select:false},{Text:"Інкомнет",cr:false,Select:false},{Text:"Вебнет",cr:false,Select:false},]},{Text:"Як називають спілкування чи гру в реальному часі, тобто, коли користувач присутній у мережі?",RndAnswers:true,Obj:"",Answers:[{Text:"інсайт",cr:false,Select:false},{Text:"онлайн",cr:true,Select:false},{Text:"офтопік",cr:false,Select:false},{Text:"фішинг",cr:false,Select:false},]},{Text:"Як називаються підприємства, що надають послуги під’єднання до Інтернету?",RndAnswers:true,Obj:"",Answers:[{Text:"Інтернет-комунікатори",cr:false,Select:false},{Text:"Інтернет-провайдери",cr:true,Select:false},{Text:"Інтернет-користувачі",cr:false,Select:false},{Text:"Інтернет-дописувачі",cr:false,Select:false},]},{Text:"Як позначають у вебадресі сайти з України?",RndAnswers:true,Obj:"",Answers:[{Text:"org",cr:false,Select:false},{Text:"ua",cr:true,Select:false},{Text:"de",cr:false,Select:false},{Text:"com",cr:false,Select:false},]},{Text:"Щоб нормально працювати з Інтернетом, час від часу треба витирати ...",RndAnswers:true,Obj:"",Answers:[{Text:"домашню сторінку браузера",cr:false,Select:false},{Text:"історію браузера",cr:true,Select:false},{Text:"закладки браузера",cr:false,Select:false},{Text:"паролі у браузері",cr:false,Select:false},]},{Text:"Як скорочено називають онлайн-спілкування?",RndAnswers:true,Obj:"",Answers:[{Text:"форум",cr:false,Select:false},{Text:"бот",cr:false,Select:false},{Text:"тролінг",cr:false,Select:false},{Text:"чат",cr:true,Select:false},]},]}
+</script>
+
+<body onload="StartTest()">
+
+<table class="page-header" id="tests_header">
+	<tr>
+		<td class="btn btn__exit-test" onclick="ExitTest()">x</td>
+		<td class="page-title">
+			<span class="sign-quest-num">№</span>
+			<span class="quest-num" id="questNum"></span>
+			<span class="quest-count" id="questCount"></span>
+		</td>
+		<td class="btn btn__next-quest" onclick="NextQuestion()">&#9658;&#9658;</td>
+	</tr>
+</table>
+
+<table class="content content--border-around" id="testForm">
+	<tr><td class="test-quest" id="quest"></td></tr>
+	<tr><td class="test-correct-count" id="correctCount"></td></tr>
+
+	<tr><td class="test-answer" id="answer0" onclick="CheckAnswer(0)">
+		<span class="test-answer-num">1.</span>
+		<input id="radio0" type="radio" name="answers">
+		<label id="label0" for="radio0"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer1" onclick="CheckAnswer(1)">
+		<span class="test-answer-num">2.</span>
+		<input id="radio1" type="radio" name="answers">
+		<label id="label1" for="radio1"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer2" onclick="CheckAnswer(2)">
+		<span class="test-answer-num">3.</span>
+		<input id="radio2" type="radio" name="answers">
+		<label id="label2" for="radio2"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer3" onclick="CheckAnswer(3)">
+		<span class="test-answer-num">4.</span>
+		<input id="radio3" type="radio" name="answers">
+		<label id="label3" for="radio3"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer4" onclick="CheckAnswer(4)">
+		<span class="test-answer-num">5.</span>
+		<input id="radio4" type="radio" name="answers">
+		<label id="label4" for="radio4"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer5" onclick="CheckAnswer(5)">
+		<span class="test-answer-num">6.</span>
+		<input id="radio5" type="radio" name="answers">
+		<label id="label5" for="radio5"></label>
+	</td></tr>
+</table>
+
+<div class="test-obj"><img id="questImg" src="" alt=""></div>
+
+<div class="test-result" id="resForm" hidden>
+	<div>
+		<span class="test-result-title">Результат:</span>
+		<span class="test-result-percent" id="resPercent"></span>
+	</div>
+	<div class="test-result-mark" id="testMark"></div>
+</div>
+
+</body>

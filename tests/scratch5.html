@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/css/tests.css">
+<script src="/css/tests.js"></script>
+<title>Scratch</title>
+<script>
+	var test={MinMark:2,MaxMark:12,IsPenalty:true,Questions:[{Text:"Виберіть «головного героя» у Scratch.",RndAnswers:true,Obj:"",Answers:[{Text:"кажан",cr:false,Select:false},{Text:"мавпа",cr:false,Select:false},{Text:"кіт",cr:true,Select:false},{Text:"олівець",cr:false,Select:false},]},{Text:"Чи можна у Scratch видалити усі спрайти і сцену?",RndAnswers:false,Obj:"",Answers:[{Text:"Так, можна усе видалити",cr:false,Select:false},{Text:"Спрайти - можна видалити, а сцену - ні",cr:true,Select:false},{Text:"Сцену - можна видалити, а спрайти - ні",cr:false,Select:false},{Text:"Ні, усе видалити не можна",cr:false,Select:false},]},{Text:"Виберіть ефекти змінення вигляду виконавців.",RndAnswers:true,Obj:"Scratch-1.jpg",Answers:[{Text:"колір",cr:true,Select:false},{Text:"значення «х»",cr:false,Select:false},{Text:"тінь",cr:false,Select:false},{Text:"привид",cr:true,Select:false},{Text:"розмір",cr:false,Select:false},]},{Text:"Виберіть команду розгалуження.",RndAnswers:true,Obj:"",Answers:[{Text:"слідувати за ...",cr:false,Select:false},{Text:"подумати ...",cr:false,Select:false},{Text:"чекати поки ...",cr:false,Select:false},{Text:"якщо ... то ...",cr:true,Select:false},]},{Text:"Виберіть команду, відноситься до команд вигляду, а не руху.",RndAnswers:true,Obj:"Scratch-2.jpg",Answers:[{Text:"слідувати за ...",cr:false,Select:false},{Text:"ковзати ... сек до х:  y: ",cr:false,Select:false},{Text:"змінити образ на ...",cr:true,Select:false},{Text:"поворот на ... градусів",cr:false,Select:false},]},{Text:"Виберіть команду, яка залишає на екрані відбитки виконавця.",RndAnswers:true,Obj:"",Answers:[{Text:"очистити графічні ефекти",cr:false,Select:false},{Text:"наступний образ",cr:false,Select:false},{Text:"показати",cr:false,Select:false},{Text:"штамп",cr:true,Select:false},]},{Text:"Виконавець у Scratch має образ1, образ2, образ3. А сцена?",RndAnswers:true,Obj:"",Answers:[{Text:"тло1, тло2, тло3",cr:true,Select:false},{Text:"проєкт1, проєкт2, проєкт3",cr:false,Select:false},{Text:"екран1, екран2, екран3",cr:false,Select:false},{Text:"малюнок1, малюнок2, малюнок3",cr:false,Select:false},]},{Text:"До яких програм належить Scratch?",RndAnswers:true,Obj:"",Answers:[{Text:"графічний редактор",cr:false,Select:false},{Text:"середовище програмування",cr:true,Select:false},{Text:"текстовий процесор",cr:false,Select:false},{Text:"браузер",cr:false,Select:false},]},{Text:"Куди вказує напрямок «-90» градусів у Scratch?",RndAnswers:true,Obj:"Scratch-3.jpg",Answers:[{Text:"ліворуч",cr:true,Select:false},{Text:"догори",cr:false,Select:false},{Text:"донизу",cr:false,Select:false},{Text:"праворуч",cr:false,Select:false},]},{Text:"Що у перекладі означає «scratсh»?",RndAnswers:true,Obj:"",Answers:[{Text:"дряпанка",cr:true,Select:false},{Text:"іграшка",cr:false,Select:false},{Text:"подорож",cr:false,Select:false},{Text:"анімація",cr:false,Select:false},]},{Text:"Що виконує кнопка на фото внизу, коли ми малюємо спрайт?",RndAnswers:true,Obj:"Scratch-4.jpg",Answers:[{Text:"вирівнює по центру",cr:false,Select:false},{Text:"переміщує фігуру",cr:false,Select:false},{Text:"малює прямокутник",cr:false,Select:false},{Text:"пише текст",cr:true,Select:false},]},{Text:"Образи у Scratch можна малювати у режимі «Растрове» і ...",RndAnswers:true,Obj:"Scratch-5.jpg",Answers:[{Text:"об\'ємне",cr:false,Select:false},{Text:"прямокутне",cr:false,Select:false},{Text:"віртуальне",cr:false,Select:false},{Text:"векторне",cr:true,Select:false},]},{Text:"Як правильно називаються команди у Scratch?",RndAnswers:true,Obj:"",Answers:[{Text:"дані",cr:false,Select:false},{Text:"теги",cr:false,Select:false},{Text:"модулі",cr:false,Select:false},{Text:"скрипти",cr:true,Select:false},]},{Text:"Як у Scratch називаються краї сцени?",RndAnswers:true,Obj:"",Answers:[{Text:"стіни",cr:false,Select:false},{Text:"межа",cr:true,Select:false},{Text:"периметр",cr:false,Select:false},{Text:"контур",cr:false,Select:false},]},{Text:"Які команди потрібні, щоб виконати якусь дію багато разів (тобто, команди циклу)?",RndAnswers:true,Obj:"",Answers:[{Text:"оповістити ...",cr:false,Select:false},{Text:"наступний образ",cr:false,Select:false},{Text:"коли спрайт натиснуто",cr:false,Select:false},{Text:"завжди",cr:true,Select:false},{Text:"повторити ...",cr:true,Select:false},]},{Text:"Яка команда у Scratch зберігає файл на комп\'ютері?",RndAnswers:true,Obj:"",Answers:[{Text:"оновити на вашому комп\'ютері",cr:false,Select:false},{Text:"вивантажити на ваш комп\'ютер",cr:true,Select:false},{Text:"переписати на ваш комп\'ютер",cr:false,Select:false},{Text:"закріпити на вашому комп\'ютері",cr:false,Select:false},]},{Text:"Що можна у командах Scratch використовувати від\'ємні числа і десяктові дроби?",RndAnswers:false,Obj:"",Answers:[{Text:"Можна і від\'ємні і десяткові",cr:true,Select:false},{Text:"Від\'ємні - можна, десяткові - ні",cr:false,Select:false},{Text:"Десяткові - можна, від\'ємні - ні",cr:false,Select:false},{Text:"Не можна ні від\'ємні, ні десяткові",cr:false,Select:false},]},{Text:"Що означає слово «leave», яке з\'являється, коли ми закриваємо програму Scatch?",RndAnswers:true,Obj:"",Answers:[{Text:"покинути",cr:true,Select:false},{Text:"залишитись",cr:false,Select:false},{Text:"увага",cr:false,Select:false},{Text:"щасливо",cr:false,Select:false},]},]}
+</script>
+
+<body onload="StartTest()">
+
+<table class="page-header" id="tests_header">
+	<tr>
+		<td class="btn btn__exit-test" onclick="ExitTest()">x</td>
+		<td class="page-title">
+			<span class="sign-quest-num">№</span>
+			<span class="quest-num" id="questNum"></span>
+			<span class="quest-count" id="questCount"></span>
+		</td>
+		<td class="btn btn__next-quest" onclick="NextQuestion()">&#9658;&#9658;</td>
+	</tr>
+</table>
+
+<table class="content content--border-around" id="testForm">
+	<tr><td class="test-quest" id="quest"></td></tr>
+	<tr><td class="test-correct-count" id="correctCount"></td></tr>
+
+	<tr><td class="test-answer" id="answer0" onclick="CheckAnswer(0)">
+		<span class="test-answer-num">1.</span>
+		<input id="radio0" type="radio" name="answers">
+		<label id="label0" for="radio0"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer1" onclick="CheckAnswer(1)">
+		<span class="test-answer-num">2.</span>
+		<input id="radio1" type="radio" name="answers">
+		<label id="label1" for="radio1"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer2" onclick="CheckAnswer(2)">
+		<span class="test-answer-num">3.</span>
+		<input id="radio2" type="radio" name="answers">
+		<label id="label2" for="radio2"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer3" onclick="CheckAnswer(3)">
+		<span class="test-answer-num">4.</span>
+		<input id="radio3" type="radio" name="answers">
+		<label id="label3" for="radio3"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer4" onclick="CheckAnswer(4)">
+		<span class="test-answer-num">5.</span>
+		<input id="radio4" type="radio" name="answers">
+		<label id="label4" for="radio4"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer5" onclick="CheckAnswer(5)">
+		<span class="test-answer-num">6.</span>
+		<input id="radio5" type="radio" name="answers">
+		<label id="label5" for="radio5"></label>
+	</td></tr>
+</table>
+
+<div class="test-obj"><img id="questImg" src="" alt=""></div>
+
+<div class="test-result" id="resForm" hidden>
+	<div>
+		<span class="test-result-title">Результат:</span>
+		<span class="test-result-percent" id="resPercent"></span>
+	</div>
+	<div class="test-result-mark" id="testMark"></div>
+</div>
+
+</body>

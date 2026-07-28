@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/css/tests.css">
+<script src="/css/tests.js"></script>
+<title>Системні прг</title>
+<script>
+	var test={MinMark:2,MaxMark:12,IsPenalty:true,Questions:[{Text:"Виберіть вид ліцензії, яка дозволяє вільно використовувати програму.",RndAnswers:true,Obj:"",Answers:[{Text:"Freeware",cr:true,Select:false},{Text:"Trial",cr:false,Select:false},{Text:"Shareware",cr:false,Select:false},{Text:"Commercial",cr:false,Select:false},]},{Text:"Виберіть розширення застосунків (програм, виконувальних файлів).",RndAnswers:true,Obj:"",Answers:[{Text:"com",cr:true,Select:false},{Text:"pdf",cr:false,Select:false},{Text:"svg",cr:false,Select:false},{Text:"exe",cr:true,Select:false},{Text:"ini",cr:false,Select:false},]},{Text:"Виберіть файлову систему.",RndAnswers:true,Obj:"",Answers:[{Text:"PHP",cr:false,Select:false},{Text:"MSDOS",cr:false,Select:false},{Text:"SHM",cr:false,Select:false},{Text:"NTFS",cr:true,Select:false},]},{Text:"Скільки папок треба відкрити користувачу, щоб переглянути файл\n«C:\\ Doc \\ Тексти \\ Погода \\ літо.txt»  ?",RndAnswers:false,Obj:"",Answers:[{Text:"1",cr:false,Select:false},{Text:"2",cr:false,Select:false},{Text:"3",cr:true,Select:false},{Text:"5",cr:false,Select:false},]},{Text:"Як називається набір даних, збережений на диску та має ім’я?",RndAnswers:true,Obj:"",Answers:[{Text:"файл",cr:true,Select:false},{Text:"диск",cr:false,Select:false},{Text:"застосунок",cr:false,Select:false},{Text:"піктограма",cr:false,Select:false},]},{Text:"Які програми використовуються у комп\'ютерах?",RndAnswers:true,Obj:"",Answers:[{Text:"периферійні",cr:false,Select:false},{Text:"прикладні",cr:true,Select:false},{Text:"переносні",cr:false,Select:false},{Text:"комунікаційні",cr:false,Select:false},]},{Text:"Які файли варто запускати для встановлення програми на диск комп\'ютера?",RndAnswers:true,Obj:"",Answers:[{Text:"command",cr:false,Select:false},{Text:"setup",cr:true,Select:false},{Text:"view",cr:false,Select:false},{Text:"install",cr:true,Select:false},{Text:"check",cr:false,Select:false},]},{Text:"Яка складова частина Windows відповідає за підключення різних пристроїв та керування ними?",RndAnswers:true,Obj:"",Answers:[{Text:"драйвери",cr:true,Select:false},{Text:"дерево папок",cr:false,Select:false},{Text:"файлова система",cr:false,Select:false},{Text:"інтерфейс",cr:false,Select:false},]},{Text:"Яке меню мають усі об’єкти Windows?",RndAnswers:true,Obj:"",Answers:[{Text:"загальне",cr:false,Select:false},{Text:"біжуче",cr:false,Select:false},{Text:"периферійне",cr:false,Select:false},{Text:"контекстне",cr:true,Select:false},]},{Text:"Виберіть стандартні програми Windows.",RndAnswers:true,Obj:"",Answers:[{Text:"Google Chrome",cr:false,Select:false},{Text:"Scratch",cr:false,Select:false},{Text:"NotePad",cr:true,Select:false},{Text:"Paint",cr:true,Select:false},{Text:"PowerPoint",cr:false,Select:false},]},{Text:"Виберіть інтерфейси операційної системи.",RndAnswers:true,Obj:"",Answers:[{Text:"колективний",cr:false,Select:false},{Text:"графічний",cr:true,Select:false},{Text:"стандартний",cr:false,Select:false},{Text:"мережний",cr:false,Select:false},{Text:"командний",cr:true,Select:false},]},{Text:"В яку папку антивірусна програма переміщує файли, підозрілі на зараження вірусом?",RndAnswers:true,Obj:"",Answers:[{Text:"інкубатор",cr:false,Select:false},{Text:"огляд",cr:false,Select:false},{Text:"карантин",cr:true,Select:false},{Text:"контроль",cr:false,Select:false},]},{Text:"Виберіть програми-архіватори.",RndAnswers:true,Obj:"",Answers:[{Text:"WinROM",cr:false,Select:false},{Text:"WinPad",cr:false,Select:false},{Text:"WinZip",cr:true,Select:false},{Text:"WinCrack",cr:false,Select:false},{Text:"WinRAR",cr:true,Select:false},]},{Text:"Виберіть, які бувають архіви.",RndAnswers:true,Obj:"",Answers:[{Text:"саморозпаковувальні",cr:true,Select:false},{Text:"захисні",cr:false,Select:false},{Text:"інсталяційні",cr:false,Select:false},{Text:"неперервні",cr:true,Select:false},{Text:"відновлювальні",cr:false,Select:false},]},{Text:"До якої групи програм належать програми-архіватори?",RndAnswers:true,Obj:"",Answers:[{Text:"службові",cr:true,Select:false},{Text:"інструментальні",cr:false,Select:false},{Text:"прикладні",cr:false,Select:false},]},{Text:"Жорсткий магнітний диск форматується на сектори і ...",RndAnswers:true,Obj:"",Answers:[{Text:"кластери",cr:false,Select:false},{Text:"блоки",cr:false,Select:false},{Text:"лінії",cr:false,Select:false},{Text:"доріжки",cr:true,Select:false},]},{Text:"Що виконує з даними програма-архіватор?",RndAnswers:true,Obj:"",Answers:[{Text:"відновлює",cr:false,Select:false},{Text:"знищує",cr:false,Select:false},{Text:"стискає",cr:true,Select:false},{Text:"шукає",cr:false,Select:false},]},{Text:"Що таке «багатотомний архів»?",RndAnswers:true,Obj:"",Answers:[{Text:"архів, що уміщується на один диск",cr:false,Select:false},{Text:"архів, що складається з кількох частин",cr:true,Select:false},{Text:"архів, що сам розпаковується",cr:false,Select:false},{Text:"архів, що містить в собі інший архів",cr:false,Select:false},]},{Text:"Як зміниться швидкість стиснення даних архіватором із збільшенням ступеня стиснення?",RndAnswers:false,Obj:"",Answers:[{Text:"також збільшиться",cr:false,Select:false},{Text:"не зміниться",cr:false,Select:false},{Text:"навпаки зменшиться",cr:true,Select:false},]},{Text:"Як називається створення нової порожньої файлової системи?",RndAnswers:true,Obj:"",Answers:[{Text:"резервування",cr:false,Select:false},{Text:"калібрування",cr:false,Select:false},{Text:"форматування",cr:true,Select:false},{Text:"сканування",cr:false,Select:false},]},{Text:"Які програми можуть бути детекторами, ревізорами та лікарями?",RndAnswers:true,Obj:"",Answers:[{Text:"операційні системи",cr:false,Select:false},{Text:"шкідливі програми",cr:false,Select:false},{Text:"антивірусні програми",cr:true,Select:false},{Text:"програми-архіватори",cr:false,Select:false},]},{Text:"Яка з вказаних службових програм пришвидшує роботу з диском, переміщуючи файли з одного місця диска в інше?",RndAnswers:true,Obj:"",Answers:[{Text:"файловий менеджер",cr:false,Select:false},{Text:"антивірусна програма",cr:false,Select:false},{Text:"програма дефрагментації диска",cr:true,Select:false},{Text:"програма відновлення системи",cr:false,Select:false},]},{Text:"Що з перерахованого  ’не відноситься’  до вірусів?",RndAnswers:true,Obj:"",Answers:[{Text:"хробаки",cr:false,Select:false},{Text:"банери",cr:true,Select:false},{Text:"трояни",cr:false,Select:false},{Text:"завантажувальні",cr:false,Select:false},]},]}
+</script>
+
+<body onload="StartTest()">
+
+<table class="page-header" id="tests_header">
+	<tr>
+		<td class="btn btn__exit-test" onclick="ExitTest()">x</td>
+		<td class="page-title">
+			<span class="sign-quest-num">№</span>
+			<span class="quest-num" id="questNum"></span>
+			<span class="quest-count" id="questCount"></span>
+		</td>
+		<td class="btn btn__next-quest" onclick="NextQuestion()">&#9658;&#9658;</td>
+	</tr>
+</table>
+
+<table class="content content--border-around" id="testForm">
+	<tr><td class="test-quest" id="quest"></td></tr>
+	<tr><td class="test-correct-count" id="correctCount"></td></tr>
+
+	<tr><td class="test-answer" id="answer0" onclick="CheckAnswer(0)">
+		<span class="test-answer-num">1.</span>
+		<input id="radio0" type="radio" name="answers">
+		<label id="label0" for="radio0"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer1" onclick="CheckAnswer(1)">
+		<span class="test-answer-num">2.</span>
+		<input id="radio1" type="radio" name="answers">
+		<label id="label1" for="radio1"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer2" onclick="CheckAnswer(2)">
+		<span class="test-answer-num">3.</span>
+		<input id="radio2" type="radio" name="answers">
+		<label id="label2" for="radio2"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer3" onclick="CheckAnswer(3)">
+		<span class="test-answer-num">4.</span>
+		<input id="radio3" type="radio" name="answers">
+		<label id="label3" for="radio3"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer4" onclick="CheckAnswer(4)">
+		<span class="test-answer-num">5.</span>
+		<input id="radio4" type="radio" name="answers">
+		<label id="label4" for="radio4"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer5" onclick="CheckAnswer(5)">
+		<span class="test-answer-num">6.</span>
+		<input id="radio5" type="radio" name="answers">
+		<label id="label5" for="radio5"></label>
+	</td></tr>
+</table>
+
+<div class="test-obj"><img id="questImg" src="" alt=""></div>
+
+<div class="test-result" id="resForm" hidden>
+	<div>
+		<span class="test-result-title">Результат:</span>
+		<span class="test-result-percent" id="resPercent"></span>
+	</div>
+	<div class="test-result-mark" id="testMark"></div>
+</div>
+
+</body>

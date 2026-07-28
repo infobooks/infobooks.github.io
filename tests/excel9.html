@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/tests.css">
+<script src="/tests.js"></script>
+<title>Excel</title>
+<script>
+	var test={MinMark:2,MaxMark:12,IsPenalty:true,Questions:[{Text:"Скільки клітинок містить діапазон «B4:C5»?",RndAnswers:false,Obj:"",Answers:[{Text:"2",cr:false,Select:false},{Text:"4",cr:true,Select:false},{Text:"6",cr:false,Select:false},{Text:"8",cr:false,Select:false},{Text:"9",cr:false,Select:false},]},{Text:"Як називається адреса клітинки зі символами «$», \nнаприклад, «$F$4»?",RndAnswers:true,Obj:"",Answers:[{Text:"абсолютна",cr:true,Select:false},{Text:"заблокована",cr:false,Select:false},{Text:"універсальна",cr:false,Select:false},{Text:"постійна",cr:false,Select:false},]},{Text:"Яка з формул найбільш правильно обчислює суму чисел у перших п\'яти клітинках стовпця «B»?",RndAnswers:true,Obj:"",Answers:[{Text:"=B1+B2+B3+B4+B5",cr:false,Select:false},{Text:"=SUM(B1+B2+B3+B4+B5)",cr:false,Select:false},{Text:"=SUM(B1:B5)",cr:true,Select:false},{Text:"=SUM(B1)+SUM(B5)",cr:false,Select:false},]},{Text:"Якої з математичних функцій  ’немає’  в Excel?",RndAnswers:true,Obj:"",Answers:[{Text:"SQRT",cr:false,Select:false},{Text:"COR",cr:true,Select:false},{Text:"ABS",cr:false,Select:false},{Text:"PI",cr:false,Select:false},]},{Text:"Чи можна на діаграмі, що складається зі стовпців червоного кольору, один стовпець перефарбувати на зелений?",RndAnswers:false,Obj:"",Answers:[{Text:"так, можна",cr:true,Select:false},{Text:"ні, можна лише усі стовпці разом",cr:false,Select:false},]},{Text:"Як називається інструмент пошуку даних, який залишає лише ті дані, які задовольняють певним умовам?",RndAnswers:true,Obj:"",Answers:[{Text:"перевірка значень",cr:false,Select:false},{Text:"фільтр",cr:true,Select:false},{Text:"зведена таблиця",cr:false,Select:false},{Text:"вирівнювання",cr:false,Select:false},]},{Text:"Як називається об\'єкт діаграми на фото, що замальований зеленим кольором?",RndAnswers:true,Obj:"Excel-1.jpg",Answers:[{Text:"легенда",cr:true,Select:false},{Text:"вісь Y",cr:false,Select:false},{Text:"стінка",cr:false,Select:false},{Text:"підпис даних",cr:false,Select:false},]},{Text:"Яка з перерахованих команд є в Excel, але її немає у Word?",RndAnswers:true,Obj:"",Answers:[{Text:"Рецензування / Правопис",cr:false,Select:false},{Text:"Дані / Фільтр",cr:true,Select:false},{Text:"Основне / Шрифт",cr:false,Select:false},{Text:"Вигляд / Масштаб",cr:false,Select:false},]},{Text:"Який інструмент дозволяє зображати дані у вигляді як на фото?",RndAnswers:true,Obj:"Excel-2.jpg",Answers:[{Text:"умовне форматування",cr:true,Select:false},{Text:"діаграма з областями",cr:false,Select:false},{Text:"автофільтр",cr:false,Select:false},{Text:"SmartArt",cr:false,Select:false},]},{Text:"Який тип діаграми зображений на фото?",RndAnswers:true,Obj:"Excel-3.jpg",Answers:[{Text:"точкова",cr:false,Select:false},{Text:"графік",cr:false,Select:false},{Text:"гістограма",cr:true,Select:false},{Text:"поверхнева",cr:false,Select:false},]},{Text:"Якого типу діаграму доцільно будувати, щоб наочно побачити відсоткову частку певного продукту?",RndAnswers:true,Obj:"",Answers:[{Text:"секторну",cr:true,Select:false},{Text:"стовпчасту",cr:false,Select:false},{Text:"точкову",cr:false,Select:false},{Text:"лінійчату",cr:false,Select:false},]},{Text:"Функція NOW виводить поточний час. Виберіть правильний запис цієї функції у клітинці.",RndAnswers:true,Obj:"",Answers:[{Text:"NOW=",cr:false,Select:false},{Text:"=NOW()",cr:true,Select:false},{Text:"$NOW$",cr:false,Select:false},{Text:"[NOW]",cr:false,Select:false},]},{Text:"Яку команду виконують значки на фото?",RndAnswers:true,Obj:"Excel-4.jpg",Answers:[{Text:"умовне форматування",cr:false,Select:false},{Text:"сортування даних",cr:true,Select:false},{Text:"вставлення функції",cr:false,Select:false},{Text:"знайти і виділити",cr:false,Select:false},]},{Text:"Виберіть правильно записану функцію.",RndAnswers:true,Obj:"",Answers:[{Text:"=IF(25; \"A4=3\"; F1:F3)",cr:false,Select:false},{Text:"=IF(D1; 2)",cr:false,Select:false},{Text:"=IF(C5<4; \"так\"; \" \")",cr:true,Select:false},{Text:"=IF(B6=100)",cr:false,Select:false},]},{Text:"До якої категорії функцій відноситься функція «IF»?",RndAnswers:true,Obj:"",Answers:[{Text:"текстові функції",cr:false,Select:false},{Text:"математичні функції",cr:false,Select:false},{Text:"логічні функції",cr:true,Select:false},{Text:"функції дати й часу",cr:false,Select:false},]},]}
+</script>
+
+<body onload="StartTest()">
+
+<table class="page-header" id="tests_header">
+	<tr>
+		<td class="btn btn__exit-test" onclick="ExitTest()">x</td>
+		<td class="page-title">
+			<span class="sign-quest-num">№</span>
+			<span class="quest-num" id="questNum"></span>
+			<span class="quest-count" id="questCount"></span>
+		</td>
+		<td class="btn btn__next-quest" onclick="NextQuestion()">&#9658;&#9658;</td>
+	</tr>
+</table>
+
+<table class="content content--border-around" id="testForm">
+	<tr><td class="test-quest" id="quest"></td></tr>
+	<tr><td class="test-correct-count" id="correctCount"></td></tr>
+
+	<tr><td class="test-answer" id="answer0" onclick="CheckAnswer(0)">
+		<span class="test-answer-num">1.</span>
+		<input id="radio0" type="radio" name="answers">
+		<label id="label0" for="radio0"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer1" onclick="CheckAnswer(1)">
+		<span class="test-answer-num">2.</span>
+		<input id="radio1" type="radio" name="answers">
+		<label id="label1" for="radio1"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer2" onclick="CheckAnswer(2)">
+		<span class="test-answer-num">3.</span>
+		<input id="radio2" type="radio" name="answers">
+		<label id="label2" for="radio2"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer3" onclick="CheckAnswer(3)">
+		<span class="test-answer-num">4.</span>
+		<input id="radio3" type="radio" name="answers">
+		<label id="label3" for="radio3"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer4" onclick="CheckAnswer(4)">
+		<span class="test-answer-num">5.</span>
+		<input id="radio4" type="radio" name="answers">
+		<label id="label4" for="radio4"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer5" onclick="CheckAnswer(5)">
+		<span class="test-answer-num">6.</span>
+		<input id="radio5" type="radio" name="answers">
+		<label id="label5" for="radio5"></label>
+	</td></tr>
+</table>
+
+<div class="test-obj">
+	<img id="questImg" src="" alt="">
+</div>
+
+<div class="test-result" id="resForm" hidden>
+	<div>
+		<span class="test-result-title">Результат:</span>
+		<span class="test-result-percent" id="resPercent"></span>
+	</div>
+	<div class="test-result-mark" id="testMark"></div>
+</div>
+
+</body>

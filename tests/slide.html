@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/css/tests.css">
+<script src="/css/tests.js"></script>
+<title>Презентації</title>
+<script>
+	var test={MinMark:2,MaxMark:12,IsPenalty:true,Questions:[{Text:"Виберіть графічні об’єкти у презентаціях.",RndAnswers:true,Obj:"",Answers:[{Text:"Напис",cr:false,Select:false},{Text:"Рисунок",cr:true,Select:false},{Text:"Таблиця",cr:false,Select:false},{Text:"WordArt",cr:false,Select:false},{Text:"Фігури",cr:true,Select:false},]},{Text:"Виберіть назву популярної програми - редактора презентацій.",RndAnswers:true,Obj:"",Answers:[{Text:"Excel",cr:false,Select:false},{Text:"Android",cr:false,Select:false},{Text:"PowerPoint",cr:true,Select:false},{Text:"Scratch",cr:false,Select:false},]},{Text:"Дегустація страв, показ мод, виставка картин, пісенний фестиваль – все це в інформатиці називають...",RndAnswers:true,Obj:"",Answers:[{Text:"дані",cr:false,Select:false},{Text:"плагіат",cr:false,Select:false},{Text:"презентація",cr:true,Select:false},{Text:"графіка",cr:false,Select:false},]},{Text:"З чого складається комп’ютерна презентація?",RndAnswers:true,Obj:"",Answers:[{Text:"з аркушів",cr:false,Select:false},{Text:"з документів",cr:false,Select:false},{Text:"зі слайдів",cr:true,Select:false},{Text:"з чисел",cr:false,Select:false},]},{Text:"Оберіть  \'найгірший\'  слайд.",RndAnswers:true,Obj:"",Answers:[{Text:"На слайді - 2 зображення + 1 речення",cr:false,Select:false},{Text:"На слайді - тільки 3 речення",cr:true,Select:false},{Text:"На слайді - тільки 3 зображення",cr:false,Select:false},{Text:"На слайді - 1 зображення + 2 речення",cr:false,Select:false},]},{Text:"Скільки коротких речень найкраще розміщувати на слайді?",RndAnswers:false,Obj:"",Answers:[{Text:"0",cr:false,Select:false},{Text:"1",cr:false,Select:false},{Text:"2-3",cr:true,Select:false},{Text:"3-5",cr:false,Select:false},]},{Text:"Що у редакторі презентацій «допомагає» робити добрі слайди?",RndAnswers:true,Obj:"",Answers:[{Text:"нотатки",cr:false,Select:false},{Text:"сортувальник",cr:false,Select:false},{Text:"тема",cr:true,Select:false},{Text:"макет",cr:true,Select:false},{Text:"зміст",cr:false,Select:false},]},{Text:"Що має кожен слайд (властивості слайдів)?",RndAnswers:true,Obj:"",Answers:[{Text:"заголовок",cr:true,Select:false},{Text:"вирівнювання",cr:false,Select:false},{Text:"колір тла",cr:true,Select:false},{Text:"накреслення",cr:false,Select:false},{Text:"розмір",cr:false,Select:false},]},{Text:"Як називається найпростіша презентація, призначена для показу зображень?",RndAnswers:true,Obj:"",Answers:[{Text:"відеоблог",cr:false,Select:false},{Text:"фотоальбом",cr:true,Select:false},{Text:"реклама",cr:false,Select:false},{Text:"демонстрація",cr:false,Select:false},]},{Text:"Як називається смужка з текстом під кожним слайдом, який є поясненням-підказкою?",RndAnswers:true,Obj:"",Answers:[{Text:"нотатки",cr:true,Select:false},{Text:"помилки",cr:false,Select:false},{Text:"задачі",cr:false,Select:false},{Text:"додатки",cr:false,Select:false},]},{Text:"Який пристрій часто використовують для показу презентацій?",RndAnswers:true,Obj:"",Answers:[{Text:"планшет",cr:false,Select:false},{Text:"відеокамера",cr:false,Select:false},{Text:"сканер",cr:false,Select:false},{Text:"проєктор",cr:true,Select:false},]},{Text:"Яким розміром треба писати текст на слайді?",RndAnswers:false,Obj:"",Answers:[{Text:"12",cr:false,Select:false},{Text:"20",cr:true,Select:false},{Text:"38",cr:false,Select:false},{Text:"52",cr:false,Select:false},]},{Text:"Якою клавішею можна розпочати показ презентації на весь екран?",RndAnswers:true,Obj:"",Answers:[{Text:"Shift",cr:false,Select:false},{Text:"Enter",cr:false,Select:false},{Text:"PgDn",cr:false,Select:false},{Text:"F5",cr:true,Select:false},]},{Text:"Якою командою можна додати текст на слайд?",RndAnswers:true,Obj:"",Answers:[{Text:"Формат / На передній план",cr:false,Select:false},{Text:"Вставлення / Напис",cr:true,Select:false},{Text:"Вигляд / Сітка",cr:false,Select:false},{Text:"Конструктор / Шрифти",cr:false,Select:false},]},{Text:"Яку команду слід виконати, щоб з одного слайда зробити ще один такий же?",RndAnswers:true,Obj:"",Answers:[{Text:"дублювати слайд",cr:true,Select:false},{Text:"приховати слайд",cr:false,Select:false},{Text:"публікувати слайд",cr:false,Select:false},{Text:"відновити слайд",cr:false,Select:false},]},]}
+</script>
+
+<body onload="StartTest()">
+
+<table class="page-header" id="tests_header">
+	<tr>
+		<td class="btn btn__exit-test" onclick="ExitTest()">x</td>
+		<td class="page-title">
+			<span class="sign-quest-num">№</span>
+			<span class="quest-num" id="questNum"></span>
+			<span class="quest-count" id="questCount"></span>
+		</td>
+		<td class="btn btn__next-quest" onclick="NextQuestion()">&#9658;&#9658;</td>
+	</tr>
+</table>
+
+<table class="content content--border-around" id="testForm">
+	<tr><td class="test-quest" id="quest"></td></tr>
+	<tr><td class="test-correct-count" id="correctCount"></td></tr>
+
+	<tr><td class="test-answer" id="answer0" onclick="CheckAnswer(0)">
+		<span class="test-answer-num">1.</span>
+		<input id="radio0" type="radio" name="answers">
+		<label id="label0" for="radio0"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer1" onclick="CheckAnswer(1)">
+		<span class="test-answer-num">2.</span>
+		<input id="radio1" type="radio" name="answers">
+		<label id="label1" for="radio1"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer2" onclick="CheckAnswer(2)">
+		<span class="test-answer-num">3.</span>
+		<input id="radio2" type="radio" name="answers">
+		<label id="label2" for="radio2"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer3" onclick="CheckAnswer(3)">
+		<span class="test-answer-num">4.</span>
+		<input id="radio3" type="radio" name="answers">
+		<label id="label3" for="radio3"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer4" onclick="CheckAnswer(4)">
+		<span class="test-answer-num">5.</span>
+		<input id="radio4" type="radio" name="answers">
+		<label id="label4" for="radio4"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer5" onclick="CheckAnswer(5)">
+		<span class="test-answer-num">6.</span>
+		<input id="radio5" type="radio" name="answers">
+		<label id="label5" for="radio5"></label>
+	</td></tr>
+</table>
+
+<div class="test-obj"><img id="questImg" src="" alt=""></div>
+
+<div class="test-result" id="resForm" hidden>
+	<div>
+		<span class="test-result-title">Результат:</span>
+		<span class="test-result-percent" id="resPercent"></span>
+	</div>
+	<div class="test-result-mark" id="testMark"></div>
+</div>
+
+</body>

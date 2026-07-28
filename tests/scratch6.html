@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/css/tests.css">
+<script src="/css/tests.js"></script>
+<title>Scratch</title>
+<script>
+	var test={MinMark:2,MaxMark:12,IsPenalty:true,Questions:[{Text:"В який кут піде виконавець у Scratch, повернутий напрямку 50 градусів?",RndAnswers:false,Obj:"Scratch6-1.jpg",Answers:[{Text:"верхній лівий",cr:false,Select:false},{Text:"верхній правий",cr:true,Select:false},{Text:"нижній лівий",cr:false,Select:false},{Text:"нижній правий",cr:false,Select:false},]},{Text:"Виберіть букви, якими позначається розташування виконавця на сцені у Scratch (координати).",RndAnswers:true,Obj:"",Answers:[{Text:" a",cr:false,Select:false},{Text:" r",cr:false,Select:false},{Text:" z",cr:false,Select:false},{Text:" y",cr:true,Select:false},{Text:" x",cr:true,Select:false},]},{Text:"Виберіть команду у Scratch, де часто числа записують десятковим дробом.",RndAnswers:true,Obj:"Scratch6-2.jpg",Answers:[{Text:"перемістити на ... кроків",cr:false,Select:false},{Text:"чекати ... секунд",cr:true,Select:false},{Text:"змінити ефект (колір) на ...",cr:false,Select:false},{Text:"повторити ...",cr:false,Select:false},]},{Text:"Виберіть команду, яка зменшує розмір виконавця у 5 разів.",RndAnswers:false,Obj:"Scratch6-3.jpg",Answers:[{Text:"задати розмір 5",cr:false,Select:false},{Text:"задати розмір 20",cr:true,Select:false},{Text:"задати розмір 50",cr:false,Select:false},{Text:"задати розмір 2000",cr:false,Select:false},]},{Text:"Виконавець у Scratch дійшов до правої межі сцени. Яке у цьому місці значення «х»?",RndAnswers:false,Obj:"Scratch6-4.jpg",Answers:[{Text:"-360",cr:false,Select:false},{Text:"0",cr:false,Select:false},{Text:"240",cr:true,Select:false},{Text:"720",cr:false,Select:false},]},{Text:"До якої групи команд Scratch відносяться такі: «коли клавішу... натиснуто», «коли я отримую...», «коли прапорець натиснуто»?",RndAnswers:true,Obj:"",Answers:[{Text:"Керування (помаранчевий колір)",cr:false,Select:false},{Text:"Датчики (блакитний колір)",cr:false,Select:false},{Text:"Події (жовтий колір)",cr:true,Select:false},{Text:"Вигляд (фіолетовий колір)",cr:false,Select:false},]},{Text:"Клацання кнопок миші, натискання клавіш клавіатури, зупинка роботи – все це є приклади...",RndAnswers:true,Obj:"",Answers:[{Text:"подій",cr:true,Select:false},{Text:"помилок",cr:false,Select:false},{Text:"програм",cr:false,Select:false},{Text:"команд",cr:false,Select:false},]},{Text:"Поворот у протилежному напрямку – це поворот ...",RndAnswers:false,Obj:"",Answers:[{Text:"на 40 градусів",cr:false,Select:false},{Text:"на 90 градусів",cr:false,Select:false},{Text:"на 120 градусів",cr:false,Select:false},{Text:"на 180 градусів",cr:true,Select:false},]},{Text:"Щоб виконавець у Scratch сам вибирав собі колір, місце, розмір, напрямок, треба виконати команду ...",RndAnswers:true,Obj:"Scratch6-5.jpg",Answers:[{Text:"послідовне від ... до ...",cr:false,Select:false},{Text:"відповідне від ... до ...",cr:false,Select:false},{Text:"випадкове  від ... до ...",cr:true,Select:false},{Text:"наступне   від ... до ...",cr:false,Select:false},]},{Text:"Які номери кольорів можна використовувати у Scratch?",RndAnswers:false,Obj:"",Answers:[{Text:"від -24    до 24",cr:false,Select:false},{Text:"від 0      до 200",cr:true,Select:false},{Text:"від -16000 до 16000",cr:false,Select:false},{Text:"від 1      до 64500",cr:false,Select:false},]},{Text:"Яка висота сцени у Scratch?",RndAnswers:false,Obj:"Scratch6-6.jpg",Answers:[{Text:"360",cr:true,Select:false},{Text:"580",cr:false,Select:false},{Text:"800",cr:false,Select:false},{Text:"1540",cr:false,Select:false},]},{Text:"Який колір має номер «0» у Scratch?",RndAnswers:true,Obj:"",Answers:[{Text:"чорний",cr:false,Select:false},{Text:"фіолетовий",cr:false,Select:false},{Text:"жовтий",cr:false,Select:false},{Text:"червоний",cr:true,Select:false},]},]}
+</script>
+
+<body onload="StartTest()">
+
+<table class="page-header" id="tests_header">
+	<tr>
+		<td class="btn btn__exit-test" onclick="ExitTest()">x</td>
+		<td class="page-title">
+			<span class="sign-quest-num">№</span>
+			<span class="quest-num" id="questNum"></span>
+			<span class="quest-count" id="questCount"></span>
+		</td>
+		<td class="btn btn__next-quest" onclick="NextQuestion()">&#9658;&#9658;</td>
+	</tr>
+</table>
+
+<table class="content content--border-around" id="testForm">
+	<tr><td class="test-quest" id="quest"></td></tr>
+	<tr><td class="test-correct-count" id="correctCount"></td></tr>
+
+	<tr><td class="test-answer" id="answer0" onclick="CheckAnswer(0)">
+		<span class="test-answer-num">1.</span>
+		<input id="radio0" type="radio" name="answers">
+		<label id="label0" for="radio0"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer1" onclick="CheckAnswer(1)">
+		<span class="test-answer-num">2.</span>
+		<input id="radio1" type="radio" name="answers">
+		<label id="label1" for="radio1"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer2" onclick="CheckAnswer(2)">
+		<span class="test-answer-num">3.</span>
+		<input id="radio2" type="radio" name="answers">
+		<label id="label2" for="radio2"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer3" onclick="CheckAnswer(3)">
+		<span class="test-answer-num">4.</span>
+		<input id="radio3" type="radio" name="answers">
+		<label id="label3" for="radio3"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer4" onclick="CheckAnswer(4)">
+		<span class="test-answer-num">5.</span>
+		<input id="radio4" type="radio" name="answers">
+		<label id="label4" for="radio4"></label>
+	</td></tr>
+	<tr><td class="test-answer" id="answer5" onclick="CheckAnswer(5)">
+		<span class="test-answer-num">6.</span>
+		<input id="radio5" type="radio" name="answers">
+		<label id="label5" for="radio5"></label>
+	</td></tr>
+</table>
+
+<div class="test-obj"><img id="questImg" src="" alt=""></div>
+
+<div class="test-result" id="resForm" hidden>
+	<div>
+		<span class="test-result-title">Результат:</span>
+		<span class="test-result-percent" id="resPercent"></span>
+	</div>
+	<div class="test-result-mark" id="testMark"></div>
+</div>
+
+</body>
