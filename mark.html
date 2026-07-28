@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Оцінювання з інформатики</title>
+
+<!--========================================================================-->
+<style>
+
+:root {
+  --font-color: #333333;
+  --border-color: #333333;
+  --link-color: #992211;
+  --body-color: #f5f4e5;
+  --js-header-color: #8fbc8f;
+  --border-style: 1px dotted var(--border-color);
+  --body-max-width: 560px;
+  --obj-max-width: 480px;
+}
+
+body {
+  margin: 0;
+  padding: 5px;
+  font-family: "Arial", sans-serif;
+  line-height: 2;
+  color: var(--font-color);
+  background-color: var(--body-color);
+}
+
+a {
+  text-decoration: none;
+  color: var(--link-color);
+}
+
+.page-header {
+  position: fixed;
+  top: 2px;
+  left: 10px;
+  width: 94%;
+  max-width: var(--body-max-width);
+  padding: 2px;
+  border-spacing: 0;
+  border-radius: 5px;
+  text-align: center;
+  background-color: var(--js-header-color);
+}
+@media screen and (min-width:600px) {
+  .page-header {
+    top: 10px;
+	left: 10%;
+  }
+}
+
+.page-title {font-size: 1.2em}
+
+select {
+  min-width: 120px;
+  padding: 2px 5px;
+  border: 2px outset var(--border-color);
+  border-radius: 5px;
+  font-size: 1em;
+  background: -webkit-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
+  background: -moz-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
+  background: -ms-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
+  background: -o-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
+}
+
+.content {
+  width: 96%;
+  max-width: var(--body-max-width);
+  margin: 42px 0 20px 6px;
+  border-spacing: 0;
+  background-color: var(--body-color);
+}
+
+@media screen and (min-width:600px) {
+  .content {margin: 50px 0 20px 10%}
+}
+
+.content__without-header {
+  margin-top: 2px;
+}
+
+@media screen and (min-width:600px) {
+  .content__without-header {margin-top: 10px}
+}
+
+.content--border-around {border: var(--border-style)}
+.content--color {background-color: #ffffff}
+
+.mark {
+  padding: 10px;
+  border: var(--border-style);
+}
+
+.mark__td1 {
+  width: 25%;
+  text-align: center;
+  line-height: 1.5;
+  background-color: #fffff0;
+}
+
+.mark__td2 {
+  font-size: 0.8em;
+  text-align: left;
+  line-height: 1.5;
+  background-color: #fff;
+}
+
+.mark__td3 {
+  padding: 0 10px;
+  text-align: center;
+  background-color: #f8f8ff;
+}
+
+.mark__td4 {
+  padding: 0 10px;
+  line-height: 1.5;
+  font-size: 0.8em;
+  background-color: #f8f8ff;
+}
+
+.comment-short {font-size: 0.8em}
+
+.comment-main {
+  color: blue;
+  font-style: italic;
+}
+
+.comment-project {}
+
+.comment-task {
+  color: Salmon;
+  font-style: italic;
+}
+
+</style>
+
+<!--========================================================================-->
+<table class="page-header">
+  <tr><td class="page-title">Критерії оцінювання з інформатики</tr>
+</table>
+
+<!--==========================================-->
+<table class="content">
+
+<tr><td class="mark mark__td4" colspan="2" style="font-family:Consolas; text-align:center;">
+<span class="comment-main">вправи/знання</span><span class="comment-project"> | проєкти | </span><span class="comment-task">задачі</span>
+</td></tr>
+
+<tr>
+  <td class="mark mark__td1"><b>2-3&nbsp;бали</b><br><span class="comment-short">щось робив!</span></td>
+  <td class="mark mark__td2">
+    <span class="comment-main">намагався щось зробити чи&nbsp;відповісти</span><br>
+    <span class="comment-project">"лише&nbsp;розпочав" виконувати проєкт</span><br>
+    <span class="comment-task">відтворив <b>частину</b> розв’язку&nbsp;задачі</span></td>
+</tr><tr>
+  <td class="mark mark__td3">&nbsp;</td>
+  <td class="mark mark__td4">+&nbsp;зберіг результати своєї роботи, дотримувався правил&nbsp;безпеки</td>
+</tr><tr>
+  <td class="mark mark__td1"><b>4-5&nbsp;балів</b><br><span class="comment-short">щось зробив!</span></td>
+  <td class="mark mark__td2">
+    <span class="comment-main">знає чи&nbspвиконав найпростіші завдання</span><br>
+    <span class="comment-project">виконав невелику&nbsp;частину проєкту</span><br>
+    <span class="comment-task">відтворив розв’язок задачі</span></td>
+</tr><tr>
+  <td class="mark mark__td3">&nbsp;</td>
+  <td class="mark mark__td4">+&nbsp;впевнено користувався пристроями&nbsp;комп’ютера та Інтернетом</td>
+</tr><tr>
+  <td class="mark mark__td1"><b>6-7&nbsp;балів</b><br><span class="comment-short">старався!</span></td>
+  <td class="mark mark__td2">
+    <span class="comment-main">допустив багато помилок та&nbsp;неточностей</span><br>
+    <span class="comment-project">"все-таки не&nbsp;виконав" або&nbsp;"виконав не&nbsp;так" проєкт</span><br>
+    <span class="comment-task">розв’язав задачу <b>з&nbsp;допомогою</b></span></td>
+</tr><tr>
+  <td class="mark mark__td3">&nbsp;</td>
+  <td class="mark mark__td4">+&nbsp;виправляв вказані помилки чи&nbsp;неточності, проявляв старанність у&nbsp;роботі</td>
+</tr><tr>
+  <td class="mark mark__td1"><b>8-9&nbsp;балів</b><br><span class="comment-short">майже!</span></td>
+  <td class="mark mark__td2">
+    <span class="comment-main">виконав&nbsp;чи знає <b>суть</b> завдання</span><br>
+    <span class="comment-project">виконав <b>головне</b> у&nbsp;проєкті</span><br>
+    <span class="comment-task">самостійно розв’язав задачу</span></td>
+</tr><tr>
+  <td class="mark mark__td3">&nbsp;</td>
+  <td class="mark mark__td4">+&nbsp;дотримувався усіх стандартів і&nbsp;правил виконання роботи та&nbsp;оформлення результатів</td>
+</tr><tr>
+  <td class="mark mark__td1"><b>10-11&nbsp;балів</b><br><span class="comment-short">те, що&nbsp;треба!</span></td>
+  <td class="mark mark__td2">
+    <span class="comment-main">впорався з усіма завданнями</span><br>
+    <span class="comment-project">проєкт можна і&nbsp;треба показувати іншим!</span><br>
+    <span class="comment-task">розв’язав усі&nbsp;задачі</span></td>
+</tr><tr>
+  <td class="mark mark__td3">&nbsp;</td>
+  <td class="mark mark__td4">+&nbsp;проявляв високу зацікавленість до&nbsp;роботи, допомагав іншим&nbsp;учням</td>
+</tr><tr>
+  <td class="mark mark__td1"><b>12&nbsp;балів</b><br><span class="comment-short">овва!</span></td>
+  <td class="mark mark__td2">
+    <span class="comment-main">продемонстрував "позашкільні" вміння і&nbsp;знання</span></span><br>
+    <span class="comment-project">виконував проєкт нестандартно, творчо </span><br>
+    <span class="comment-task">доповнив, ускладнив і розв’язав задачу</span></td>
+</tr>
+
+</table>

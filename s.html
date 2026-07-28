@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Задачі (Scratch)</title>
+
+<!--========================================================================-->
+<style>
+
+body {
+  margin: 0;
+  padding: 5px;
+  text-align: center;
+  font-family: sans-serif;
+  color: #333333;
+  background-color: #f5f4e5;
+}
+
+.task-content {
+  margin: 5px;
+  padding: 2px;
+  max-width: 30em;
+  line-height: 1.3;
+  background-color: #ffffff;
+}
+@media screen and (min-width:30em) {
+  .task-content {margin: 5px 10%}
+}
+
+.task-header {
+  margin: 0;
+  padding: 2px;
+  display: flex;
+  border-radius: 5px;
+  line-height: 2;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #8fbc8f;
+}
+
+.task-button {
+  overflow: hidden;
+  margin: 1px;
+  padding: 2px 4px;
+  width: 35px;
+  border: 1px solid #333333;
+  border-radius: 5px;
+  background: -webkit-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
+  background: -moz-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
+  background: -ms-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
+  background: -o-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
+  cursor: pointer;
+}
+
+select {
+  min-width: 120px;
+  padding: 2px 5px;
+  font-size: 1em;
+  border: 2px outset #333333;
+  border-radius: 5px;
+  background: -webkit-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
+  background: -moz-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
+  background: -ms-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
+  background: -o-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
+}
+
+.task-title {padding: 20px 0 10px 0}
+
+.task-number {
+  padding-right: 7px;
+  font-weight: bold;
+}
+.task-name {}
+.task-container {}
+
+.task-container video {
+  max-width: 100%;
+  border-radius: 5px;
+  border: 1px dotted #333333;
+}
+
+.task-comment {
+  padding: 10px;
+  font-size: 0.8em;
+}
+
+</style>
+
+<!--========================================================================-->
+<body onload="Start(location.search)">
+
+<div class="task-content" ontouchstart="touchStart()"
+  ontouchend="touchEnd(listBox.selectedIndex)">
+
+  <div class="task-header">
+    <div class="task-button"
+      onclick="ShowItem(listBox.selectedIndex - 1)">&#9668;</div>
+    <select id="listBox" size="1"
+      onchange="ShowItem(this.selectedIndex)"></select>
+    <div class="task-button"
+      onclick="ShowItem(listBox.selectedIndex + 1)">&#9658;</div>
+  </div>
+
+  <div class="task-title">
+    <span id="taskNumber" class="task-number">№&nbsp;0. </span>
+    <span id="taskName" class="task-name">Назва завдання</span>
+  </div>
+
+  <div class="task-container">
+    <video id="taskVideo" controls>
+      <source src="" type="video/mp4">Не можна відобразити відео :(
+    </video>
+  </div>
+  <div id="taskComment" class="task-comment">Коментар до завдання</div>
+
+</div>
+
+</body>
+
+<!--========================================================================-->
+<script>
+
+//=============================================================================
+const MAX_DATA = 200;
+const SCRATCH_FOLDER = 'scratch/';
+var startX, startY;
+
+//-----------------------------------------------------------------------------
+function Start(txt) {
+  let s = '';
+  for (let i = 0; i < tasks.length; i++) {
+    s += '<option>' + (i + 1) + '</option>';
+  }
+  document.getElementById('listBox').innerHTML = s;
+
+  const par = decodeURI(txt).trim().slice(1);
+  let n = 0;
+  if (par.length > 0 && !isNaN(par) && Number.isInteger(Number(par))) {
+    n = Number(par) - 1;
+  }
+  ShowItem(n);
+}
+
+//-----------------------------------------------------------------------------
+function ShowItem(n) {
+  if (tasks.length === 0) return;
+  if (n >= tasks.length) n = tasks.length - 1;
+  if (n < 0) n = 0;
+
+  document.getElementById('taskNumber').innerHTML = '№&nbsp;' + (n + 1) + '. ';
+  if ('name' in tasks[n]) {
+    document.getElementById('taskName').innerHTML = tasks[n].name;
+  } else {
+    document.getElementById('taskName').innerHTML = 'Noname';
+  }
+  document.getElementById('taskVideo').src = SCRATCH_FOLDER + (n + 1) + '.mp4';
+  if ('comment' in tasks[n]) {
+    document.getElementById('taskComment').innerHTML = tasks[n].comment;
+  } else {
+    document.getElementById('taskComment').innerHTML = '';
+  }
+  document.getElementById('listBox').selectedIndex = n;
+}
+
+//-----------------------------------------------------------------------------
+function touchStart() {
+  startX = event.touches[0].clientX;
+  startY = event.touches[0].clientY;
+}
+function touchEnd(n) {
+  let dX = event.changedTouches[0].clientX - startX;
+  let dY = event.changedTouches[0].clientY - startY;
+  if (dX > 50 && Math.abs(dX) > Math.abs(dY)) ShowItem(n - 1);
+  if (dX < -50 && Math.abs(dX) > Math.abs(dY)) ShowItem(n + 1);
+}
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+const tasks = [
+  {name:'На пляжі'},  // 1
+  {name:'Діалог'},  // 2
+  {name:'Лякалки'},  // 3
+  {name:'Переправа'},  // 4
+  {name:'Хижаки'},  // 5
+  {name:'Акула'},  // 6
+  {name:'Прапорець',  // 7
+    comment:'(малювання олівцем)'},
+  {name:'Слово',  // 8
+    comment:'(малювання олівцем)'},
+  {name:'Гімнастика'},  // 9
+  {name:'Вартовий'},  // 10
+  {name:'Вітряки',  // 11
+    comment:'Вітряки треба малювати!'},
+  {name:'Жабка на лавці'},  // 12
+  {name:'Сонце і Земля'},  // 13
+  {name:'Світ тварин',  // 14
+    comment:`Натискаємо клавішу «1» - одна тварина,<br>
+    клавішу «2» - інша тварина`},
+  {name:'Дощ',  // 15
+    comment:`Кіт перемішується стрілками ліворуч-праворуч.<br>
+    Якщо торкнеться болота - то тікає з нього.<br>
+    Якщо на нього попаде крапля - то Кіт змінює колір.`},
+  {name:'Тест-2',  // 16
+    comment:'Кіт задає питання і каже чи відповідь на запитання правильна чи ні'},
+  {name:'Тест-3',  // 17
+    comment:'Кіт задає питання і каже чи відповідь на запитання завелика, замала чи правильна'},
+  {name:'Футбол'},  // 18
+  {name:'Футболіст'},  // 19
+  {name:'Годинник',  // 20
+    comment:'Годинник треба малювати!'},
+  {name:'Заєць-утікач'},  // 21
+  {name:'Полуниці'},  // 22
+  {name:'Веселка'},  // 23
+  {name:'Квітка',  // 24
+    comment:'Кількість пелюсток – будь-яка'},
+  {name:'Зоряне небо'},  // 25
+  {name:'Спритна мишка'},  // 26
+  {name:'Парк',  // 27
+    comment:'Дерева і метелики «виростають» різного розміру і «де&nbsp;захочуть»'},
+  {name:'Рулетка',  // 28
+    comment:'Рулетку треба малювати!'},
+  {name:'Сніжинка',  // 29
+    comment:'(циклічне малювання олівцем)'},
+  {name:'Зірочки',  // 30
+    comment:'(циклічне малювання олівцем)'},
+  {name:'Фігура',  // 31
+    comment:'(циклічне малювання олівцем)'},
+  {name:'Сходинки',  // 32
+    comment:'(циклічне малювання олівцем)'},
+  {name:'"Зебра"',  // 33
+    comment:'(циклічне малювання олівцем)'},
+
+
+//-----------------------------------------------------------------------------
+  {name:'Світлофор',  // 34
+    comment:'Кіт питає, який колір світлофора і каже: можна йти, зачекати чи стояти'},
+  {name:'Погода',  // 35
+    comment:'Кіт питає, яка погода і скільки градусів і дає пораду, як одягнутись'},
+  {name:'Більярд'},  // 36
+  {name:'Зустріч'},  // 37
+  {name:'Дощ-2'},  // 38
+  {name:'Палички'},  // 39
+  {name:'Намисто',  // 40
+    comment:`Зобразіть не шестикутник,
+      <br>а квадрат або п’ятикутник`},
+  {name:'Клони'},  // 41
+  {name:'Оцінка',  // 42
+    comment:'Кіт питає, яка оцінка і каже: нормальна, погана чи добра'},
+  {name:'Титанік'},  // 43
+  {name:'Шахівниця'},  // 44
+  {name:'Світ тварин-2'},  // 45
+  {name:'Кролик і кавун',  // 46
+    comment:`Кавун з’являється «де&nbsp;захоче».<br>
+      Кролик намагається його піймати`},
+  {name:'Рух по дорозі'},  // 47
+  {name:'Серце'},  // 48
+  {name:'Шлюз',  // 49
+    comment:`Шлюз відкривається,
+      коли кораблик наблизиться на&nbsp;певну відстань`},
+  {name:'Квіткове поле',  // 50
+    comment:`Квітки з’являються «де&nbsp;захочуть»,<br>
+      різних&nbsp;кольорів та різного&nbsp;розміру`},
+  {name:'НЛО'},  // 51
+  {name:'Таймер',  // 52
+    comment:'Домалюйте кнопку, яка запускає таймер'},
+  {name:'Заставка'},  // 53
+  {name:'Зоряне небо-2',  // 54
+    comment:'Зірки різного розміру, кольору та напрямку'},
+  {name:'Гральний кубик',  // 55
+    comment:`Вкидання грального кубика:<br>
+      через певний час випадає число від&nbsp;1 до&nbsp;6`},
+  {name:'Випадкові числа',  // 56
+    comment:'З’являються 10 випадкових чисел - номер телефону'},
+  {name:'Обхід'},  // 57
+  {name:'Пенальті',  // 58
+    comment:'Поле з&nbsp;воротами треба малювати!'},
+  {name:'Свято'},  // 59
+  {name:'Екскурсія',  // 60
+    comment:'Натискаємо на кнопку - людина показує і говорить по-різному'},
+  {name:'Ліфт'},  // 61
+  {name:'Перехід дороги'},  // 62
+  {name:'Космічна подорож',  // 63
+    comment:'Ракету треба малювати!'},
+]
+
+//-----------------------------------------------------------------------------
+</script>

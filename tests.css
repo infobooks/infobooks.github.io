@@ -1,0 +1,222 @@
+:root {
+  --font-color: #333333;
+  --border-color: #333333;
+  --link-color: #992211;
+  --body-color: #f5f4e5;
+  --js-header-color: #8fbc8f;
+  --border-style: 1px dotted var(--border-color);
+  --body-max-width: 560px;
+  --obj-max-width: 480px;
+}
+
+body {
+  margin: 0;
+  padding: 5px;
+  font-family: "Arial", sans-serif;
+  line-height: 2;
+  color: var(--font-color);
+  background-color: var(--body-color);
+}
+
+a {
+  text-decoration: none;
+  color: var(--link-color);
+}
+
+.page-header {
+  position: fixed;
+  top: 2px;
+  left: 10px;
+  width: 94%;
+  max-width: var(--body-max-width);
+  padding: 2px;
+  border-spacing: 0;
+  border-radius: 5px;
+  text-align: center;
+  background-color: var(--js-header-color);
+}
+
+@media screen and (min-width:600px) {
+	.page-header {
+		top: 10px;
+		left: 10%;
+	}
+}
+
+.btn {
+  overflow: hidden;
+  margin: 0 2px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn__scroll {
+  width: 35px;
+  padding: 2px 4px;
+  background: -webkit-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
+  background: -moz-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
+  background: -ms-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
+  background: -o-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
+}
+
+.btn__exit-test {
+  width: 30px;
+  padding: 2px;
+  font-weight: bold;
+  background-color: #e2dfe0;
+}
+
+.btn__next-quest {
+  width: 60px;
+  padding: 2px;
+  background-color: #d0ecf4;
+}
+
+.page-title {
+  font-size: 1.2em;
+}
+
+select {
+  min-width: 120px;
+  padding: 2px 5px;
+  border: 2px outset var(--border-color);
+  border-radius: 5px;
+  font-size: 1em;
+  background: -webkit-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
+  background: -moz-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
+  background: -ms-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
+  background: -o-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
+}
+
+.content {
+  width: 96%;
+  max-width: var(--body-max-width);
+  margin: 42px 0 20px 6px;
+  border-spacing: 0;
+  background-color: var(--body-color);
+}
+
+@media screen and (min-width:600px) {
+	.content{
+		margin: 50px 0 20px 10%;
+	}
+}
+
+.content__without-header {
+  margin-top: 2px;
+}
+
+@media screen and (min-width:600px) {
+	.content__without-header {
+		margin-top: 10px;
+	}
+}
+
+.content--border-around {
+  border: var(--border-style);
+}
+
+.content--color {
+  background-color: #ffffff;
+}
+
+:root {
+  --js-checked-answer-color: #fffff0;
+  --js-answer-color: #ffffff;
+  --js-mark-1: #c0c0c0;
+  --js-mark-2: #ff69b4;
+  --js-mark-4: #ffa07a;
+  --js-mark-6: #ffd700;
+  --js-mark-8: #7fffd4;
+  --js-mark-10: #00ff7f;
+  --js-mark-12: #00ff00;
+}
+
+.sign-quest-num {}
+
+.quest-num {
+  margin: 0 10px 0 5px;
+  font-weight: bold;
+}
+
+.quest-count {
+  margin-left: 5px;
+  font-size: 0.8em;
+}
+
+.test-quest {
+  min-height: 48px;
+  padding: 5px 10px 20px 10px;
+  border: 1px inset var(--border-color);
+  line-height: 1.5;
+  background-color: #f8f8ff;
+}
+
+.test-correct-count {
+  font-size: 0.8em;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.test-answer {
+  padding: 12px 0;
+  border-top: var(--border-style);
+  background-color: var(--js-answer-color);
+  cursor: pointer;
+}
+
+.test-answer-num {
+  margin: 2px;
+  padding-left: 5px;
+}
+
+.test-answer input {
+  padding-left: 5px;
+}
+
+.test-answer label {
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+.test-obj {
+  margin: 20px 6px 5px 6px;
+}
+
+@media screen and (min-width:600px) {
+	.test-obj {
+		margin-left: 10%;
+	}
+}
+
+.test-obj img {
+  max-width: var(--obj-max-width);
+  border: var(--border-style);
+}
+
+.test-result {
+  max-width: var(--body-max-width);
+  margin: 10px 5px;
+  text-align: center;
+}
+
+.test-result-title {}
+
+.test-result-percent {
+  padding-left: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.test-result-mark {
+  width: fit-content;
+  min-width: 120px;
+  margin: 15px auto;
+  padding: 0 10px;
+  border: 2px outset var(--border-color);
+  font-size: 7em;
+  font-weight: bold;
+  line-height: 1.5;
+  background-color: #ffffff;
+}

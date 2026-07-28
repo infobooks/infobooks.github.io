@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Проєкти учнів</title>
+
+<!--========================================================================-->
+<style>
+
+body {
+  margin: 0;
+  padding: 5px;
+  font-family: "Arial", sans-serif;
+  color: #333333;
+  background-color: #f5f4e5;
+}
+
+.data-content {
+  margin: 5px;
+  padding: 2px;
+  max-width: 70em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  line-height: 1;
+}
+@media screen and (min-width:30em) {
+  .data-content {margin: 5px 10%}
+}
+
+.data-container {
+  max-width: 30em;
+  margin: 7px 10px;
+ }
+
+.data-container img {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px dotted #333333;
+}
+
+.data-container video {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px dotted #333333;
+}
+
+/*---------------------------------------------------------------------------*/
+.menu-content {
+  margin: 5px;
+  padding: 2px;
+  max-width: 70em;
+  line-height: 1.3;
+}
+@media screen and (min-width:30em) {
+  .menu-content {margin: 5px 10%}
+}
+
+.menu-header {
+  width: 100%;
+  padding: 5px;
+  margin: 10px 2px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  text-align: center;
+  background-color: #8fbc8f;
+}
+
+.menu-content-group {
+  margin: 5px;
+  padding: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  line-height: 1.3;
+  border: 1px dotted #333333;
+  border-radius: 5px;
+}
+
+.menu-item {
+  display: block;
+  min-width: 3em;
+  padding: 10px 10px;
+  margin: 7px 10px;
+  text-align: center;
+  color: #992211;
+  text-decoration: none;
+  border: 1px dotted #333333;
+  border-radius: 5px;
+}
+
+.menu--color-1 {background-color: #ffffff}
+.menu--color-2 {background-color: #f8f8ff}
+.menu--group-header {
+  background-color: #8fbc8f;
+  color: inherit;
+}
+
+</style>
+
+<!--========================================================================-->
+<body onload="Start(location.search)">
+
+<div class="menu-content" id="menu" style="display:none">
+
+  <div class="menu-header">Проєкти учнів</div>
+
+  <div class="menu-content-group">
+    <div class="menu-item menu--group-header">Текст&nbsp;=></div>
+    <a class="menu-item menu--color-1" href="/p.html?pro-sebe&41">Про<br>себе</a>
+    <a class="menu-item menu--color-2" href="/p.html?sheptyckyi&51">Моє рідне<br>місто</a>
+    <a class="menu-item menu--color-1" href="/p.html?gramota&51">Грамота<br>&nbsp;</a>
+    <a class="menu-item menu--color-2" href="/p.html?vitaemo&73">Вітаємо!<br>&nbsp;</a>
+    <a class="menu-item menu--color-1" href="/p.html?menu&35">Ресторанне<br>меню</a>
+    <a class="menu-item menu--color-2" href="/p.html?mjachi&6">Спортивні<br>м'яі</a>
+    <a class="menu-item menu--color-1" href="/p.html?rozklad-w&36">Розклад<br>(doc)</a>
+    <a class="menu-item menu--color-2" href="/p.html?laboratorna&1">Лабораторна<br>робота</a>
+    <a class="menu-item menu--color-1" href="/p.html?virshi&1">Збірка<br>віршів</a>
+    <a class="menu-item menu--color-2" href="/p.html?testy&1">Власне<br>тестування</a>
+  </div>
+
+  <div class="menu-content-group">
+    <div class="menu-item menu--group-header">Малюнки&nbsp;=></div>
+    <a class="menu-item menu--color-2" href="/p.html?pryroda&72">Природа<br>&nbsp;</a>
+    <a class="menu-item menu--color-1" href="/p.html?kazka&99">Казковий<br>світ</a>
+    <a class="menu-item menu--color-2" href="/p.html?more&1">Морський<br>краєвид</a>
+    <a class="menu-item menu--color-1" href="/p.html?kolobok&60">Казка<br>"Колобок"</a>
+    <a class="menu-item menu--color-2" href="/p.html?pidpysy&14">Підписи<br>учнів</a>
+    <a class="menu-item menu--color-1" href="/p.html?smartphon&42">Мій<br>смартфон</a>
+    <a class="menu-item menu--color-2" href="/p.html?bytvy&1">Історичні<br>битви</a>
+    <a class="menu-item menu--color-1" href="/p.html?ukryttya&24">Укриття<br>в&nbsp;школі</a>
+    <a class="menu-item menu--color-2" href="/p.html?shahy&24">Шахи<br>&nbsp;</a>
+  </div>
+
+  <div class="menu-content-group">
+    <div class="menu-item menu--group-header">Фігури&nbsp;=></div>
+    <a class="menu-item menu--color-1" href="/p.html?na-kuhni&99">На<br>кухні</a>
+    <a class="menu-item menu--color-2" href="/p.html?futzal&1">Чемпіонат<br>з&nbsp;футзалу</a>
+    <a class="menu-item menu--color-1" href="/p.html?znaky&36">Дорожні<br>знаки</a>
+    <a class="menu-item menu--color-2" href="/p.html?ionizator&1">Іонізатор<br>води</a>
+    <a class="menu-item menu--color-1" href="/p.html?mova&6">Частини<br>мови</a>
+    <a class="menu-item menu--color-2" href="/p.html?g20&27">Країни<br>G20</a>
+    <a class="menu-item menu--color-1" href="/p.html?tvarynnyctvo&33">Тваринництво<br>в Україні</a>
+    <a class="menu-item menu--color-2" href="/p.html?shashky&1">Шашки<br>3D</a>
+    <a class="menu-item menu--color-1" href="/p.html?budynok&1">Будинок<br>3D</a>
+    <a class="menu-item menu--color-2" href="/p.html?stadion&1">Стадіон<br>3D</a>
+  </div>
+
+  <div class="menu-content-group">
+    <div class="menu-item menu--group-header">Слайди&nbsp;=></div>
+    <a class="menu-item menu--color-2" href="/p.html?groshi&76">Купа<br>грошей</a>
+    <a class="menu-item menu--color-1" href="/p.html?predmety&98">Що ми<br>вивчаємо?</a>
+    <a class="menu-item menu--color-2" href="/p.html?velychyny&61">Фізичні<br>величини</a>
+    <a class="menu-item menu--color-1" href="/p.html?recept&1">Рецепт<br>страви</a>
+    <a class="menu-item menu--color-2" href="/p.html?getmany&1">Гетьмани<br>України</a>
+    <a class="menu-item menu--color-1" href="/p.html?dovghyna&24">Міри<br>довжини</a>
+    <a class="menu-item menu--color-2" href="/p.html?profesii&1">Світ<br>професій</a>
+    <a class="menu-item menu--color-1" href="/p.html?kurorty&1">Морські<br>курорти</a>
+    <a class="menu-item menu--color-2" href="/p.html?zagadky&v&20">Загадки<br>&nbsp;</a>
+    <a class="menu-item menu--color-1" href="/p.html?reklama&v&16">Телевізійна<br>реклама</a>
+    <a class="menu-item menu--color-2" href="/p.html?do-shkoly&v&6">Дорога<br>до&nbsp;школи</a>
+    <a class="menu-item menu--color-1" href="/p.html?podorogh&1">Подорож<br>Європою</a>
+  </div>
+
+  <div class="menu-content-group">
+    <div class="menu-item menu--group-header">Відео&nbsp;=></div>
+    <a class="menu-item menu--color-1" href="/p.html?test-ppt&1">Тест<br>(ppt)</a>
+    <a class="menu-item menu--color-2" href="/p.html?zakony&1">Закони<br>фізики</a>
+    <a class="menu-item menu--color-1" href="/p.html?symvolika&1">Символіка<br>України</a>
+    <a class="menu-item menu--color-2" href="/p.html?planety&1">Планети<br>&nbsp;</a>
+    <a class="menu-item menu--color-1" href="/p.html?shahtar&1">Шахтар<br>Вердер</a>
+    <a class="menu-item menu--color-2" href="/p.html?multyk&1">Мультфільми<br>&nbsp;</a>
+    <a class="menu-item menu--color-1" href="/p.html?chudesa&1">Чудеса<br>світу</a>
+    <a class="menu-item menu--color-2" href="/p.html?navch-video&v&11">Навчальне<br>відео</a>
+    <a class="menu-item menu--color-1" href="/p.html?lichylka&v&13">Лічимо<br>іноземною</a>
+  </div>
+
+  <div class="menu-content-group">
+    <div class="menu-item menu--group-header">Мережа&nbsp;=></div>
+    <a class="menu-item menu--color-2" href="/p.html?cherv-knyga&61">Червона<br>книга</a>
+    <a class="menu-item menu--color-1" href="/p.html?serial&56">Телевізійний<br>серіал</a>
+    <a class="menu-item menu--color-2" href="/p.html?opytuvannya&1">Онлайн<br>опитування</a>
+    <a class="menu-item menu--color-1" href="/p.html?blog&1">Власний<br>блог</a>
+    <a class="menu-item menu--color-2" href="/p.html?kuhnya&1">Світова<br>кухня</a>
+    <a class="menu-item menu--color-1" href="/p.html?novyny&1">Стрічка<br>новин</a>
+    <a class="menu-item menu--color-2" href="/p.html?rozklad-h&1">Розклад<br>(html)</a>
+    <a class="menu-item menu--color-1" href="/p.html?misto&1">Модель<br>міста</a>
+  </div>
+
+  <div class="menu-content-group">
+    <div class="menu-item menu--group-header">Таблиці&nbsp;=></div>
+    <a class="menu-item menu--color-1" href="/p.html?shchodennyk&39">Щоденник<br>учня</a>
+    <a class="menu-item menu--color-2" href="/p.html?chainvord&18">Чайнворд<br>&nbsp;</a>
+    <a class="menu-item menu--color-1" href="/p.html?sport&1">Спортивні<br>товари</a>
+    <a class="menu-item menu--color-2" href="/p.html?ghurnal&1">Класний<br>журнал</a>
+    <a class="menu-item menu--color-1" href="/p.html?chek&54">Товарний<br>чек</a>
+    <a class="menu-item menu--color-2" href="/p.html?trykutnyky&1">Трикутники<br>&nbsp;</a>
+  </div>
+
+  <div class="menu-content-group">
+    <div class="menu-item menu--group-header">Scratch&nbsp;=></div>
+    <a class="menu-item menu--color-2" href="/p.html?futbol&59">Футбольний<br>матч</a>
+    <a class="menu-item menu--color-1" href="/p.html?godynnyk&v&30">Годинник<br>&nbsp;</a>
+    <a class="menu-item menu--color-2" href="/p.html?ruletka&v&21">Рулетка<br>&nbsp;</a>
+    <a class="menu-item menu--color-1" href="/p.html?zebra&v&45">Перехід<br>дороги</a>
+    <a class="menu-item menu--color-2" href="/p.html?penalti&v&15">Футбольний<br>пенальті</a>
+    <a class="menu-item menu--color-1" href="/p.html?exkursia&v&11">Екскурсія<br>&nbsp;</a>
+    <a class="menu-item menu--color-2" href="/p.html?kosmos&v&22">Космічна<br>подорож</a>
+    <a class="menu-item menu--color-1" href="/p.html?vtecha&1">Втеча<br>Кота</a>
+    <a class="menu-item menu--color-2" href="/p.html?lift&v&30">Ліфт<br>&nbsp;</a>
+    <a class="menu-item menu--color-1" href="/p.html?ppo&v&26">ППО<br>&nbsp;</a>
+    <a class="menu-item menu--color-2" href="/p.html?rizne&v&12">Scratch<br>(різне)</a>
+  </div>
+
+  <div class="menu-content-group">
+    <div class="menu-item menu--group-header">Програми&nbsp;=></div>
+    <a class="menu-item menu--color-1" href="/p.html?valuta&h&4">Обмін<br>валюти</a>
+    <a class="menu-item menu--color-2" href="/p.html?test-in&1">Тест<br>(input)</a>
+    <a class="menu-item menu--color-1" href="/p.html?parkan&1">Паркан<br>&nbsp;</a>
+    <a class="menu-item menu--color-2" href="/p.html?prapory&1">Прапори<br>&nbsp;</a>
+    <a class="menu-item menu--color-1" href="/p.html?cukor&1">Цукор<br>оптом</a>
+    <a class="menu-item menu--color-2" href="/p.html?magazyn&1">Онлайн<br>магазин</a>
+    <a class="menu-item menu--color-1" href="/p.html?test-ra&1">Тест<br>(radio)</a>
+    <a class="menu-item menu--color-2" href="/p.html?kv-rivnyannya&1">Квадратне<br>рівняння</a>
+  </div>
+
+</div>
+
+</body>
+<!--========================================================================-->
+
+<script>
+//=============================================================================
+function loadData(folder, type, n) {
+  const data_div = document.createElement('div');
+  data_div.className = 'data-content';
+  document.body.appendChild(data_div);
+
+  if (type === 'i') {
+    for (let i = 1; i <= n; i++) {
+      const img = new Image();
+      img.src = `${folder}${i}.png`;
+      const div = document.createElement('div');
+      div.className = 'data-container';
+      div.appendChild(img);
+      data_div.appendChild(div);
+    }
+    return;
+  }
+
+  if (type === 'v') {
+    for (let i = 1; i <= n; i++) {
+      const video = document.createElement('video');
+      video.src = `${folder}${i}.mp4`;
+      video.controls = true;
+      const div = document.createElement('div');
+      div.className = 'data-container';
+      div.appendChild(video);
+      data_div.appendChild(div);
+    }
+    return;
+  }
+
+  if (type === 'h') {
+    for (let i = 1; i <= n; i++) {
+      const a = document.createElement('a');
+      a.href = `${folder}${i}.html`;
+      a.innerHTML = `Форма - ${i}<br>&nbsp;`;
+      a.className = `menu-item menu--color-${i % 2 + 1}`;
+      data_div.appendChild(a);
+    }
+    return;
+  }
+}
+
+//-----------------------------------------------------------------------------
+function Start(txt) {
+  const MAX_DATA = 10;
+  const PROJECTS_FOLDER = 'projects';
+
+  const par = decodeURI(txt).split('&').
+    map(item => item.trim()).filter(item => item !== '')
+
+  if (par.length === 0 || par.length === 1 && par[0].length === 1) {
+    document.getElementById('menu').style.display = '';
+    return;
+  }
+
+  let folder = PROJECTS_FOLDER + '/' + par[0].slice(1) + '/';
+
+  let n2 = MAX_DATA;
+  let type = 'i';
+
+  if (par.length === 2) {
+    if (!isNaN(par[1]) && Number.isInteger(Number(par[1])) && par[1] !== '') {
+      n2 = Number(par[1]);
+    } else {
+      type = par[1];
+    }
+  }
+
+  if (par.length > 2) {
+    type = par[1];
+    if (!isNaN(par[2]) && Number.isInteger(Number(par[2])) && par[2] !== '') {
+      n2 = Number(par[2]);
+    }
+  }
+
+  loadData(folder, type, n2);
+}
+
+//-----------------------------------------------------------------------------
+</script>
