@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://infobooks.github.io/task.css">
+
+<img style="float:right" src="цукор.jpg" width="100">
+<h2>«Цукор оптом»</h2>
+<h3>Вага</h3> 
+<img src="ukr.jpg" height="25"><input id="input1"> (кг) 
+<img src="usa.png" height="25"><output id="output1"></output> (фунти) <br>
+Попередити при купівлі > 100 кг <input type="checkbox" id="checkbox1"> <br><br>
+
+<div style="border:1px dotted black;">
+<input type="radio" id="radio1" name="group1">З буряку (33,29 грн) 
+<input type="radio" id="radio2" name="group1">З тростини (126,36 грн) <br>
+<input type="radio" id="radio3" name="group1">Рафінад (72,46 грн) 
+</div><br>
+
+Ваш вибір: цукор <output id="output2"></output> <br><br>
+
+<input type="checkbox" id="checkbox2"> + податки (10 %) <br>
+До оплати <output id="output3"></output> грн <br>
+
+<button onclick="f1()">Обчислити</button>
+
+
+<script> function f1() {
+	let speed = Number(input1.value);
+	let max;
+	if (radio1.checked) max = 20;
+	if (radio2.checked) max = 50;
+	if (radio3.checked) max = 90;
+	if (radio4.checked) max = 130;
+	
+	let dif = max - speed;
+
+	let rules;
+	if (dif < 0) {
+		rules = 'Так, є';
+	} else {
+		rules = 'Немає';
+	}
+	
+	output1.value = dif;
+	output2.value = rules;
+} </script>
