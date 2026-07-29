@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://infobooks.github.io/task.css">
+
+
+<div style = "background-color: RoyalBlue; " > <h1> Автосалон "Елітний" </h1> </div>
+
+
+<div>  Кількість  <input id="input1">   </div>
+
+<div> <img src="buggati.jpg" width="100">  <input type="radio" id="radio1" name="group1"> Buggati sheyron (2 000 000 $)
+
+<div > <img src="BMW M8.jpg" width="100">   <input type="radio" id="radio2" name="group1"> BMW M8 (1 000 000 $)
+
+<div > <img src="Mersedes amg.jpg" width="100">   <input type="radio" id="radio3" name="group1"> Mersedes amg (500 000 $)
+
+<div> <input type="checkbox" id="checkbox1"> з податками (+50%) </div>
+
+<div style = "background-color: green ; ">  До оплати  <output id="output1"></output> $  </div>
+
+
+<div><button type="button" onclick="f1()">Обчислити</button></div>
+
+
+<script>
+
+function f1() {
+
+let kilkisty =  Number(input1.value);
+
+if (radio1.checked) kilkisty = kilkisty * 2000000 ; 
+if (radio2.checked) kilkisty = kilkisty * 1000000 ; 
+if (radio3.checked) kilkisty = kilkisty * 500000 ; 
+
+if (checkbox1.checked) kilkisty = kilkisty * 0.5 ;
+  
+ output1.value = kilkisty.toFixed(1) ;
+}
+
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://infobooks.github.io/task.css">
+
+
+<h1>FEY</h1>	
+
+<div> Кількість  <input id="input1">   </div>
+
+<div> <img src="hh.jpg" width="70">  <input  <input type="radio" id="radio1" name="group1"> Йогурт "Агуня" (17,49)  </div>
+<div> <img src="hhh.jpg" width="70">  <input  <input type="radio" id="radio2" name="group2"> Сік "Агуня" (16,00)  </div>
+<div> <img src="h.jpg" width="70">  <input  <input type="radio" id="radio3" name="group3">  Сирок "Агуня" (14,90)  </div>
+
+<div> До оплати:   <output id="output1"></output> грн   </div>
+
+
+<div><button type="button" onclick="f1()">Обчислити</button></div>
+
+
+
+
+
+<script>
+
+function f1() {
+ let kilkist = Number(input1.value);
+ 
+ let zina;
+ if (radio1.checked) zina = 17.49;
+ if (radio2.checked) zina = 16.00; 
+ if (radio3.checked) zina = 14.90;
+ 
+ let suma= zina * kilkist;
+ 
+ 
+ output1.value = suma.toFixed(2) ;
+
+
+}
+
+</script>

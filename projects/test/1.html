@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://infobooks.github.io/task.css">
+
+<h3> Столиця України? </h3>
+1. Варшава <br>
+2. Сокаль <br>
+3. Київ <br>
+4. Дніпро <br>
+
+Ваш варіант <input id="input1"> <br>
+<output id="output1"> </output> <br>
+<button onclick="f1()"> Перевірити </button>
+
+<script> function f1() {
+  let num = Number(input1.value);
+  let isCorrect = 'Число від 1 до 4!';
+
+  if (num === 3) {
+    isCorrect = 'Правильно';
+  } else {
+    isCorrect = 'Неправильно';
+  }
+
+  output1.value = isCorrect;
+} </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--------------- <eлемент атрибут="значення"> ------------
+1. <input id="input1">                  поле введення
+2. <output id="output1"> </output>      результат обчислень
+3. <button onclick="f1()"> … </button>  кнопка
+
+4. <br>                                 розрив рядка
+5. <h1>…</h1>  <h2>…</h2>  <h3>…</h3>   заголовки
+6. <img src="fotka.jpg" width="100">    зображення (файл+ширина)
+
+7. <div> … </div>                       блок (для стилів)
+8. <label> … </label>                   текстова мітка
+
+9.  <input type="checkbox" checked id="checkbox1">  прапорець
+10. <input type="radio" name="group" id="radio1">   перемикач
+
+11. <textarea readonly id="textarea1"> </textarea>  багаторядковий текст 
+
+Корисний стиль: style="width:150px; height:150px; resize:none; white-space:nowrap;"
+
+------------------- стиль="властивість:значення;" -------
+12. style="color:red"                    колір символів
+13. style="background-color:green"       колір тла
+
+Усі кольори:  https://myschool9.github.io/css/CSS-colors
+
+14. style="font-size:22px"               розмір символів (px-пікселі)
+15. style="width:80px"                   ширина (height-висота)
+
+16. style="border:1px black dotted"      межі (товщина колір стиль:solid-лінія,dotted-крапки,double-подвійна)
+17. style="border-bottom:2px red solid"  підкреслення (межа знизу)
+
+18. style="border-radius:10px"           округлення
+19. style="float:left"                   обтікання (right-елемент"пливе"праворуч)
+
+Кілька властивостей: style="border-radius:10px; background-color:blue; font-size:20px;"
+
+
+---------------------------------------------------------->
+<link rel="stylesheet" href="D:/Data/task.css">
