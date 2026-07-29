@@ -217,14 +217,14 @@ body {
 
   <div class="menu-content-group">
     <div class="menu-item menu--group-header">Програми&nbsp;=></div>
-    <a class="menu-item menu--color-1" href="/p.html?valuta&h&4">Обмін<br>валюти</a>
-    <a class="menu-item menu--color-2" href="/p.html?test-in&1">Тест<br>(input)</a>
+    <a class="menu-item menu--color-1" href="/p.html?test&h&3">Тест<br>(4 відповіді)</a>
+    <a class="menu-item menu--color-2" href="/p.html?magazyn&h&12">Онлайн<br>магазин</a>
+    <a class="menu-item menu--color-1" href="/p.html?cukor&h&1">Цукор<br>оптом</a>
+<!--<a class="menu-item menu--color-1" href="/p.html?valuta&h&4">Обмін<br>валюти</a>
     <a class="menu-item menu--color-1" href="/p.html?parkan&1">Паркан<br>&nbsp;</a>
     <a class="menu-item menu--color-2" href="/p.html?prapory&1">Прапори<br>&nbsp;</a>
-    <a class="menu-item menu--color-1" href="/p.html?cukor&1">Цукор<br>оптом</a>
-    <a class="menu-item menu--color-2" href="/p.html?magazyn&1">Онлайн<br>магазин</a>
     <a class="menu-item menu--color-1" href="/p.html?test-ra&1">Тест<br>(radio)</a>
-    <a class="menu-item menu--color-2" href="/p.html?kv-rivnyannya&1">Квадратне<br>рівняння</a>
+    <a class="menu-item menu--color-2" href="/p.html?kv-rivnyannya&1">Квадратне<br>рівняння</a> -->
   </div>
 
 </div>
@@ -268,7 +268,7 @@ function loadData(folder, type, n) {
     for (let i = 1; i <= n; i++) {
       const a = document.createElement('a');
       a.href = `${folder}${i}.html`;
-      a.innerHTML = `Форма - ${i}<br>&nbsp;`;
+      a.innerHTML = `Сайт - ${i}<br>&nbsp;`;
       a.className = `menu-item menu--color-${i % 2 + 1}`;
       data_div.appendChild(a);
     }
