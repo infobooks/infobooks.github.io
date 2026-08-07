@@ -4,9 +4,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Розклад уроків</title>
 
-<!--========================================================================-->
+<!--================================-->
 <style>
-
 body {
   margin: 0;
   padding: 5px;
@@ -15,7 +14,6 @@ body {
   color: #333333;
   background-color: #f5f4e5;
 }
-
 .page-header {
   position: fixed;
   top: 2px;
@@ -28,7 +26,6 @@ body {
   text-align: center;
   background-color: #8fbc8f;
 }
-
 .btn {
   overflow: hidden;
   margin: 0 2px;
@@ -37,27 +34,19 @@ body {
   cursor: pointer;
   width: 35px;
   padding: 2px 4px;
-  background: -webkit-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
-  background: -moz-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
-  background: -ms-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
-  background: -o-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
+ background: linear-gradient(to bottom, #d0ecf4, #5bc9e1, #d0ecf4);
 }
-
-.page-title {font-size: 1.2em}
-
+.page-title {
+  font-size: 1.2em;
+}
 select {
   min-width: 120px;
   padding: 2px 5px;
   border: 2px outset #333333;
   border-radius: 5px;
   font-size: 1em;
-  background: -webkit-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
-  background: -moz-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
-  background: -ms-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
-  background: -o-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
+  background: linear-gradient(to bottom, #ffffff, #b0c4de, #ffffff);
 }
-
-/*---------------------------------------------------------------------------*/
 .tt-data {
   width: 96%;
   max-width: 560px;
@@ -66,7 +55,6 @@ select {
   background-color: #f5f4e5;
   border: 1px dotted #333333;
 }
-
 .tt-day {
   min-width: 33px;
   padding: 4px 5px 2px 5px;
@@ -98,7 +86,6 @@ select {
   padding: 4px 5px;
   color: #333333;
 }
-
 .tt--color-1 {
   border-top: 1px dotted #333333;
   background-color: #ffffff;
@@ -115,13 +102,13 @@ select {
   border-top: 1px dotted #333333;
   background-color: #f0e68c;
 }
-
 .tt-link {
   cursor: pointer;
   padding: 2px;
 }
-.tt-tch .tt-link {padding: 2px 0}
-
+.tt-tch .tt-link {
+  padding: 2px 0;
+}
 .tt-ch {
   vertical-align: super;
   font-family: monospace;
@@ -132,42 +119,27 @@ select {
   font-family: monospace;
   font-size: 0.8em;
 }
-
-/*---------------------------------------------------------------------------*/
 @media screen and (min-width:700px) {
-  .page-header {top:10px; left:10%}
-  .btn {width: 80px}
-  .select {width: 140px}
-  .tt-data {margin: 50px 0 20px 10%}
-  .tt-link {padding: 5px 10px}
+  .page-header {top:10px; left:10%;}
+  .btn {width: 80px;}
+  .select {width: 140px;}
+  .tt-data {margin: 50px 0 20px 10%;}
+  .tt-link {padding: 5px 10px;}
 }
-
 </style>
 
-<!--========================================================================-->
+<!--================================-->
 <body onload="Start()">
 
 <table class="page-header"><tr>
-
   <td class="btn" onclick="HTMLFilter(listBox.selectedIndex - 1)">&#9668;</td>
-
-  <td class="page-title">
-    <select id="listBox" size="1" onchange="HTMLFilter(this.selectedIndex)">
-    </select>
-  </td>
-
+  <td class="page-title"><select id="listBox" size="1" onchange="HTMLFilter(this.selectedIndex)"></select></td>
   <td class="btn" onclick="HTMLFilter(listBox.selectedIndex + 1)">&#9658;</td>
-
 </tr></table>
-
-<table id="ttData" class="tt-data"
-  ontouchstart="touchStart()" ontouchend="touchEnd(listBox.selectedIndex)">
-</table>
-
+<table id="ttData" class="tt-data" ontouchstart="touchStart()" ontouchend="touchEnd(listBox.selectedIndex)"></table>
 </body>
 
-<!--========================================================================-->
-<!--========================================================================-->
+<!--================================-->
 <script>
 
 var startX, startY;
@@ -208,7 +180,7 @@ const sCurrentColor = 'tt--color-4';   // стиль поточного рядк
 var activeCol = 'tch';
 var currTime = shift;
 
-//=============================================================================
+//=====================================
 function GetCurrentTime() {
   let d = new Date();
   let day = d.getUTCDay() - 1;
@@ -222,7 +194,7 @@ function GetCurrentTime() {
   return 10 * day + i + shift;
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function isWorkDay(num) {
   return num < 50 && num % 10 >= 0 + shift & num % 10 <= 6 + shift;
 }
@@ -233,7 +205,7 @@ function isGrp19(grp) {
   return grp.length === 3 && grp[0] >= '1' && grp[0] <= '9';
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
   // додавання порожніх днів
 function addDay(value, col, rows) {
   for (let i = 0; i < DAYS.length; i++) {
@@ -247,7 +219,7 @@ function addDay(value, col, rows) {
   return rows;
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
   // додавання порожніх класів
 function addGrp(value, rows) {
   let grps = [];
@@ -266,7 +238,7 @@ function addGrp(value, rows) {
   return rows;
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function getColor(x) {
   if (x === '') return sColor1;
   if (typeof x === 'number') {
@@ -278,12 +250,12 @@ function getColor(x) {
   return (isNaN(x) || x % 2 === 1) ? sColor2 : sColor1;
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function HTMLFilter(index) {
   if (index >= 0 && index < selList.length) Filter(activeCol, selList[index]);
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function MySort(x, y) {
   let xx = Number(x);
   let yy = Number(y);
@@ -294,7 +266,7 @@ function MySort(x, y) {
   return 0;
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function Unique(col) {
   let list = [];
   let myList = [];
@@ -317,7 +289,7 @@ function Unique(col) {
   return myList;
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function touchStart() {
   startX = event.touches[0].clientX;
   startY = event.touches[0].clientY;
@@ -329,8 +301,7 @@ function touchEnd(n) {
   if (dX < -50 && Math.abs(dX) > Math.abs(dY)) HTMLFilter(n + 1);
 }
 
-//-----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function SaveDay(s, color) {
   const td = document.createElement('td');
   td.className = dayClass + ' ' + color;
@@ -348,7 +319,6 @@ function SaveGrp(s, color) {
   td.className = grpClass + ' ' + color;
   const span = document.createElement('span');
   span.innerText = s;
-
   if (s !== nullItem && s !== '' && isGrp19(s))  {
     span.className = sLink;
     span.addEventListener('click', function() { Filter('grp', s); });
@@ -362,14 +332,12 @@ function SaveSub(s, x, color) {
   td.className = subClass + ' ' + color;
   const span = document.createElement('span');
   span.innerText = s;
-
   if (x !== 0) {   // для чисельників і знаменників
     const spanAdd = document.createElement('span');
     spanAdd.innerHTML = (x < 0) ? '1&nbsp;' : '2&nbsp;';
     spanAdd.className = (x < 0) ? sCh : sZn;
     td.appendChild(spanAdd);
   }
-
   td.appendChild(span);
   return td;
 }
@@ -399,7 +367,7 @@ function SaveKab(s, color, grp) {
   return td;
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function FilterDay(value) {
 
     // якщо Понеділок-4 (повне) - то записуємо скорочено Пн-4
@@ -469,7 +437,7 @@ function FilterDay(value) {
   }
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function FilterGrp(value) {
   let rows = a.filter(row => row.grp === value);
   if (isGrp59(value)) rows = addDay(value, 'grp', rows);
@@ -530,7 +498,7 @@ function FilterGrp(value) {
   }
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function FilterTch(value) {
   let rows = a.filter(row => row.tch === value);
   rows = addDay(value, 'tch', rows);
@@ -584,7 +552,7 @@ function FilterTch(value) {
   }
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function FilterKab(value) {
   let rows = a.filter(row => row.kab === value);
   if (value !== errorKab) rows = addDay(value, 'kab', rows);
@@ -654,8 +622,7 @@ function FilterKab(value) {
   }
 }
 
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//=====================================
 function Start() {
   for (let j = 0; j < 7; j++) {
     for (let i = 0; i < 10; i++) {
@@ -672,7 +639,7 @@ function Start() {
   Filter('day', DAYS[currTime]);
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function Filter(col, value) {
     // можливі помилки
   if (value === '') return;
@@ -704,8 +671,7 @@ function Filter(col, value) {
   document.getElementById('listBox').selectedIndex = selList.indexOf(value);
 }
 
-//-----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
+//=====================================
 var a0 = [
 
 ["1-А",0,0,"англ.мова","Приймак Л.А.",  "47"],

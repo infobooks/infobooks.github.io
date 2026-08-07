@@ -4,9 +4,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Презентація</title>
 
-<!--========================================================================-->
+<!--================================-->
 <style>
-
 body {
   margin: 0;
   padding: 5px;
@@ -14,7 +13,6 @@ body {
   color: #333333;
   background-color: #f5f4e5;
 }
-
 .data-content {
   margin: 5px;
   padding: 2px;
@@ -26,27 +24,17 @@ body {
   line-height: 1;
 }
 @media screen and (min-width:30em) {
-  .data-content {margin: 5px 10%}
+  .data-content {margin: 5px 10%;}
 }
-
 .data-container {
   max-width: 30em;
   margin: 7px 10px;
  }
-
 .data-container img {
   width: 100%;
   border-radius: 5px;
   border: 1px dotted #333333;
 }
-
-.data-container video {
-  width: 100%;
-  border-radius: 5px;
-  border: 1px dotted #333333;
-}
-
-/*---------------------------------------------------------------------------*/
 .menu-content {
   margin: 5px;
   padding: 2px;
@@ -56,7 +44,6 @@ body {
 @media screen and (min-width:30em) {
   .menu-content {margin: 5px 10%}
 }
-
 .menu-header {
   width: 100%;
   padding: 5px;
@@ -66,7 +53,6 @@ body {
   text-align: center;
   background-color: #8fbc8f;
 }
-
 .menu-content-group {
   margin: 5px;
   padding: 2px;
@@ -78,7 +64,6 @@ body {
   border: 1px dotted #333333;
   border-radius: 5px;
 }
-
 .menu-item {
   display: block;
   min-width: 3em;
@@ -90,17 +75,19 @@ body {
   border: 1px dotted #333333;
   border-radius: 5px;
 }
-
-.menu--color-1 {background-color: #ffffff}
-.menu--color-2 {background-color: #f8f8ff}
+.menu--color-1 {
+  background-color: #ffffff;
+}
+.menu--color-2 {
+  background-color: #f8f8ff;
+}
 .menu--group-header {
   background-color: #8fbc8f;
   color: inherit;
 }
-
 </style>
 
-<!--========================================================================-->
+<!--================================-->
 <body onload="Start(location.search)">
 
 <div class="menu-content" id="menu" style="display:none">
@@ -165,11 +152,35 @@ body {
 </div>
 
 </body>
-<!--========================================================================-->
+<!--================================-->
 
 <script>
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
+function Start(txt) {
+  const MAX_DATA = 50;
+  const INFO_FOLDER = 'info';
+
+  const par = decodeURI(txt).split('&').map(item => item.trim()).filter(item => item !== '')
+
+  if (par.length === 0 || par.length === 1 && par[0].length === 1) {
+    document.getElementById('menu').style.display = '';
+    return;
+  }
+
+  let folder = INFO_FOLDER + '/' + par[0].slice(1) + '/';
+  let n1 = 1;
+  let n2 = MAX_DATA;
+  if (par.length >= 3) {
+    if (!isNaN(par[1]) && Number.isInteger(Number(par[1])) && par[1] !== '') n1 = Number(par[1]);
+    if (!isNaN(par[2]) && Number.isInteger(Number(par[2])) && par[2] !== '') n2 = Number(par[2]);
+  }
+  if (par.length === 2 && !isNaN(par[1]) && Number.isInteger(Number(par[1])) && par[1] !== '') n2 = Number(par[1]);
+  if (n1 > n2) n2 = n1;
+
+  loadData(folder, n1, n2);
+}
+
 function loadData(folder, n1, n2) {
   const data_div = document.createElement('div');
   data_div.className = 'data-content';
@@ -184,38 +195,5 @@ function loadData(folder, n1, n2) {
   }
 }
 
-//-----------------------------------------------------------------------------
-function Start(txt) {
-  const MAX_DATA = 50;
-  const INFO_FOLDER = 'info';
-
-  const par = decodeURI(txt).split('&').
-    map(item => item.trim()).filter(item => item !== '')
-
-  if (par.length === 0 || par.length === 1 && par[0].length === 1) {
-    document.getElementById('menu').style.display = '';
-    return;
-  }
-
-  let folder = INFO_FOLDER + '/' + par[0].slice(1) + '/';
-
-  let n1 = 1;
-  let n2 = MAX_DATA;
-  if (par.length >= 3) {
-    if (!isNaN(par[1]) && Number.isInteger(Number(par[1])) && par[1] !== '') {
-      n1 = Number(par[1]);
-    }
-    if (!isNaN(par[2]) && Number.isInteger(Number(par[2])) && par[2] !== '') {
-      n2 = Number(par[2]);
-    }
-  }
-  if (par.length === 2 && !isNaN(par[1]) &&
-    Number.isInteger(Number(par[1])) && par[1] !== '') {
-    n2 = Number(par[1]);
-  }
-  if (n1 > n2) n2 = n1;
-
-  loadData(folder, n1, n2);
-}
-//-----------------------------------------------------------------------------
+//-------------------------------------
 </script>
