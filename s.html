@@ -4,9 +4,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Задачі (Scratch)</title>
 
-<!--========================================================================-->
+<!--================================-->
 <style>
-
 body {
   margin: 0;
   padding: 5px;
@@ -15,7 +14,6 @@ body {
   color: #333333;
   background-color: #f5f4e5;
 }
-
 .task-content {
   margin: 5px;
   padding: 2px;
@@ -26,7 +24,6 @@ body {
 @media screen and (min-width:30em) {
   .task-content {margin: 5px 10%}
 }
-
 .task-header {
   margin: 0;
   padding: 2px;
@@ -38,7 +35,6 @@ body {
   justify-content: space-between;
   background-color: #8fbc8f;
 }
-
 .task-button {
   overflow: hidden;
   margin: 1px;
@@ -46,49 +42,37 @@ body {
   width: 35px;
   border: 1px solid #333333;
   border-radius: 5px;
-  background: -webkit-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
-  background: -moz-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
-  background: -ms-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
-  background: -o-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
+  background: linear-gradient(to bottom, #d0ecf4, #5bc9e1, #d0ecf4);
   cursor: pointer;
 }
-
 select {
   min-width: 120px;
   padding: 2px 5px;
   font-size: 1em;
   border: 2px outset #333333;
   border-radius: 5px;
-  background: -webkit-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
-  background: -moz-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
-  background: -ms-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
-  background: -o-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
+  background: linear-gradient(to bottom, #ffffff, #b0c4de, #ffffff);  
 }
-
-.task-title {padding: 20px 0 10px 0}
-
+.task-title {
+  padding: 20px 0 10px 0;
+}
 .task-number {
   padding-right: 7px;
   font-weight: bold;
 }
-.task-name {}
-.task-container {}
-
 .task-container video {
   max-width: 100%;
   border-radius: 5px;
   border: 1px dotted #333333;
 }
-
 .task-text {
   padding: 15px 20px;
   text-align: left;
   line-height: 1.5;  
 }
-
 </style>
 
-<!--========================================================================-->
+<!--================================-->
 <body onload="Start(location.search)">
 
 <div class="task-content">
@@ -98,46 +82,39 @@ select {
     <div class="task-button" onclick="ShowItem(listBox.selectedIndex + 1)">&#9658;</div>
   </div>
   <div class="task-title">
-    <span id="taskNumber" class="task-number">№&nbsp;0.</span>
-    <span id="taskName" class="task-name">Назва завдання</span>
+    <span id="taskNumber" class="task-number"></span>
+    <span id="taskName"></span>
   </div>
-  <div class="task-container">
-    <video id="taskVideo" controls> <source src="" type="video/mp4">Не можна відобразити відео :(</video>
-  </div>
-  <div id="taskText" class="task-text"> </div>
+  <div class="task-container"><video id="taskVideo" controls><source src="" type="video/mp4"></video></div>
+  <div id="taskText" class="task-text"></div>
 </div>
 
 </body>
 
-<!--========================================================================-->
+<!--================================-->
 <script>
 
-//=============================================================================
 var startX, startY;
 var myList = document.getElementById('listBox');
-
 var myNumber = document.getElementById('taskNumber');
 var myName = document.getElementById('taskName');
 var myVideo = document.getElementById('taskVideo');
 var myText = document.getElementById('taskText');
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function Start(txt) {
   let s = '';
   for (let i = 0; i < tasks.length; i++) {
     s += '<option>' + (i + 1) + '</option>';
   }
   myList.innerHTML = s;
-
+  
   const par = decodeURI(txt).trim().slice(1);
-  let n = 0;
-  if (par.length > 0 && !isNaN(par) && Number.isInteger(Number(par))) {
-    n = Number(par) - 1;
-  }
+  let n = (par.length > 0 && !isNaN(par) && Number.isInteger(Number(par))) ? Number(par) - 1 : 0
   ShowItem(n);
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function ShowItem(n) {
   const SCRATCH_FOLDER = 'scratch/';
 
@@ -145,23 +122,23 @@ function ShowItem(n) {
   if (n >= tasks.length) n = tasks.length - 1;
   if (n < 0) n = 0;
 
-    //-----------------
+  let task = tasks[n];
+
   myNumber.innerHTML = '№&nbsp;' + (n + 1) + '.';
-  myName.innerHTML = tasks[n].name ?? 'Noname';
-  if ('noView' in tasks[n]) {
+  myName.innerHTML = task.name ?? 'Noname';
+  if ('noView' in task) {
     myVideo.src = '';
     myVideo.style.display = 'none';
   } else {
-    myVideo.src = SCRATCH_FOLDER + (n + 1) + ' - ' + tasks[n].name + '.mp4';
+    myVideo.src = SCRATCH_FOLDER + (n + 1) + ' - ' + task.name + '.mp4';
     myVideo.style.display = '';
   }
-  myText.innerHTML = tasks[n].text ?? '';
-    //-----------------
+  myText.innerHTML = task.text ?? '';
 
   myList.selectedIndex = n;
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function touchStart() {
   startX = event.touches[0].clientX;
   startY = event.touches[0].clientY;
@@ -173,7 +150,7 @@ function touchEnd(n) {
   if (dX < -50 && Math.abs(dX) > Math.abs(dY)) ShowItem(n + 1);
 }
 
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//=====================================
 const tasks = [
 
 {name:'На пляжі', text:'Встановіть сцену&nbsp;– морське узбережжя (наприклад, Beach&nbsp;Malibu). Розташуйте на&nbsp;суші і воді (правильно!) декількох тваринок.'},  
@@ -275,5 +252,5 @@ const tasks = [
 
 ]
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 </script>

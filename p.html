@@ -4,9 +4,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Великі завдання (проєкти)</title>
 
-<!--========================================================================-->
+<!--================================-->
 <style>
-
 body {
   margin: 0;
   padding: 5px;
@@ -15,7 +14,6 @@ body {
   color: #333333;
   background-color: #f5f4e5;
 }
-
 .task-content {
   margin: 5px;
   padding: 2px;
@@ -26,7 +24,6 @@ body {
 @media screen and (min-width:30em) {
   .task-content {margin: 5px 10%}
 }
-
 .task-header {
   margin: 0;
   padding: 2px;
@@ -38,7 +35,6 @@ body {
   justify-content: space-between;
   background-color: #8fbc8f;
 }
-
 .task-button {
   overflow: hidden;
   margin: 1px;
@@ -46,66 +42,46 @@ body {
   width: 35px;
   border: 1px solid #333333;
   border-radius: 5px;
-  background: -webkit-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
-  background: -moz-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
-  background: -ms-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
-  background: -o-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
+  background: linear-gradient(to bottom, #d0ecf4, #5bc9e1, #d0ecf4);
   cursor: pointer;
 }
-
 select {
   min-width: 120px;
   padding: 2px 5px;
   font-size: 1em;
   border: 2px outset #333333;
   border-radius: 5px;
-  background: -webkit-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
-  background: -moz-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
-  background: -ms-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
-  background: -o-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
+  background: linear-gradient(to bottom, #ffffff, #b0c4de, #ffffff);
 }
-
-.task-title {padding: 20px 0 10px 0}
-
+.task-title {
+  padding: 20px 0 10px 0;
+}
 .task-number {
   padding-right: 7px;
   font-weight: bold;
 }
-.task-name {}
-.task-container {}
-
 .task-container img {
   max-width: 100%;
   border-radius: 5px;
   border: 1px dotted #333333;
 }
-
 .task-text {
   padding: 15px 20px;
   text-align: left;
   line-height: 1.5;  
 }
-
 .data-container {
   max-width: 30em;
   margin: 7px 10px;
  }
-
-.data-container img {
+.data-container img, .data-container video {
   width: 100%;
   border-radius: 5px;
   border: 1px dotted #333333;
 }
-
-.data-container video {
-  max-width: 100%;
-  border-radius: 5px;
-  border: 1px dotted #333333;
-}
-
 </style>
 
-<!--========================================================================-->
+<!--================================-->
 <body onload="Start(location.search)">
 
 <div class="task-content">
@@ -116,13 +92,11 @@ select {
   </div>
 
   <div class="task-title">
-    <span id="taskNumber" class="task-number">№&nbsp;0.</span>
-    <span id="taskName" class="task-name">Назва завдання</span>
+    <span id="taskNumber" class="task-number"></span>
+    <span id="taskName"></span>
   </div>
-  <div class="task-container">
-    <img id="taskImage" src="" alt="Завдання">
-  </div> 
-  <div id="taskText" class="task-text"> </div>
+  <div class="task-container"><img id="taskImage" src="" alt=""></div> 
+  <div id="taskText" class="task-text"></div>
 </div>
 
 <div id="solves" class="task-content">
@@ -131,10 +105,9 @@ select {
 
 </body>
 
-<!--========================================================================-->
+<!--================================-->
 <script>
 
-//=============================================================================
 var startX, startY;
 var myList = document.getElementById('listBox');
 
@@ -146,26 +119,24 @@ var myText = document.getElementById('taskText');
 var mySolves = document.getElementById('solves');
 var mySolvesHeader = document.getElementById('solvesHeader');
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function Start(txt) {
   let s = '';
   for (let i = 0; i < tasks.length; i++) {
     s += '<option>' + (i + 1) + '</option>';
   }
   myList.innerHTML = s;
-
+  
   const par = decodeURI(txt).trim().slice(1);
-  let n = 0;
-  if (par.length > 0 && !isNaN(par) && Number.isInteger(Number(par))) {
-    n = Number(par) - 1;
-  }
+  let n = (par.length > 0 && !isNaN(par) && Number.isInteger(Number(par))) ? Number(par) - 1 : 0;
   ShowItem(n);
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function loadData(folder, type, n) {
   if (type === 'i') {
     for (let i = 1; i <= n; i++) {
+      const video = document.createElement('video');    
       const img = new Image();
       img.src = `${folder}${i}.png`;
       const div = document.createElement('div');
@@ -175,7 +146,6 @@ function loadData(folder, type, n) {
     }
     return;
   }
-
   if (type === 'v') {
     for (let i = 1; i <= n; i++) {
       const video = document.createElement('video');
@@ -188,20 +158,9 @@ function loadData(folder, type, n) {
     }
     return;
   }
-
-  if (type === 'h') {
-    for (let i = 1; i <= n; i++) {
-      const a = document.createElement('a');
-      a.href = `${folder}${i}.html`;
-      a.innerHTML = `Сайт - ${i}<br>&nbsp;`;
-      a.className = `menu-item menu--color-${i % 2 + 1}`;
-      mySolves.appendChild(a);
-    }
-    return;
-  }
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function ShowItem(n) {
   const PROJECTS_FOLDER = 'projects/';
   const TASK_FNAME = 'task.png';
@@ -210,29 +169,28 @@ function ShowItem(n) {
   if (n >= tasks.length) n = tasks.length - 1;
   if (n < 0) n = 0;
 
-    //-----------------
-  let folder = PROJECTS_FOLDER + (n + 1) +  ' - ' + tasks[n].name + '/';
+  let task = tasks[n];
+  let folder = PROJECTS_FOLDER + (n + 1) +  ' - ' + task.name + '/';
 
   myNumber.innerHTML = '№&nbsp;' + (n + 1) + '.';
-  myName.innerHTML = tasks[n].name ?? 'Noname';
-  if ('img' in tasks[n]) {
+  myName.innerHTML = task.name ?? 'Noname';
+  if ('img' in task) {
     myImage.src = folder + TASK_FNAME;
     myImage.style.display = '';
   } else {
     myImage.src = '';
     myImage.style.display = 'none';
   }
-  myText.innerHTML = tasks[n].text ?? '';
+  myText.innerHTML = task.text ?? '';
 
   mySolves.replaceChildren(solvesHeader);
-  let typeDef = (tasks[n].type === 'v' || tasks[n].type === 'h') ? tasks[n].type : 'i';
-  if ('solveCount' in tasks[n]) loadData(folder, typeDef, tasks[n].solveCount);
-    //-----------------
+  let typeDef = (task.type === 'v' || task.type === 'h') ? task.type : 'i';
+  if ('solveCount' in task) loadData(folder, typeDef, task.solveCount);
 
   myList.selectedIndex = n;
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function touchStart() {
   startX = event.touches[0].clientX;
   startY = event.touches[0].clientY;
@@ -244,16 +202,45 @@ function touchEnd(n) {
   if (dX < -50 && Math.abs(dX) > Math.abs(dY)) ShowItem(n + 1);
 }
 
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//=====================================
 const tasks = [
 
-{name:'Гроші', solveCount:12, img:1, text:''}, 
-
-{name:'Вітаємо', text:'У&nbsp;текстовому процесорі створити:<br>а)&nbsp;листівку-вітання; б)&nbsp;грамоту.'},
-
+{name:'Гроші', solveCount:12, img:1},
+{name:'Вітаємо', solveCount:7, text:'У&nbsp;текстовому процесорі створіть:<br>а)&nbsp;листівку-вітання; б)&nbsp;грамоту.'},
 {name:'Правителі', solveCount:1, img:1, text:'Створіть презентацію&nbsp;- опишіть правителів теперішньої України: кілька&nbsp;князів Київської&nbsp;Русі і кілька&nbsp;гетьманів України.'},
+{name:'Смартфон', solveCount:8, text:'Опишіть смартфон (власний або «мрії»): намалюйте увімкнений смартфон (можна з&nbsp;двох сторін), завантажте справжнє його зображення і опишіть його головні характеристики.'},
+{name:'Казка', solveCount:12, img:1},
+{name:'Paint', solveCount:1, type:'v', text:'Створіть у&nbsp;Scratch власний графічний редактор.<br>Стрілки «вгору-вниз» змінюють колір олівця, стрілки «ліворуч-праворуч» змінюють його товщину.<br>Клавіша «х» змінює образ олівця на&nbsp;гумку.<br>Клавіша "пропуск" очищає весь малюнок.'},
+
+{name:'Загадки', solveCount:1, type:'v', text:'Створіть презентацію «Загадки»: спочатку з’являється загадка, тоді&nbsp;- ще&nbsp;одна загадка з&nbsp;тою&nbsp;ж відгадкою, потім&nbsp;- зображення-підказка, і у&nbsp;кінці&nbsp;- відгадка!'},
+{name:'Знаки', solveCount:12, text:'Створіть презентацію «Дорожні&nbsp;знаки». На&nbsp;кожному слайді намалюйте по&nbsp;2&nbsp;знаки з&nbsp;різних груп знаків (попереджувальні, заборонні...).<br>Створіть один&nbsp;слайд з&nbsp;власними знаками, яких «бракує» на&nbsp;дорогах України. Підпишіть ці знаки.'},
+{name:'Колобок', solveCount:10, img:1, text:'Намалюйте ілюстрацію до&nbsp;казки «Колобок», використовуючи тільки фігури.<br>Намалюйте обов’язково будиночок, колобка, зайця, грибок, березу, сонце з&nbsp;хмарами, ялинку і дерево.'},
+{name:'Меню', solveCount:10, text:'Створіть власне ресторанне меню. Придумайте назву ресторану, логотип, групи страв, назви страв (з&nbsp;вагою та ціною, зображенням і, можливо, складом). Розмістіть меню на 1&nbsp;сторінці.'},
+{name:'ППО', solveCount:9, type:'v', text:'Створіть у Scratch власне ППО.'},
+{name:'Щоденник', solveCount:9, img:1, text:'Створіть в електронних таблицях паперовий щоденник (1&nbsp;аркуш).<br>Введіть розклад уроків, дати, дні, додайте зображення (замість суботи), виставте кілька оцінок з&nbsp;підписами вчителів. Розмістіть все на&nbsp;одному альбомному аркуші.'},
+
+{name:'Реклама', solveCount:7, type:'v', img:1},
+{name:'Розклад', solveCount:8},
+{name:'Тваринництво', solveCount:12, img:1},
+{name:'Тест'},
+{name:'Чек', solveCount:12, text:'В&nbsp;електронних таблицях створіть товарний&nbsp;чек.<br>Введіть назву магазину, касира, декілька товарів з&nbsp;кількістю чи&nbsp;вагою, обчисліть їх вартість, додайте знижки.<br>Підрахуйте загальну суму, податок&nbsp та решту. Допишіть дату і&nbsp;час покупок.'},
+{name:'Шахи', solveCount:12, img:1},
+
+{name:'Битви', solveCount:8, img:1, text:'Намалюйте плани двох битв (без&nbsp;підписів!):<br>а)&nbsp;битва при&nbsp;Каннах;<br> б)&nbsp;битва під&nbsp;Корсунем (на&nbsp;частині карти сучасної України).'},
+{name:'Збірка', solveCount:4, text:'Створіть документ-збірку віршів якого-небудь поета.<br>Перша сторінка&nbsp;- титульна.<br>Друга сторінка&nbsp;- зміст з&nbsp;назвами віршів (можна виконати посилання на&nbsp;відповідну сторінку).<br>Наступні сторінки&nbsp;- по 1&nbsp;віршу з&nbsp;ілюстраціями.'},
+{name:'Іонізатор', solveCount:4, text:'Створіть презентацію, яка описуює роботу іонізатора води.<br>Додайте переходи між слайдами (натискаємо на фільтр&nbsp;- переходимо до&nbsp;слайду «Фільтр», те&nbsp;саме з&nbsp;лужною водою.<br>Додайте безеперевну анімацію на&nbsp; 2-му слайді, а&nbsp;саме рух стрілок, що відображають рух води.'},
+{name:'Магазин'},
+{name:'Подорож', solveCount:1, type:'v', text:'Створіть презентацію-подорож Європою: Львів-Рим або Львів-Амстердам або Львів-Париж.<br>Один&nbsp;слайд розповідає про одне місце-зупинку у&nbsp;подорожі автомобілем.<br>Перед кожним&nbsp;слайдом створіть рух мальованої машинки по&nbsp;справжній карті подорожі.'},
+{name:'Чайнворд', solveCount:11, text:'В&nbsp;електронних таблицях створіть прямокутний або квадратний чайнворд зі 100&nbsp;букв (на&nbsp;яку букву закінчується слово, на&nbsp;таку букву починається наступне).'},
+
+{name:'Журнал', solveCount:2, text:'В&nbsp;електронних таблицях створіть одну сторінку паперового класного журналу.<br>Введіть інформацію про 10&nbsp;учнів, 10&nbsp;днів. Заповніть присутність.<br>До&nbsp;оцінок і «н»-ок застосуйте умовне форматування.<br>Підрахуйте середню оцінку та побудуйте на її&nbsp;основі діаграму успішності.'},
+{name:'Курорти', solveCount:11, img:1},
+{name:'Лабораторна', solveCount:6, text:'Створіть документ з 6&nbsp;сторінок&nbsp;- опис лабораторної роботи з&nbsp;фізики.<br>На&nbsp;різних сторінках введіть об’єкт&nbsp;WordArt, список, зображення, фігури, таблиці, формули. Додайте номери сторінок.'},
+{name:'Місто', img:1},
+{name:'Укриття', solveCount:9, img:1, text:'Намалюйте план укриття школи, а&nbsp;саме:<br>1.&nbsp;несучі стіни та внутрішні стіни, входи в&nbsp;укриття;<br>2.&nbsp;службові приміщення (їх є&nbsp;6) не&nbsp;підписуйте, а&nbsp;намалюйте значками;<br>3.&nbsp;стрілки-напрямки проходження укриттям;<br>4.&nbsp;номери кабінетів, куди учнів повинні заходити.'},
+{name:'Цукор'},
 
 ]
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 </script>

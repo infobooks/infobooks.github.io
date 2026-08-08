@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="uk" ontouchstart="touchStart()" ontouchend="touchEnd(listBox.selectedIndex)">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Задачі JavaScript</title>
+<title>Задачі (JavaScript)</title>
 
-<!--========================================================================-->
+<!--================================-->
 <style>
-
 body {
   margin: 0;
   padding: 5px;
@@ -14,7 +13,6 @@ body {
   color: #333333;
   background-color: #f5f4e5;
 }
-
 .task-content {
   margin: 5px;
   padding: 2px;
@@ -25,7 +23,6 @@ body {
 @media screen and (min-width:30em) {
   .task-content {margin: 5px 10%;}
 }
-
 .task-header {
   margin: 0;
   padding: 2px;
@@ -38,7 +35,6 @@ body {
   text-align: center;
   background-color: #8fbc8f;
 }
-
 .task-button {
   overflow: hidden;
   margin: 1px;
@@ -46,79 +42,69 @@ body {
   width: 35px;
   border: 1px solid #333333;
   border-radius: 5px;
-  background: -webkit-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
-  background: -moz-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
-  background: -ms-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
-  background: -o-linear-gradient(top, #d0ecf4 0%, #5bc9e1 50%, #d0ecf4 100%);
+  background: linear-gradient(to bottom, #d0ecf4, #5bc9e1, #d0ecf4);
   cursor: pointer;
 }
-
 select {
   min-width: 120px;
   padding: 2px 5px;
   font-size: 1em;
   border: 2px outset #333333;
   border-radius: 5px;
-  background: -webkit-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
-  background: -moz-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
-  background: -ms-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
-  background: -o-linear-gradient(top, #ffffff 0%, #b0c4de 50%, #ffffff 100%);
+  background: linear-gradient(to bottom, #ffffff, #b0c4de, #ffffff);
 }
-
-.task-main {padding: 5px}
-
+.task-main {
+  padding: 5px;
+}
 .task-number {
   font-size: 0.9em;
   font-weight: bold;
   text-align: center;
 }
-
-.task-text {padding: 5px}
-
+.task-text {
+  padding: 5px;
+}
 .task-hint {
   padding-bottom: 5px;
   font-size: 0.9em;
 }
-
 .task-in-out {
   padding: 5px;
   background-color: #fffff0;
   border: 1px dotted #333333;
 }
-
 .task-in-title, .task-out-title {
   padding: 5px 30px;
   font-size: 0.9em;
   font-style: italic;
   font-weight: bold;
 }
-
 .task-in, .task-out {
   padding: 5px 10px;
   font-size: 0.9em;
 }
-
-.task-container, .task-solve-container {text-align: center;}
-.task-container img, .task-solve-container img {max-width: 100%;}
-
+.task-container, .task-solve-container {
+  text-align: center;
+}
+.task-container img, .task-solve-container img {
+  max-width: 100%;
+}
 .task-tests {
   padding: 10px;
   font-family: monospace;
   background-color: #f8f8ff;
 }
-
-.task-tests table {border-spacing: 5px}
-
+.task-tests table {
+  border-spacing: 5px;
+}
 .task-tests td {
   min-width: 30px;
   padding: 2px 3px;
 }
-
 .task-solve {
   padding: 5px;
   border: 1px dotted #333333;
 }
-
 .taks-solve-title {
   padding: 5px;
   font-size: 0.9em;
@@ -126,7 +112,6 @@ select {
   font-style: italic;
   font-weight: bold;
 }
-
 .my-css-style {
   margin: 5px;
   padding: 5px;
@@ -138,47 +123,36 @@ select {
 
 </style>
 
-<!--========================================================================-->
+<!--================================-->
 <body onload="Start(location.search)">
 
-<div class="task-content" ontouchstart="touchStart()"
-  ontouchend="touchEnd(listBox.selectedIndex)">
-
+<div class="task-content">
   <div class="task-header">
-    <div class="task-button"
-      onclick="ShowItem(listBox.selectedIndex - 1)">&#9668;</div>
-    <select id="listBox" size="1"
-      onchange="ShowItem(this.selectedIndex)"></select>
-    <div class="task-button"
-      onclick="ShowItem(listBox.selectedIndex + 1)">&#9658;</div>
+    <div class="task-button" onclick="ShowItem(listBox.selectedIndex - 1)">&#9668;</div>
+    <select id="listBox" size="1" onchange="ShowItem(this.selectedIndex)"></select>
+    <div class="task-button"onclick="ShowItem(listBox.selectedIndex + 1)">&#9658;</div>
   </div>
 
   <div class="task-main">
-    <div id="taskNumber" class="task-number">№&nbsp;0. </div>
-    <div id="taskText" class="task-text">Умова задачі</div>
-    <div id="taskHint" class="task-hint">Підказка</div>
-    <div class="task-container">
-      <img id="taskImage" src="" alt="Умова задачі">
-    </div>
+    <div id="taskNumber" class="task-number"></div>
+    <div id="taskText" class="task-text"></div>
+    <div id="taskHint" class="task-hint"></div>
+    <div class="task-container"><img id="taskImage" src="" alt=""></div>
   </div>
 
   <div class="task-in-out">
-    <div id="taskInTitle" class="task-in-title">Дано:</div>
-    <div id="taskIn" class="task-in">Що дано?</div>
-    <div id="taskOutTitle" class="task-out-title">Результат:</div>
-    <div id="taskOut" class="task-out">Що знайти?</div>
+    <div id="taskInTitle" class="task-in-title"></div>
+    <div id="taskIn" class="task-in"></div>
+    <div id="taskOutTitle" class="task-out-title"></div>
+    <div id="taskOut" class="task-out"></div>
   </div>
 
-  <div id="taskTests" class="task-tests">Тести</div>
-
+  <div id="taskTests" class="task-tests"></div>
   <div id="taskSolve" class="task-solve">
-    <div class="taks-solve-title">Розв'язок</div>
-    <div class="task-solve-container">
-      <img id="taskSolveImage" src="" alt="Розв'язок задачі">
-    </div>
-    <div class="my-css-style">
-      Для красивого вигляду першим рядком запишіть:<br><br>
-        &lt;link rel="stylesheet" href="https://myschool9.github.io/task.css"&gt;
+    <div class="taks-solve-title"></div>
+    <div class="task-solve-container"><img id="taskSolveImage" src="" alt=""></div>
+    <div class="my-css-style">Для красивого вигляду першим рядком запишіть:<br><br>
+        &lt;link rel="stylesheet" href="https://infobooks.github.io/task.css"&gt;
     </div>
   </div>
 
@@ -186,119 +160,102 @@ select {
 
 </body>
 
-<!--========================================================================-->
+<!--================================-->
 <script>
 
-//=============================================================================
-const MAX_DATA = 200;
-const JS_FOLDER = 'js/';
 var startX, startY;
+var myList = document.getElementById('listBox');
+var myNumber = document.getElementById('taskNumber');
+var myText = document.getElementById('taskText');
+var myIn = document.getElementById('taskIn');
+var myInTitle = document.getElementById('taskInTitle');
+var myOut = document.getElementById('taskOut');
+var myOutTitle = document.getElementById('taskOutTitle');
+var myTests = document.getElementById('taskTests');
+var myHint = document.getElementById('taskHint');
+var myImage = document.getElementById('taskImage');
+var mySolve = document.getElementById('taskSolve');
+var mySolveImage = document.getElementById('taskSolveImage');
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function Start(txt) {
   let s = '';
   for (let i = 0; i < tasks.length; i++) {
-    s += '<option>' + (i + 1);
-    if (tasks[i].solve) s += '°';
-    s += '</option>';
+    s += '<option>' + (i + 1) + ('solve' in tasks[i] ? '°' : '') + '</option>';
   }
-  document.getElementById('listBox').innerHTML = s;
-
+  myList.innerHTML = s;
+  
   const par = decodeURI(txt).trim().slice(1);
-  let n = 0;
-  if (par.length > 0 && !isNaN(par) && Number.isInteger(Number(par))) {
-    n = Number(par) - 1;
-  }
+  let n = (par.length > 0 && !isNaN(par) && Number.isInteger(Number(par))) ? Number(par) - 1 : 0;
   ShowItem(n);
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function ShowItem(n) {
+  const JS_FOLDER = 'javascript/';
+
   if (tasks.length === 0) return;
   if (n >= tasks.length) n = tasks.length - 1;
   if (n < 0) n = 0;
-  let task = tasks[n]
 
+  let task = tasks[n];
+  
     //-----------------
-  document.getElementById('taskNumber').innerHTML = '№&nbsp;' + (n + 1);
-  if ('txt' in task) {
-    document.getElementById('taskText').innerHTML = task.txt;
+  myNumber.innerHTML = '№&nbsp;' + (n + 1);
+  myText.innerHTML = ('txt' in task) ? task.txt : '';
+
+  if ('inTitle' in task) {
+    myIn.innerHTML = task.inTitle.map((num, index) => `${index + 1}) ${num}`).join('<br>');
+    myIn.style.display = '';
+    myInTitle.style.display = '';
   } else {
-    document.getElementById('taskText').innerHTML = 'Порожньо';
-  }
-    //-----------------
-  if ('inTitle' in task && task.inTitle.length > 0) {
-    let s = '';
-    for (let i = 0; i < task.inTitle.length; i++) {
-      s += (i + 1) + ') ' + task.inTitle[i] + ';<br>';
-    }
-    s = (task.inTitle.length === 1) ? s.slice(3, -5) : s.slice(0, -5) + '.';
-    document.getElementById('taskIn').innerHTML = s;
-    document.getElementById('taskIn').style.display = '';
-    document.getElementById('taskInTitle').style.display = '';
+    myIn.innerHTML = '';
+    myIn.style.display = 'none';
+    myInTitle.style.display = 'none';
+  } 
+  if ('outTitle' in task) {
+    myOut.innerHTML = task.outTitle.map((num, index) => `${index + 1}) ${num}`).join('<br>');
+    myOut.style.display = '';
+    myOutTitle.style.display = '';
   } else {
-    document.getElementById('taskIn').innerHTML = '';
-    document.getElementById('taskIn').style.display = 'none';
-    document.getElementById('taskInTitle').style.display = 'none';
+    myOut.innerHTML = '';
+    myOut.style.display = 'none';
+    myOutTitle.style.display = 'none';
   }
-    //-----------------
-  if ('outTitle' in task && task.outTitle.length > 0) {
-    s = '';
-    for (let i = 0; i < task.outTitle.length; i++) {
-      s += (i + 1) + ') ' + task.outTitle[i] + ';<br>';
-    }
-    s = (task.outTitle.length === 1) ? s.slice(3, -5) : s.slice(0, -5) + '.';
-    document.getElementById('taskOut').innerHTML = s;
-    document.getElementById('taskOut').style.display = '';
-    document.getElementById('taskOutTitle').style.display = '';
+  if ('tests' in task) {
+    myTests.innerHTML = '<table>' + task.tests.map(row => '<tr>' + 
+      row.map(item => `<td>${item}</td>`).join('') + '</tr>').join('') + '</table>';
+    myTests.style.display = '';
   } else {
-    document.getElementById('taskOut').innerHTML = '';
-    document.getElementById('taskOut').style.display = 'none';
-    document.getElementById('taskOutTitle').style.display = 'none';
+    myTests.innerHTML = '';
+    myTests.style.display = 'none';
   }
-    //-----------------
-  if ('tests' in task && task.tests.length > 0) {
-    s = '<table>';
-    for (let row of task.tests) {
-      s += '<tr><td>' + row.join('</td><td>') + '</td></tr>';
-    }
-    s += '</table>';
-    document.getElementById('taskTests').innerHTML = s;
-    document.getElementById('taskTests').style.display = '';
+  if ('hint' in task) {
+    myHint.innerHTML = '(підказка: ' + task.hint + ')';
+    myHint.style.display = '';
   } else {
-    document.getElementById('taskTests').innerHTML = '';
-    document.getElementById('taskTests').style.display = 'none';
+    myHint.innerHTML = '';
+    myHint.style.display = 'none';
   }
-    //-----------------
-  if ('hint' in task && task.hint.trim().length > 0) {
-    document.getElementById('taskHint').innerHTML =
-      '(підказка: ' + task.hint + ')';
-    document.getElementById('taskHint').style.display = '';
+  if ('obj' in task) {
+    myImage.src = JS_FOLDER + (n + 1) + '.png';
+    myImage.style.display = '';
   } else {
-    document.getElementById('taskHint').innerHTML = '';
-    document.getElementById('taskHint').style.display = 'none';
+    myImage.src = '';
+    myImage.style.display = 'none';
   }
-  if ('obj' in task && task.obj) {
-    document.getElementById('taskImage').src =
-      JS_FOLDER + (n + 1) + '.png';
-    document.getElementById('taskImage').style.display = '';
+  if ('solve' in task) {
+    mySolveImage.src = JS_FOLDER + (n + 1) + ' - solve.png'
+    mySolve.style.display = '';
   } else {
-    document.getElementById('taskImage').src = '';
-    document.getElementById('taskImage').style.display = 'none';
+    mySolveImage.src = '';
+    mySolve.style.display = 'none';
   }
-  if ('solve' in task && task.solve) {
-    document.getElementById('taskSolveImage').src =
-      JS_FOLDER + 'solve-' + (n + 1) + '.png'
-    document.getElementById('taskSolve').style.display = '';
-  } else {
-    document.getElementById('taskSolveImage').src = '';
-    document.getElementById('taskSolve').style.display = 'none';
-  }
-    //-----------------
-  document.getElementById('listBox').selectedIndex = n;
+
+  myList.selectedIndex = n;
 }
 
-//-----------------------------------------------------------------------------
+//-------------------------------------
 function touchStart() {
   startX = event.touches[0].clientX;
   startY = event.touches[0].clientY;
@@ -310,7 +267,7 @@ function touchEnd(n) {
   if (dX < -50 && Math.abs(dX) > Math.abs(dY)) ShowItem(n + 1);
 }
 
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//=====================================
 const tasks = [
 
 // 1
@@ -1010,4 +967,5 @@ const tasks = [
 */
 ]
 
+//-------------------------------------
 </script>
