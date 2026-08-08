@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://infobooks.github.io/task.css">
+
+<h1> "Поїсти по багатому" </h1>
+
+<div>   Вага<input id="input1"> кг  </div>
+
+<div><img src="image.jpg" width="100"> <input type="radio" id="radio1" name="group1">ПІЦЦА ЛУЇ XIII (€8300)</div>
+
+<div><img src="imagen.jpg" width="100"> <input type="radio" id="radio2" name="group1">ФЛЕРБУРГЕР 5000 (€5500) </div>
+
+<div><img src="imagenn.jpg" width="100"> <input type="radio" id="radio3" name="group1">ФРІТТАТА З ЛОБСТЕРОМ (€1100)</div>
+
+<div><input type="checkbox" id="checkbox1">скидочка (-10%)</div>
+
+<div> До сплатити <output id="output1"></output>   </div>
+
+
+<div><button type="button" onclick="f1()">Обчислити</button></div>
+
+
+
+<script>
+
+function f1() {
+
+let vaga = Number(input1.value);
+
+let price;
+
+if(radio1.checked) price = 8300;
+
+if(radio2.checked) price = 5500;
+
+if(radio3.checked) price = 1100;
+
+let sum = price * vaga;
+
+if (checkbox1.checked) sum = sum * 0.9;
+
+output1.value = sum;
+
+}
+
+</script>

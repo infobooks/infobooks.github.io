@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://infobooks.github.io/task.css">
+
+
+<div><img style = "border-radius: 15px;" src="fruits.jpg" width="150"><h2> "Exotic fruits" </h2></div>
+
+<div> Вага <input style = "background-color:#D8BFD8;" id="input1">  кг </div>
+
+<div style = "border: 1px solid black;background-color:#FAEBD7;"> 
+<div> <img style = "border-radius: 15px;" src="Laim.jpg" width="75"> <input type="radio" id="radio1" name="group1"> лайм з америки (300 грн/кг) </div>
+
+
+<div> <img style = "border-radius: 15px;" src="Dragon.jpg" width="75"> <input type="radio" id="radio2" name="group1"> драконячий фрукт (15000 грн/кг) </div>
+
+<div> <img style = "border-radius: 15px;" src="snake.jpg" width="75"><input type="radio" id="radio3" name="group1"> зміїний фрукт(3000 грн/кг)
+</div>
+
+</div>
+
+<div> <input type="checkbox" id="checkbox1"> Чи є картка знижки -50%? </div>
+
+<div> До оплати <output id="output1"></output> грн  </div>
+
+
+<div><button type="button" style = "background-color: #98FB98;"onclick="f1()">Обчислити</button></div>
+
+
+
+
+
+<script>
+
+function f1() {
+let Masa = Number(input1.value);
+
+if(radio1.checked) Op =  Masa * 300;
+
+if(radio2.checked) Op =  Masa * 15000;
+
+if(radio3.checked) Op = Masa * 3000;
+
+if(checkbox1.checked) Op = Op * 0.5;
+
+output1.value = Op.toFixed(1);
+
+
+}
+
+</script>
