@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="D:/Data/task.css">
+
+<h2>Квадратне рівняння</h2>
+<div>Введіть значення a, b, c</div>
+
+<div>
+<input id="input1"> X<sup>2</sup> + <input id="input2"> X + <input id="input3"> = 0 
+</div>
+
+<div style="margin:auto; padding:10px; border-bottom:green solid 3px; width:40%;"> X<sub>1</sub> = 
+<output id="output1">???</output>
+</div>
+<div style="margin:auto; padding:10px; border-bottom:green solid 3px; width:40%;"> X<sub>2</sub> = 
+<output id="output2">???</output>
+</div>
+
+<button onclick="f2()">Очистити</button>
+<button onclick="f1()">Розв’язати <br>рівняння</button>
+
+<script> function f1() {
+    let a = Number(input1.value);
+    let b = Number(input2.value);
+    let c = Number(input3.value);    
+
+    if (a === 0) {
+        alert('Це не квадратне рівняння!');
+        return;
+    }
+    
+    let D = b * b - 4 * a * c;
+    let x1;
+    let x2;
+    
+    if (D < 0) {
+        x1 = "Немає розв'язків";
+        x2 = "Немає розв'язків";
+    }
+    if (D === 0) {
+        x1 = (-b / (2 * a)).toFixed(2);
+        x2 = '';
+    }
+    if (D > 0) {
+        x1 = ((-b + Math.sqrt(D)) / (2 * a)).toFixed(2);
+        x2 = ((-b - Math.sqrt(D)) / (2 * a)).toFixed(2);        
+    }
+    
+    output1.value = x1;
+    output2.value = x2;
+} </script>
+
+<script> function f2() {
+    input1.value = '';
+    input2.value = '';
+    input3.value = '';
+    output1.value = '';
+    output2.value = '';
+} </script>
