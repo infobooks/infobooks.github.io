@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="uk" ontouchstart="touchStart()" ontouchend="touchEnd(listBox.selectedIndex)">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Роботи учнів</title>
+
+<!--================================-->
+<style>
+body {
+  margin: 0;
+  padding: 5px;
+  text-align: center;
+  font-family: sans-serif;
+  color: #333333;
+  background-color: #f5f4e5;
+}
+.task-content {
+  margin: 5px;
+  padding: 2px;
+  max-width: 30em;
+  line-height: 1.3;
+  background-color: #ffffff;
+}
+@media screen and (min-width:30em) {
+  .task-content {margin: 5px 10%}
+}
+.task-header {
+  margin: 0;
+  padding: 2px;
+  display: flex;
+  border-radius: 5px;
+  line-height: 2;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #8fbc8f;
+}
+.task-button {
+  overflow: hidden;
+  margin: 1px;
+  padding: 2px 4px;
+  width: 35px;
+  border: 1px solid #333333;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #d0ecf4, #5bc9e1, #d0ecf4);
+  cursor: pointer;
+}
+select {
+  min-width: 120px;
+  padding: 2px 5px;
+  font-size: 1em;
+  border: 2px outset #333333;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #ffffff, #b0c4de, #ffffff);
+}
+.task-title {
+  padding: 20px 0 10px 0;
+}
+.task-number {
+  padding-right: 7px;
+  font-weight: bold;
+}
+.task-container img {
+  max-width: 100%;
+  border-radius: 5px;
+  border: 1px dotted #333333;
+}
+.task-text {
+  padding: 15px 20px;
+  text-align: left;
+  line-height: 1.5;  
+}
+.data-container {
+  max-width: 30em;
+  margin: 7px 10px;
+ }
+.data-container img, .data-container video {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px dotted #333333;
+}
+a {
+  display: block;
+  min-width: 3em;
+  padding: 10px 10px;
+  margin: 7px 10px;
+  text-align: left;
+  color: #992211;
+  text-decoration: none;
+}
+</style>
+
+<!--================================-->
+<body onload="Start(location.search)">
+
+<div class="task-content">
+  <div class="task-header" id="taskHeader">
+    <div class="task-button" onclick="ShowItem(listBox.selectedIndex - 1)">&#9668;</div>
+    <select id="listBox" size="1" onchange="ShowItem(this.selectedIndex)"></select>
+    <div class="task-button" onclick="ShowItem(listBox.selectedIndex + 1)">&#9658;</div>
+  </div>
+
+  <div class="task-title">
+    <span id="taskNumber" class="task-number"></span>
+    <span id="taskName"></span>
+  </div>
+  <div class="task-container"><img id="taskImage" src="" alt=""></div> 
+  <div id="taskText" class="task-text"></div>
+</div>
+
+<div id="solves" class="task-content">
+  <div id="solvesHeader" class="task-title"><b>Приклади виконання</b></div>
+</div>
+
+</body>
+
+<!--================================-->
+<script>
+
+var startX, startY;
+var myList = document.getElementById('listBox');
+
+var myHeader = document.getElementById('taskHeader');
+var myNumber = document.getElementById('taskNumber');
+var myName = document.getElementById('taskName');
+var myImage = document.getElementById('taskImage');
+var myText = document.getElementById('taskText');
+
+var mySolves = document.getElementById('solves');
+var mySolvesHeader = document.getElementById('solvesHeader');
+
+//-------------------------------------
+function Start(txt) {
+  let s = '';
+  for (let i = 0; i < tasks.length; i++) {
+    s += '<option>' + (i + 1) + '</option>';
+  }
+  myList.innerHTML = s;
+  
+  const par = decodeURI(txt).trim().slice(1);
+  let n = (par.length > 0 && !isNaN(par) && Number.isInteger(Number(par))) ? Number(par) - 1 : 0
+  ShowItem(n);
+}
+
+//-------------------------------------
+function loadData(folder, type, n) {
+  if (type === 'i') {
+    for (let i = 1; i <= n; i++) {
+      const img = new Image();
+      img.src = `${folder}${i}.png`;
+      const div = document.createElement('div');
+      div.className = 'data-container';
+      div.appendChild(img);
+      mySolves.appendChild(div);
+    }
+    return;
+  }
+  if (type === 'v') {
+    for (let i = 1; i <= n; i++) {
+      const video = document.createElement('video');
+      video.src = `${folder}${i}.mp4`;
+      video.controls = true;
+      const div = document.createElement('div');
+      div.className = 'data-container';
+      div.appendChild(video);
+      mySolves.appendChild(div);
+    }
+    return;
+  }
+  if (type === 'h') {
+    const div = document.createElement('div');
+    div.className = 'data-container';
+    for (let i = 1; i <= n; i++) {
+      const a = document.createElement('a');
+      a.href = `${folder}${i}.html`;
+      a.textContent = `Переглянути - ${i}`
+      div.appendChild(a);
+    }
+    mySolves.appendChild(div);
+    return;
+  }  
+}
+
+//-------------------------------------
+function ShowItem(n) {
+  const PROJECTS_FOLDER = 'works/';
+  const TASK_FNAME = 'task.png';
+
+  if (tasks.length === 0) return;
+  if (n >= tasks.length) n = tasks.length - 1;
+  if (n < 0) n = 0;
+
+  let task = tasks[n];
+  let folder = PROJECTS_FOLDER + (n + 1) + '/';
+
+  myNumber.innerHTML = '№&nbsp;' + (n + 1) + '.';
+  myName.innerHTML = task.name ?? 'Noname';
+  if ('img' in task) {
+    myImage.src = folder + TASK_FNAME;
+    myImage.style.display = '';
+  } else {
+    myImage.src = '';
+    myImage.style.display = 'none';
+  }
+  if ('text' in task) {
+    myText.innerHTML = task.text ?? '';
+    myText.style.display = '';
+  } else {
+    myText.innerHTML = '';
+    myText.style.display = 'none';  
+  }
+
+  mySolves.replaceChildren(solvesHeader);
+  let typeDef = (task.type === 'v' || task.type === 'h') ? task.type : 'i';
+  if ('solveCount' in task) loadData(folder, typeDef, task.solveCount);
+
+  myList.selectedIndex = n;
+}
+
+//-------------------------------------
+function touchStart() {
+  startX = event.touches[0].clientX;
+  startY = event.touches[0].clientY;
+}
+function touchEnd(n) {
+  let dX = event.changedTouches[0].clientX - startX;
+  let dY = event.changedTouches[0].clientY - startY;
+  if (dX > 50 && Math.abs(dX) > Math.abs(dY)) ShowItem(n - 1);
+  if (dX < -50 && Math.abs(dX) > Math.abs(dY)) ShowItem(n + 1);
+}
+
+//=====================================
+const tasks = [
+
+{name:'Тема роботи', solveCount:1},
+
+
+]
+
+//-------------------------------------
+</script>

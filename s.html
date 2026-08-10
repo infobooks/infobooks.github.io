@@ -133,7 +133,13 @@ function ShowItem(n) {
     myVideo.src = SCRATCH_FOLDER + (n + 1) + ' - ' + task.name + '.mp4';
     myVideo.style.display = '';
   }
-  myText.innerHTML = task.text ?? '';
+  if ('text' in task) {
+    myText.innerHTML = task.text ?? '';
+    myText.style.display = '';
+  } else {
+    myText.innerHTML = '';
+    myText.style.display = 'none';  
+  }
 
   myList.selectedIndex = n;
 }

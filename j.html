@@ -202,8 +202,13 @@ function ShowItem(n) {
   
     //-----------------
   myNumber.innerHTML = '№&nbsp;' + (n + 1);
-  myText.innerHTML = ('txt' in task) ? task.txt : '';
-
+  if ('text' in task) {
+    myText.innerHTML = task.text ?? '';
+    myText.style.display = '';
+  } else {
+    myText.innerHTML = '';
+    myText.style.display = 'none';  
+  }
   if ('inTitle' in task) {
     myIn.innerHTML = task.inTitle.map((num, index) => `${index + 1}) ${num}`).join('<br>');
     myIn.style.display = '';

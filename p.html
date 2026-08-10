@@ -202,7 +202,13 @@ function ShowItem(n) {
     myImage.src = '';
     myImage.style.display = 'none';
   }
-  myText.innerHTML = task.text ?? '';
+  if ('text' in task) {
+    myText.innerHTML = task.text ?? '';
+    myText.style.display = '';
+  } else {
+    myText.innerHTML = '';
+    myText.style.display = 'none';  
+  }
 
   mySolves.replaceChildren(solvesHeader);
   let typeDef = (task.type === 'v' || task.type === 'h') ? task.type : 'i';
