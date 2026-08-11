@@ -116,16 +116,13 @@ a {
 
 <!--================================-->
 <script>
-
 var startX, startY;
 var myList = document.getElementById('listBox');
-
 var myHeader = document.getElementById('taskHeader');
 var myNumber = document.getElementById('taskNumber');
 var myName = document.getElementById('taskName');
 var myImage = document.getElementById('taskImage');
 var myText = document.getElementById('taskText');
-
 var mySolves = document.getElementById('solves');
 var mySolvesHeader = document.getElementById('solvesHeader');
 
@@ -184,7 +181,7 @@ function loadData(folder, type, n) {
 //-------------------------------------
 function ShowItem(n) {
   const PROJECTS_FOLDER = 'works/';
-  const TASK_FNAME = 'task.png';
+  const TASK_FNAME = '0.png';
 
   if (tasks.length === 0) return;
   if (n >= tasks.length) n = tasks.length - 1;
@@ -203,7 +200,7 @@ function ShowItem(n) {
     myImage.style.display = 'none';
   }
   if ('text' in task) {
-    myText.innerHTML = task.text ?? '';
+    myText.innerHTML = task.text;
     myText.style.display = '';
   } else {
     myText.innerHTML = '';
