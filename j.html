@@ -162,7 +162,6 @@ select {
 
 <!--================================-->
 <script>
-
 var startX, startY;
 var myList = document.getElementById('listBox');
 var myNumber = document.getElementById('taskNumber');
@@ -180,8 +179,8 @@ var mySolveImage = document.getElementById('taskSolveImage');
 //-------------------------------------
 function Start(txt) {
   let s = '';
-  for (let i = 0; i < tasks.length; i++) {
-    s += '<option>' + (i + 1) + ('solve' in tasks[i] ? '°' : '') + '</option>';
+  for (let i = 0; i < a.length; i++) {
+    s += '<option>' + (i + 1) + ('solve' in tasks[a[i] - 1] ? '°' : '') + '</option>';
   }
   myList.innerHTML = s;
   
@@ -194,69 +193,89 @@ function Start(txt) {
 function ShowItem(n) {
   const JS_FOLDER = 'javascript/';
 
-  if (tasks.length === 0) return;
-  if (n >= tasks.length) n = tasks.length - 1;
+  if (a.length === 0) return;
+  if (n >= a.length) n = a.length - 1;
   if (n < 0) n = 0;
 
-  let task = tasks[n];
+  let task = tasks[a[n] - 1];
   
     //-----------------
   myNumber.innerHTML = '№&nbsp;' + (n + 1);
-  if ('text' in task) {
-    myText.innerHTML = task.text ?? '';
-    myText.style.display = '';
-  } else {
+  if ('noView' in task) {
     myText.innerHTML = '';
     myText.style.display = 'none';  
-  }
-  if ('inTitle' in task) {
-    myIn.innerHTML = task.inTitle.map((num, index) => `${index + 1}) ${num}`).join('<br>');
-    myIn.style.display = '';
-    myInTitle.style.display = '';
-  } else {
     myIn.innerHTML = '';
     myIn.style.display = 'none';
     myInTitle.style.display = 'none';
-  } 
-  if ('outTitle' in task) {
-    myOut.innerHTML = task.outTitle.map((num, index) => `${index + 1}) ${num}`).join('<br>');
-    myOut.style.display = '';
-    myOutTitle.style.display = '';
-  } else {
     myOut.innerHTML = '';
     myOut.style.display = 'none';
     myOutTitle.style.display = 'none';
-  }
-  if ('tests' in task) {
-    myTests.innerHTML = '<table>' + task.tests.map(row => '<tr>' + 
-      row.map(item => `<td>${item}</td>`).join('') + '</tr>').join('') + '</table>';
-    myTests.style.display = '';
-  } else {
     myTests.innerHTML = '';
     myTests.style.display = 'none';
-  }
-  if ('hint' in task) {
-    myHint.innerHTML = '(підказка: ' + task.hint + ')';
-    myHint.style.display = '';
-  } else {
     myHint.innerHTML = '';
     myHint.style.display = 'none';
-  }
-  if ('obj' in task) {
-    myImage.src = JS_FOLDER + (n + 1) + '.png';
-    myImage.style.display = '';
-  } else {
     myImage.src = '';
     myImage.style.display = 'none';
-  }
-  if ('solve' in task) {
-    mySolveImage.src = JS_FOLDER + (n + 1) + ' - solve.png'
-    mySolve.style.display = '';
-  } else {
     mySolveImage.src = '';
     mySolve.style.display = 'none';
-  }
+  } else {
 
+    if ('text' in task) {
+      myText.innerHTML = task.text;
+      myText.style.display = '';
+    } else {
+      myText.innerHTML = '';
+      myText.style.display = 'none';
+    }
+    if ('inTitle' in task) {
+      myIn.innerHTML = task.inTitle.map((num, index) => `${index + 1}) ${num}`).join('<br>');
+      myIn.style.display = '';
+      myInTitle.style.display = '';
+    } else {
+      myIn.innerHTML = '';
+      myIn.style.display = 'none';
+      myInTitle.style.display = 'none';
+    } 
+    if ('outTitle' in task) {
+      myOut.innerHTML = task.outTitle.map((num, index) => `${index + 1}) ${num}`).join('<br>');
+      myOut.style.display = '';
+      myOutTitle.style.display = '';
+    } else {
+      myOut.innerHTML = '';
+      myOut.style.display = 'none';
+      myOutTitle.style.display = 'none';
+    }
+    if ('tests' in task) {
+      myTests.innerHTML = '<table>' + task.tests.map(row => '<tr>' + 
+        row.map(item => `<td>${item}</td>`).join('') + '</tr>').join('') + '</table>';
+      myTests.style.display = '';
+    } else {
+      myTests.innerHTML = '';
+      myTests.style.display = 'none';
+    }
+    if ('hint' in task) {
+      myHint.innerHTML = '(підказка: ' + task.hint + ')';
+      myHint.style.display = '';
+    } else {
+      myHint.innerHTML = '';
+      myHint.style.display = 'none';
+    }
+    if ('obj' in task) {
+      myImage.src = JS_FOLDER + a[n] + '.png';
+      myImage.style.display = '';
+    } else {
+      myImage.src = '';
+      myImage.style.display = 'none';
+    }
+    if ('solve' in task) {
+      mySolveImage.src = JS_FOLDER + a[n] + ' - solve.png'
+      mySolve.style.display = '';
+    } else {
+      mySolveImage.src = '';
+      mySolve.style.display = 'none';
+    }
+  }
+  
   myList.selectedIndex = n;
 }
 
@@ -271,6 +290,17 @@ function touchEnd(n) {
   if (dX > 50 && Math.abs(dX) > Math.abs(dY)) ShowItem(n - 1);
   if (dX < -50 && Math.abs(dX) > Math.abs(dY)) ShowItem(n + 1);
 }
+
+//=====================================
+const a = [  // порядок показу
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
+31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
+51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+61, 62, 63, 64, 65, 66
+]
 
 //=====================================
 const tasks = [
@@ -303,7 +333,7 @@ const tasks = [
 
 // 4
   {txt: 'На&nbsp;складі меблевої фабрики зберігається декілька столиків та стільців.<br>Скільки&nbsp;всього предметів зберігається на&nbsp;складі?',
-  solve: 1,
+  solve: 1, noView:1,
   inTitle: ['кількість столиків', 'кількість стільців'],
   outTitle: ['всього предметів'],
   tests: [

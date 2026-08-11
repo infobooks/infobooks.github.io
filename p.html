@@ -116,23 +116,20 @@ a {
 
 <!--================================-->
 <script>
-
 var startX, startY;
 var myList = document.getElementById('listBox');
-
 var myHeader = document.getElementById('taskHeader');
 var myNumber = document.getElementById('taskNumber');
 var myName = document.getElementById('taskName');
 var myImage = document.getElementById('taskImage');
 var myText = document.getElementById('taskText');
-
 var mySolves = document.getElementById('solves');
 var mySolvesHeader = document.getElementById('solvesHeader');
 
 //-------------------------------------
 function Start(txt) {
   let s = '';
-  for (let i = 0; i < tasks.length; i++) {
+  for (let i = 0; i < a.length; i++) {
     s += '<option>' + (i + 1) + '</option>';
   }
   myList.innerHTML = s;
@@ -186,33 +183,41 @@ function ShowItem(n) {
   const PROJECTS_FOLDER = 'projects/';
   const TASK_FNAME = 'task.png';
 
-  if (tasks.length === 0) return;
-  if (n >= tasks.length) n = tasks.length - 1;
+  if (a.length === 0) return;
+  if (n >= a.length) n = a.length - 1;
   if (n < 0) n = 0;
 
-  let task = tasks[n];
-  let folder = PROJECTS_FOLDER + (n + 1) +  ' - ' + task.name + '/';
+  let task = tasks[a[n] - 1];
+  let folder = PROJECTS_FOLDER + a[n] +  ' - ' + task.name + '/';
 
   myNumber.innerHTML = '№&nbsp;' + (n + 1) + '.';
   myName.innerHTML = task.name ?? 'Noname';
-  if ('img' in task) {
-    myImage.src = folder + TASK_FNAME;
-    myImage.style.display = '';
-  } else {
-    myImage.src = '';
-    myImage.style.display = 'none';
-  }
-  if ('text' in task) {
-    myText.innerHTML = task.text ?? '';
-    myText.style.display = '';
-  } else {
-    myText.innerHTML = '';
-    myText.style.display = 'none';  
-  }
-
   mySolves.replaceChildren(solvesHeader);
-  let typeDef = (task.type === 'v' || task.type === 'h') ? task.type : 'i';
-  if ('solveCount' in task) loadData(folder, typeDef, task.solveCount);
+  
+    if ('noView' in task) {
+    myImage.src = '';
+    myImage.style.display = 'none'; 
+    myText.innerHTML = '';
+    myText.style.display = 'none';      
+  } else {
+
+    if ('img' in task) {
+      myImage.src = folder + TASK_FNAME;
+      myImage.style.display = '';
+    } else {
+      myImage.src = '';
+      myImage.style.display = 'none';
+    }
+    if ('text' in task) {
+      myText.innerHTML = task.text;
+      myText.style.display = '';
+    } else {
+      myText.innerHTML = '';
+      myText.style.display = 'none';  
+    }
+    let typeDef = (task.type === 'v' || task.type === 'h') ? task.type : 'i';
+    if ('solveCount' in task) loadData(folder, typeDef, task.solveCount);
+  }
 
   myList.selectedIndex = n;
 }
@@ -228,6 +233,14 @@ function touchEnd(n) {
   if (dX > 50 && Math.abs(dX) > Math.abs(dY)) ShowItem(n - 1);
   if (dX < -50 && Math.abs(dX) > Math.abs(dY)) ShowItem(n + 1);
 }
+
+//=====================================
+const a = [  // порядок показу
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
+31, 32, 33, 34, 35, 36, 37, 38, 39, 40
+] 
 
 //=====================================
 const tasks = [
