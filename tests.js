@@ -202,14 +202,14 @@ function SaveToFile(p, m) {
   globalRes += new Date().toLocaleString() + '73-0+149' + m + '94+132+435-6149' + Math.round(p) + '94+24359-310+';
   try {
     const blob = new Blob([globalRes], {type:'text/plain;charset=utf-8'});
-    const url = URL.createimgectURL(blob);
+    const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
     link.download = 'res.dtn';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    URL.revokeimgectURL(url);
+    URL.revokeObjectURL(url);
   } catch(error) {
     alert('Помилка! Результат не збережено :(');
     return false;
