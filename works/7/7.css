@@ -1,0 +1,42 @@
+body{margin:10px;font-size:18px;line-height:1.4}@media screen and (max-width:450px){body{font-size:16px;line-height:1.2; }}
+/*--=========================================--*/
+
+.header {
+	margin: 5px;
+	padding: 5px;
+	text-align: center;
+	background-color: #DCDCDC;
+	
+}
+
+.footer {
+	margin: 5px;
+	padding: 5px;
+	text-align: right;
+	background-color: #FAF0E6;
+	
+}
+
+.flexbox {
+	margin: 5px;
+	padding: 5px;
+	border: 1px solid blue;
+	
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;	/* center   space-beetween */
+    align-items: flex-end;
+	background-color: #FDF5E6;
+}
+
+.urock{
+	border: 5px double black;
+	background-color: #C0C0C0 ;
+	margin: 5px;
+	padding: 5px;
+}
+.day{
+	border: 3px solid black;
+	background-color:#D3D3D3 ;
+	text-align: center;
+}

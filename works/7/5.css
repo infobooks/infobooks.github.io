@@ -1,0 +1,43 @@
+body{margin:10px;font-size:18px;line-height:1.4}@media screen and (max-width:450px){body{font-size:16px;line-height:1.2}}
+/*--=========================================--*/
+
+.header {
+	margin: 5px;
+	padding: 5px;
+	text-align: center;
+	background-color: Tan;
+	color:Navy;
+	
+	
+}
+
+.footer {
+	margin: 5px;
+	padding: 5px;
+	text-align: right;
+	background-color: Tan;
+	color:Navy;
+}
+
+.flexbox {
+	margin: 5px;
+	padding: 5px;
+	border: 5px solid DarkSlateGray;
+	color:black;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;	/* center   space-beetween */
+									/*align-items: flex-start;   (flex-end) */
+}
+.day {
+	border: 5px solid SeaGreen;
+	border-radius:10px;
+ text-align:center;
+	padding:5px;
+	
+	
+	
+	
+	
+	
+}

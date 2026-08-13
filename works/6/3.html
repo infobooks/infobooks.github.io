@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="uk"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><link rel="stylesheet"href="https://infobooks.github.io/task.css">
+
+<h1> Банк чеззабрето </h1>    <br>      
+
+
+
+   Уведіть суму (грн)  <br>  <img src="gr.jpg" width="150"> <br>
+   
+   
+    <input id="input1">    <br>
+   Курс американ долар <br>
+          41 грн <br>
+    <output id="output1">  </output>    <br>
+
+    <button onclick="solve()" > Обчислити </button>
+	
+
+
+<!--==== Задача мовою Java Script ====--><script>
+function solve() {
+
+	let inch = Number(input1.value);
+	
+	
+	let meter = inch * 41;
+	
+	output1.value =  meter.toFixed(2);
+	
+
+}<!--===== кінець задачі =====--></script>
+

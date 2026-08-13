@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="uk"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><link rel="stylesheet"href="https://infobooks.github.io/task.css">
+
+
+   
+<h1> банк "сігма" </h1>
+<h2> онлайн обмін валют </h2>
+ <h3> уведіть суму (грн) </h3>
+<input id="input1">    <br>
+<h2> курс Нігерійські найри  </h2>
+         
+        <h2> 0.025  </h2>
+
+ <h2> ви можете купити   </h2>   <output id="output1">  </output>    <br>     <h2> нігерійські найрів  </h2>
+
+    <button onclick="solve()" > Обчислити </button>
+	
+
+<!--==== Задача мовою Java Script ====--><script>
+function solve() {
+let ponos = 	Number(input1.value);
+let fy = ponos / 0.025
+output1.value =fy.toFixed(2)
+
+
+
+}<!--===== кінець задачі =====--></script>
+

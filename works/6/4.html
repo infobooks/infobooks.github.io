@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="uk"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><link rel="stylesheet"href="https://infobooks.github.io/task.css">
+
+ <h1> Банк "сонечко" </h1>
+ <h2>      Онлайн обмін валют   <img src="42.jpg" width="100">	   </h2>      
+ Уведіть суму (грн)<br>
+ <input id="input1">     <br>
+курс канадського долара <br>
+29.8308 <br>
+    <output id="output1">  </output>    <br>
+
+    <button onclick="solve()" > Обчислити </button>
+	
+
+<!--==== Задача мовою Java Script ====--><script>
+function solve() {
+let gryvna = Number(input1.value);
+
+let kd = gryvna / 29.8308;
+
+
+
+output1.value = kd.toFixed(2);
+
+
+
+}<!--===== кінець задачі =====--></script>
+

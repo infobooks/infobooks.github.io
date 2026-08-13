@@ -1,0 +1,23 @@
+<!DOCTYPE html><html lang="uk"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><link rel="stylesheet"href="https://infobooks.github.io/task.css">
+
+<h1   style="background-color:LightSalmon"   > мій банк  	 </h1> 
+<h2> Онлайн обмін валют </h2>
+<h4> уведіть суму в гривнях </h4>
+   <img  style="border-radius:15px" src="2.jpg" width="150">  <input id="input1">   <img style="border-radius:15px"  src="5.jpg" width="150"> <br>
+<h4> Курс австралійського долара </h4>
+<h2> 27.30 </h2>
+   ви можете купити  <output id="output1">  </output> австр.доларів   <br> 
+
+    <button onclick="solve()" style="background-color:Plum"  > Обчислити </button><br> 
+	<button onclick="solve()" style="background-color:Violet"    > Очистити </button>  <button   style="background-color:Violet"> Про нас </button> 
+
+<!--==== Задача мовою Java Script ====--><script>
+function solve() {
+let gryvna  = Number(input1.value);
+
+let austr = gryvna / 27.30;
+
+output1.value = austr.toFixed(2);
+
+
+}<!--===== кінець задачі =====--></script>

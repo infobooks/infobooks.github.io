@@ -1,0 +1,47 @@
+body{margin:10px;font-size:18px;line-height:1.4}@media screen and (max-width:450px){body{font-size:16px;line-height:1.2}}
+/*--=========================================--*/
+
+.header {
+	margin: 5px;
+	padding: 5px;
+	text-align: center;
+	background-color: HotPink;
+	font-size:25px;
+	width:25%;
+	border-radius:10px;
+	margin:auto;
+}
+
+.footer {
+	margin: 5px;
+	padding: 5px;
+	text-align: right;
+	background-color: Pink;
+	text-align:center;
+}
+
+.flexbox {
+	margin: 5px;
+	padding: 5px;
+	border: 3px solid Pink;
+	background-color:LavenderBlush;
+	border-radius:10px;
+	
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;	/* center   space-beetween */
+									/*align-items: flex-start;   (flex-end) */
+}
+.day {
+	border:6px solid Pink;
+	border-radius:10px;
+	background-color:MistyRose;
+	padding:10px;
+	margin: 5px;
+}
+.day-title {
+	text-align:center;
+	font-weight:bold;
+	margin-bottom:10px;
+	font-style:italik;
+}
