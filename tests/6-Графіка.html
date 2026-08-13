@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport"content="width=device-width,initial-scale=1.0">
+<title>Тестування</title>
+<link rel="stylesheet" href="/tests.css">
+<script src="/tests.js" defer></script>
+
+<!--================================-->
+<body onload="StartTest()"><table class="page-header"id="tests_header"><tr><td class="btn btn__exit-test"onclick="ExitTest()">x</td><td class="page-title"><span>№</span><span class="quest-num"id="questNum"></span><span class="quest-count" id="questCount"></span></td><td class="btn btn__next-quest"onclick="NextQuestion()">&#9658;&#9658;</td></tr></table><table class="content" id="testForm"><tr><td class="test-quest" id="quest"></td></tr><tr><td class="test-correct-count"id="correctCount"></td></tr><tr><td class="test-answer"id="answer0"onclick="CheckAnswer(0)"><span class="test-answer-num">1.</span><input id="radio0"type="radio"name="answers"><span id="label0"></span></td></tr><tr><td class="test-answer"id="answer1"onclick="CheckAnswer(1)"><span class="test-answer-num">2.</span><input id="radio1"type="radio"name="answers"><span id="label1"></span></td></tr><tr><td class="test-answer"id="answer2"onclick="CheckAnswer(2)"><span class="test-answer-num">3.</span><input id="radio2"type="radio"name="answers"><span id="label2"></span></td></tr><tr><td class="test-answer"id="answer3"onclick="CheckAnswer(3)"><span class="test-answer-num">4.</span><input id="radio3"type="radio"name="answers"><span id="label3"></span></td></tr><tr><td class="test-answer"id="answer4"onclick="CheckAnswer(4)"><span class="test-answer-num">5.</span><input id="radio4"type="radio"name="answers"><span id="label4"></span></td></tr><tr><td class="test-answer"id="answer5"onclick="CheckAnswer(5)"><span class="test-answer-num">6.</span><input id="radio5"type="radio"name="answers"><span id="label5"></span></td></tr></table><div class="test-obj"><img id="questImg"src=""alt=""></div><div class="test-result"id="resForm"hidden><div><span>Результат:</span><span class="test-result-percent"id="resPercent"></span></div><div class="test-result-mark"id="testMark"></div></div></body>
+
+<!--================================-->
+<script>
+var test = {type:'rep', questions:[  // « »  ’
+
+{text:"Виберіть графічні зображення.", mas:[
+  "малюнки ", "фільми", "схеми ", "таблиці", "документи", "фотографії "  ]},
+  
+{img:"Графіка-1.jpg", text:"Виберіть правильну назву графічного редактора, який є у кожній Windows.", mas:[
+  "Plant", "Palette", "Paint ", "Print"  ]},
+  
+{img:"Графіка-2.jpg", notRnd:true, text:"Скільки кольорів можна використовувати при створенні малюнків?", mas:[
+  "28", "256", "> 65 000", "> 16 000 000 "  ]},
+  
+{img:"Графіка-3.jpg", text:"Що виконує інструмент «масштаб» («лупа»)?", mas:[
+  "зберігає малюнок", "збільшує малюнок ", "витирає малюнок", "зафарбовує малюнок"  ]},
+  
+{img:"Графіка-4.jpg", text:"Як у графіці називається «смуга» з кольорами?", mas:[
+  "стрічка", "альбом", "мозаїка", "палітра "  ]},
+  
+{text:"Яку клавішу треба тримати натиснутою, щоб намалювати не овал, а коло, не прямокутник, а квадрат?", mas:[
+  "Shift ", "Delete", "Esc", "Enter"  ]},
+  
+{img:"Графіка-5.jpg", text:"Яку фігуру слід малювати першою, щоб отримати малюнок на фото?", mas:[
+  "овал ", "лінію", "прямокутник"  ]},
+
+{text:"Виберіть властивості векторних зображень (тобто, що у них можна змінювати).", mas:[
+  "кут нахилу ", "кількість кутів", "контур ", "номер", "розмір "  ]},
+  
+{text:"Чого  \'не можна\'  робити з векторними зображеннями?", mas:[
+  "виділяти", "замальовувати заливкою", "копіювати", "витирати гумкою "   ]},
+  
+{text:"Що у графіці буває суцільним, градієнтним, штриховим?", mas:[
+  "напис", "заливка ", "олівець", "ефекти"  ]},
+  
+{text:"Якою командою об’єднують кілька фігур в одну?", mas:[
+  "групувати ", "форматувати", "на передній план", "вирівняти"  ]},
+  
+{text:"Виберіть види графічних зображень.", mas:[
+  "векторні ", "площинні", "лінійні", "растрові ", "цифрові"   ]},
+  
+{img:"Графіка-6.jpg", text:"Виберіть популярний графічний редактор.", mas:[
+  "PowerPoint", "Photoshop ", "FineReader", "Visual Studio"  ]},
+  
+{text:"Виберіть формати графічних файлів.", mas:[
+  "gif ", "xls", "mp4", "jpg ", "doc"  ]},
+  
+{text:"З чого складаються растрові зображення?", mas:[
+  "з символів", "з крапок ", "з фігур", "з байтів"  ]},
+  
+{img:"Графіка-7.jpg", text:"З яких трьох кольорів утворюються усі решта кольори (це називається - RGB)?",mas:[
+  "фіолетовий", "чорний", "червоний ", "синій ", "зелений ", "жовтий"  ]},
+  
+{text:"Що таке «PNG» у комп’ютерній графіці?", mas:[
+  "формат зображення ", "графічний редактор", "кольори принтера", "інструмент малювання"  ]},
+
+{notRnd:true, text:"Якщо фотографію розтягувати, то її якість...", mas:[
+  "погіршиться ", "не зміниться", "покращиться"   ]}
+
+]}
+</script>

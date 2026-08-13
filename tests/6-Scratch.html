@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport"content="width=device-width,initial-scale=1.0">
+<title>Тестування</title>
+<link rel="stylesheet" href="/tests.css">
+<script src="/tests.js" defer></script>
+
+<!--================================-->
+<body onload="StartTest()"><table class="page-header"id="tests_header"><tr><td class="btn btn__exit-test"onclick="ExitTest()">x</td><td class="page-title"><span>№</span><span class="quest-num"id="questNum"></span><span class="quest-count" id="questCount"></span></td><td class="btn btn__next-quest"onclick="NextQuestion()">&#9658;&#9658;</td></tr></table><table class="content" id="testForm"><tr><td class="test-quest" id="quest"></td></tr><tr><td class="test-correct-count"id="correctCount"></td></tr><tr><td class="test-answer"id="answer0"onclick="CheckAnswer(0)"><span class="test-answer-num">1.</span><input id="radio0"type="radio"name="answers"><span id="label0"></span></td></tr><tr><td class="test-answer"id="answer1"onclick="CheckAnswer(1)"><span class="test-answer-num">2.</span><input id="radio1"type="radio"name="answers"><span id="label1"></span></td></tr><tr><td class="test-answer"id="answer2"onclick="CheckAnswer(2)"><span class="test-answer-num">3.</span><input id="radio2"type="radio"name="answers"><span id="label2"></span></td></tr><tr><td class="test-answer"id="answer3"onclick="CheckAnswer(3)"><span class="test-answer-num">4.</span><input id="radio3"type="radio"name="answers"><span id="label3"></span></td></tr><tr><td class="test-answer"id="answer4"onclick="CheckAnswer(4)"><span class="test-answer-num">5.</span><input id="radio4"type="radio"name="answers"><span id="label4"></span></td></tr><tr><td class="test-answer"id="answer5"onclick="CheckAnswer(5)"><span class="test-answer-num">6.</span><input id="radio5"type="radio"name="answers"><span id="label5"></span></td></tr></table><div class="test-obj"><img id="questImg"src=""alt=""></div><div class="test-result"id="resForm"hidden><div><span>Результат:</span><span class="test-result-percent"id="resPercent"></span></div><div class="test-result-mark"id="testMark"></div></div></body>
+
+<!--================================-->
+<script>
+var test = {type:'rep', questions:[  // « »  ’
+
+{img:"Scratch6-1.jpg", text:"В який кут піде виконавець у Scratch, повернутий напрямку 50 градусів?", mas:[
+  "верхній лівий", "верхній правий ", "нижній лівий", "нижній правий" ]},
+  
+{text:"Виберіть букви, якими позначається розташування виконавця на сцені у Scratch (координати).", mas:[
+  "a", "r", "z", "y ", "x "  ]},
+  
+{img:"Scratch6-2.jpg", text:"Виберіть команду у Scratch, де часто числа записують десятковим дробом.", mas:[
+  "перемістити на ... кроків", "чекати ... секунд ", "змінити ефект (колір) на ...", "повторити ..."  ]},
+
+{notRnd:true, img:"Scratch6-3.jpg", text:"Виберіть команду, яка зменшує розмір виконавця у 5 разів.", mas:[
+  "задати розмір 5", "задати розмір 20 ", "задати розмір 50", "задати розмір 2000"  ]},
+  
+{notRnd:true, img:"Scratch6-4.jpg", text:"Виконавець у Scratch дійшов до правої межі сцени. Яке у цьому місці значення «х»?", mas:[
+  "-360", "0", "240 ", "720"  ]},
+  
+{text:"До якої групи команд Scratch відносяться такі: «коли клавішу... натиснуто», «коли я отримую...», «коли прапорець натиснуто»?", mas:[
+  "Керування (помаранчевий колір)", "Датчики (блакитний колір)", "Події (жовтий колір) ", "Вигляд (фіолетовий колір)"  ]},
+
+{text:"Клацання кнопок миші, натискання клавіш клавіатури, зупинка роботи – все це є приклади...", mas:[
+  "подій ", "помилок", "програм", "команд"  ]},
+  
+{notRnd:true, text:"Поворот у протилежному напрямку – це поворот ...", mas:[
+  "на 40 градусів", "на 90 градусів", "на 120 градусів", "на 180 градусів "  ]},
+  
+{img:"Scratch6-5.jpg", text:"Щоб виконавець у Scratch сам вибирав собі колір, місце, розмір, напрямок, треба виконати команду ...", mas:[
+  "послідовне від ... до ...", "відповідне від ... до ...", "випадкове  від ... до ... ", "наступне   від ... до ..."  ]},
+  
+{notRnd:true, text:"Які номери кольорів можна використовувати у Scratch?", mas:[
+  "від -24 до 24", "від 0 до 200 ", "від -16000 до 16000", "від 1 до 64500"  ]},
+  
+{notRnd:true, img:"Scratch6-6.jpg", text:"Яка висота сцени у Scratch?", mas:[
+  "360 ", "580", "800", "1540"  ]},
+  
+{text:"Який колір має номер «0» у Scratch?", mas:[
+  "чорний", "фіолетовий", "жовтий", "червоний "  ]},
+
+]}
+</script>

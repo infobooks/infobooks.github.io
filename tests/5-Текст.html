@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport"content="width=device-width,initial-scale=1.0">
+<title>Тестування</title>
+<link rel="stylesheet" href="/tests.css">
+<script src="/tests.js" defer></script>
+
+<!--================================-->
+<body onload="StartTest()"><table class="page-header"id="tests_header"><tr><td class="btn btn__exit-test"onclick="ExitTest()">x</td><td class="page-title"><span>№</span><span class="quest-num"id="questNum"></span><span class="quest-count" id="questCount"></span></td><td class="btn btn__next-quest"onclick="NextQuestion()">&#9658;&#9658;</td></tr></table><table class="content" id="testForm"><tr><td class="test-quest" id="quest"></td></tr><tr><td class="test-correct-count"id="correctCount"></td></tr><tr><td class="test-answer"id="answer0"onclick="CheckAnswer(0)"><span class="test-answer-num">1.</span><input id="radio0"type="radio"name="answers"><span id="label0"></span></td></tr><tr><td class="test-answer"id="answer1"onclick="CheckAnswer(1)"><span class="test-answer-num">2.</span><input id="radio1"type="radio"name="answers"><span id="label1"></span></td></tr><tr><td class="test-answer"id="answer2"onclick="CheckAnswer(2)"><span class="test-answer-num">3.</span><input id="radio2"type="radio"name="answers"><span id="label2"></span></td></tr><tr><td class="test-answer"id="answer3"onclick="CheckAnswer(3)"><span class="test-answer-num">4.</span><input id="radio3"type="radio"name="answers"><span id="label3"></span></td></tr><tr><td class="test-answer"id="answer4"onclick="CheckAnswer(4)"><span class="test-answer-num">5.</span><input id="radio4"type="radio"name="answers"><span id="label4"></span></td></tr><tr><td class="test-answer"id="answer5"onclick="CheckAnswer(5)"><span class="test-answer-num">6.</span><input id="radio5"type="radio"name="answers"><span id="label5"></span></td></tr></table><div class="test-obj"><img id="questImg"src=""alt=""></div><div class="test-result"id="resForm"hidden><div><span>Результат:</span><span class="test-result-percent"id="resPercent"></span></div><div class="test-result-mark"id="testMark"></div></div></body>
+
+<!--================================-->
+<script>
+var test = {type:'rep', questions:[  // « »  ’
+
+{text:"Виберіть лапки (прямі та ялинку).", mas:[
+  "{ }", "\" \" ", "« » ", "| |", "^ ^"  ]},
+  
+{text:"Виберіть назву шрифту.", mas:[
+  "Calibri ", "NotePad", "WinRAR", "Reader"  ]},
+  
+{notRnd:true, text:"Виберіть нормальний розмір шрифту для тексту.", mas:[
+  "5", "12 ", "44", "120"   ]},
+  
+{img:"Текст-1.jpg", text:"Виберіть позначення розміру сторінки у документах.", mas:[
+  "A4 ", "W7", "B8", "X2"  ]},
+  
+{text:"Виберіть правильне твердження.", mas:[
+  "Іван друкує текст", "Іван вводить текст ", "Іван набирає текст", "Іван створює текст"  ]},
+  
+{text:"Виберіть правильно надрукований текст.", mas:[
+  "Польська  (  і  німецька  )  мови .", "Польська(і  німецька)мови.", "Польська  ,(і  німецька  )мови  .", "Польська  (і  німецька)  мови. "  ]},
+  
+{text:"Виберіть програми для роботи з текстом.", mas:[
+  "Word ", "Access", "Chrome", "iOS", "Блокнот "  ]},
+  
+{text:"Виберіть символ «ділення» на клавіатурі.", mas:[
+  "#", "~", "/ ", "%"  ]},
+  
+{text:"Виправлення помилок у тексті належить до...", mas:[
+  "збереження", "читання", "форматування", "редагування "  ]},
+  
+{text:"Зробити текст «красивим» – це означає виконати...", mas:[
+  "друкування", "рецензування", "оформлення", "форматування "  ]},
+  
+{text:"Кнопка з якою буквою робить текст потовщеним?", mas:[
+  "П", "К", "Ж ", "Р"  ]},
+  
+{img:"Текст-2.jpg", text:"На яких клавішах повинні розташовуватись вказівні пальці при правильному введенні тексту?", mas:[
+  "Е  і  Г", "А  і  О ", "Ф  і  Ж", "М  і  Т"   ]},
+  
+{notRnd:true, text:"Чи є на клавіатурі знак № ?", mas:[
+  "так, в укр. мові ", "так, в англ. мові", "немає"  ]},
+  
+{img:"Текст-3.jpg", text:"Що виконує кнопка «скручена стрілка» на фото?", mas:[
+  "перевіряє на помилки", "вставляє зображення", "скасовує дії ", "зберігає файл"  ]},
+  
+{text:"Що вміють робити з текстом текстові процесори?", mas:[
+  "виконувати текст", "редагувати текст ", "шукати текст", "форматувати текст ", "перекладати текст"  ]},
+  
+{text:"Що створюється у документі при натисканні клавіші Enter?", mas:[
+  "нове речення", "нове слово", "новий абзац ", "нова сторінка"  ]},
+  
+{img:"Текст-4.jpg", text:"Що треба змінити, що підсунути текст, як показано червоною стрілкою на фото?", mas:[
+  "відступ першого рядка ", "межу тексту", "поле сторінки", "ширину абзаца"  ]},
+  
+{img:"Текст-5.jpg", text:"Що це за числа на фото, які використовуються у документах?", mas:[
+  "це - товщина контуру", "це - міжрядковий інтервал ", "це - розмір шрифту", "це - висота сторінки"  ]},
+  
+{img:"Текст-6.jpg", text:"Щоб вставити зображення посеред тексту, треба змінити...", mas:[
+  "обтікання текстом ", "розмір зображення", "орієнтацію сторінки", "вирівнювання тексту"  ]},
+  
+{img:"Текст-7.jpg", text:"Як називається властивість зображення, показана на фото чорним кольором?", mas:[
+  "тло", "яскравість", "межа ", "обтікання"  ]},
+  
+{text:"Як називається файл, за яким текстовий редактор перевіряє правильність написання слів?", mas:[
+  "карантин", "блокнот", "архів", "словник "  ]},
+  
+{img:"Текст-8.jpg", text:"Які об\'єкти є частиною середовища програми MS Word 2007\n(під номерами 1 та 2 на фото)?", mas:[
+  "палітра", "меню", "вкладки ", "стрічка ", "примітки"  ]},
+  
+{text:"Яка клавіша витирає символи тексту?", mas:[
+  "Insert", "CapsLock", "Backspace ", "PrintScreen"  ]},
+  
+{text:"Який символ з’явиться у тексті, якщо натисунти «Shift + 4» в укр. мові?", mas:[
+  ">", "; ", "$", "4"  ]},
+  
+{notRnd:true, img:"Текст-9.jpg", text:"Якими мають бути поля сторінки для документів (відступи від меж)?", mas:[
+  "по 0,5 см", "по 2 см ", "по 4 см", "по 8 см"  ]},
+  
+{text:"Якого вирівнювання абзаців ’не існує’?", mas:[
+  "за лівою межею", "за сторінкою ", "за правою межею", "за шириною", "по центру"  ]},
+
+]}
+</script>
