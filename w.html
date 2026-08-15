@@ -9,8 +9,8 @@
 body {
   margin: 0;
   padding: 5px;
-  text-align: center;
-  font-family: sans-serif;
+  text-align: center;  
+  font-family: "Arial", sans-serif;
   color: #333333;
   background-color: #f5f4e5;
 }
@@ -22,7 +22,7 @@ body {
   background-color: #ffffff;
 }
 @media screen and (min-width:750px) {
-  .task-content {margin: 5px 100px}
+  .task-content {margin: 5px auto}
 }
 .task-header {
   margin: 0;
@@ -60,33 +60,41 @@ select {
   padding-right: 7px;
   font-weight: bold;
 }
-.task-container img {
-  max-width: 100%;
-  border-radius: 5px;
-  border: 1px dotted #333333;
-}
-.task-text {
-  padding: 15px 20px;
-  text-align: left;
-  line-height: 1.5;  
-}
-.data-container {
-  max-width: 540px;
-  margin: 7px 10px;
+.task-name {}
+.task-obj {
+  max-width: 520px;
+  margin: 10px auto;
+  text-align: center;
  }
-.data-container img, .data-container video {
+.task-obj img, .task-obj video {
   max-width: 100%;
   width: auto;
   height: auto;
-  object-fit: contain;   
-  border-radius: 5px;
+  object-fit: contain;
   border: 1px dotted #333333;
+  border-radius: 5px;
+}
+.task-text {
+  padding: 5px 15px 10px 15px;
+  text-align: left;
+  line-height: 1.5;  
+}
+.solve-title {
+  padding: 15px;
+  margin: 5px;
+  border-top: 3px double #333333;
+  font-weight: bold;
+}
+.task-solves {
+  border:1px dotted #0000ff;
+  margin: 0;
+  padding: 0;
 }
 a {
   display: block;
   min-width: 3em;
-  padding: 10px 10px;
-  margin: 7px 10px;
+  padding: 10px;
+  margin: 10px;
   text-align: left;
   color: #992211;
   text-decoration: none;
@@ -97,37 +105,29 @@ a {
 <body onload="Start(location.search)">
 
 <div class="task-content">
-  <div class="task-header" id="taskHeader">
+  <div class="task-header">
     <div class="task-button" onclick="ShowItem(listBox.selectedIndex - 1)">&#9668;</div>
     <select id="listBox" size="1" onchange="ShowItem(this.selectedIndex)"></select>
     <div class="task-button" onclick="ShowItem(listBox.selectedIndex + 1)">&#9658;</div>
   </div>
-
-  <div class="task-title">
-    <span id="taskNumber" class="task-number"></span>
-    <span id="taskName"></span>
-  </div>
-  <div class="task-container"><img id="taskImage" src="" alt=""></div> 
-  <div id="taskText" class="task-text"></div>
+  <div class="task-title"><span class="task-number" id="taskNumber"></span><span class="task-name" id="taskName"></span></div>
+  <div class="task-obj"><img id="taskImage" src="" alt=""></div> 
+  <div class="task-text" id="taskText" ></div>
+  <div class="solve-title">Приклади виконання</div>
+  <div class="task-solves" id="taskSolves"></div>
 </div>
-
-<div id="solves" class="task-content">
-  <div id="solvesHeader" class="task-title"><b>Приклади виконання</b></div>
-</div>
-
+  
 </body>
 
 <!--================================-->
 <script>
 var startX, startY;
 var myList = document.getElementById('listBox');
-var myHeader = document.getElementById('taskHeader');
 var myNumber = document.getElementById('taskNumber');
 var myName = document.getElementById('taskName');
 var myImage = document.getElementById('taskImage');
 var myText = document.getElementById('taskText');
-var mySolves = document.getElementById('solves');
-var mySolvesHeader = document.getElementById('solvesHeader');
+var mySolves = document.getElementById('taskSolves');
 
 //-------------------------------------
 function Start(txt) {
@@ -149,7 +149,7 @@ function loadData(folder, type, n) {
       const img = new Image();
       img.src = `${folder}${i}.png`;
       const div = document.createElement('div');
-      div.className = 'data-container';
+      div.className = 'task-obj';
       div.appendChild(img);
       mySolves.appendChild(div);
     }
@@ -161,7 +161,7 @@ function loadData(folder, type, n) {
       video.src = `${folder}${i}.mp4`;
       video.controls = true;
       const div = document.createElement('div');
-      div.className = 'data-container';
+      div.className = 'task-obj';
       div.appendChild(video);
       mySolves.appendChild(div);
     }
@@ -169,7 +169,7 @@ function loadData(folder, type, n) {
   }
   if (type === 'h') {
     const div = document.createElement('div');
-    div.className = 'data-container';
+    div.className = 'task-obj';
     for (let i = 1; i <= n; i++) {
       const a = document.createElement('a');
       a.href = `${folder}${i}.html`;
@@ -183,7 +183,7 @@ function loadData(folder, type, n) {
 
 //-------------------------------------
 function ShowItem(n) {
-  const PROJECTS_FOLDER = 'works/';
+  const PROJECTS_FOLDER = 'works/';   //////////////////////////
   const TASK_FNAME = '0.png';
 
   if (tasks.length === 0) return;
@@ -191,28 +191,36 @@ function ShowItem(n) {
   if (n < 0) n = 0;
 
   let task = tasks[n];
-  let folder = PROJECTS_FOLDER + (n + 1) + '/';
+  let folder = PROJECTS_FOLDER + (n + 1) + '/';  ////////////////////////
 
   myNumber.innerHTML = '№&nbsp;' + (n + 1) + '.';
   myName.innerHTML = task.name ?? 'Noname';
-  if ('img' in task) {
-    myImage.src = folder + TASK_FNAME;
-    myImage.style.display = '';
-  } else {
+  mySolves.replaceChildren();
+  
+  if ('noView' in task) {
     myImage.src = '';
-    myImage.style.display = 'none';
-  }
-  if ('text' in task) {
-    myText.innerHTML = task.text;
-    myText.style.display = '';
-  } else {
+    myImage.style.display = 'none'; 
     myText.innerHTML = '';
-    myText.style.display = 'none';  
-  }
+    myText.style.display = 'none';      
+  } else {
 
-  mySolves.replaceChildren(solvesHeader);
-  let typeDef = (task.type === 'v' || task.type === 'h') ? task.type : 'i';
-  if ('solveCount' in task) loadData(folder, typeDef, task.solveCount);
+    if ('img' in task) {
+      myImage.src = folder + TASK_FNAME;
+      myImage.style.display = '';
+    } else {
+      myImage.src = '';
+      myImage.style.display = 'none';
+    }
+    if ('text' in task) {
+      myText.innerHTML = task.text;
+      myText.style.display = '';
+    } else {
+      myText.innerHTML = '';
+      myText.style.display = 'none';  
+    }
+    let typeDef = (task.type === 'v' || task.type === 'h') ? task.type : 'i';
+    if ('solveCount' in task) loadData(folder, typeDef, task.solveCount);
+  }
 
   myList.selectedIndex = n;
 }
@@ -247,6 +255,7 @@ const tasks = [
 {name:'8-Д. Мій розклад', type:'h', solveCount:8},
 
 {name:'9-А. 3D-стадіон', solveCount:7},
+
 ]
 
 //-------------------------------------

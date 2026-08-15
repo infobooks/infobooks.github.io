@@ -10,7 +10,7 @@ body {
   margin: 0;
   padding: 5px;
   text-align: center;
-  font-family: sans-serif;
+  font-family: "Arial", sans-serif;
   color: #333333;
   background-color: #f5f4e5;
 }
@@ -22,7 +22,7 @@ body {
   background-color: #ffffff;
 }
 @media screen and (min-width:750px) {
-  .task-content {margin: 5px 100px}
+  .task-content {margin: 5px auto}
 }
 .task-header {
   margin: 0;
@@ -60,16 +60,22 @@ select {
   padding-right: 7px;
   font-weight: bold;
 }
-.task-container video {
+.task-name {}
+.task-obj {
+  max-width: 520px;
+  margin: 10px auto;
+  text-align: center;
+ }
+.task-obj img, .task-obj video {
   max-width: 100%;
   width: auto;
   height: auto;
-  object-fit: contain; 
-  border-radius: 5px;
+  object-fit: contain;
   border: 1px dotted #333333;
+  border-radius: 5px;
 }
 .task-text {
-  padding: 15px 20px;
+  padding: 5px 15px 10px 15px;
   text-align: left;
   line-height: 1.5;  
 }
@@ -84,12 +90,9 @@ select {
     <select id="listBox" size="1" onchange="ShowItem(this.selectedIndex)"></select>
     <div class="task-button" onclick="ShowItem(listBox.selectedIndex + 1)">&#9658;</div>
   </div>
-  <div class="task-title">
-    <span id="taskNumber" class="task-number"></span>
-    <span id="taskName"></span>
-  </div>
-  <div class="task-container"><video id="taskVideo" controls><source src="" type="video/mp4"></video></div>
-  <div id="taskText" class="task-text"></div>
+  <div class="task-title"><span class="task-number" id="taskNumber"></span><span class="task-name" id="taskName"></span></div>
+  <div class="task-obj"><video id="taskVideo" controls><source src="" type="video/mp4"></video></div>
+  <div class="task-text" id="taskText"></div>
 </div>
 
 </body>
@@ -165,7 +168,7 @@ function touchEnd(n) {
 const tasks = [
 
 //-------------------------------------
-/* лін */ /* лін */ {name:'На пляжі', text:'Встановіть сцену&nbsp;– морське узбережжя (наприклад, Beach&nbsp;Malibu). Розташуйте на&nbsp;суші і воді (правильно!) декількох тваринок.'},  
+/* лін */ {name:'На пляжі', text:'Встановіть сцену&nbsp;– морське узбережжя (наприклад, Beach&nbsp;Malibu). Розташуйте на&nbsp;суші і воді (правильно!) декількох тваринок.'},  
 /* лін */ {name:'Діалог', text:'Зустрічаються двоє виконавців. Між&nbsp;ними відбувається невеликий діалог, і вони розходяться.'},
 /* лін */ {name:'Лякалки', text:'Привиди чи страшні тварини лякають інших.'},
 /* лін */ {name:'Переправа', text:'Намалюйте власний образ сцени&nbsp;– річку і міст через&nbsp;неї. Створіть сім’ю тваринок, яка повинна перейти через&nbsp;річку по&nbsp;мосту (можна з&nbsp;різних сторін).'},
