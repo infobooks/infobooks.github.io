@@ -12,15 +12,12 @@ body {
   top: 2px;
   left: 10px;
   width: 94%;
-  max-width: 540px;
+  max-width: 600px;
   padding: 2px;
   border-spacing: 0;
   border-radius: 5px;
   text-align: center;
   background-color: #8fbc8f;
-}
-@media screen and (min-width:750px) {
-  .page-header {top: 10px; left: 100px;}
 }
 
 .btn {
@@ -59,15 +56,12 @@ select {
 
 .content {
   width: 96%;
-  max-width: 540px;
+  max-width: 600px;
   margin: 42px 0 20px 6px;
   border-spacing: 0;
   background-color: #f5f4e5;
   border: 1px dotted #333333;
 }
-@media screen and (min-width:750px) {
-   .content {margin: 50px 0 20px 100px;}
- }
 
 .quest-num {
   margin: 0 10px 0 5px;
@@ -85,9 +79,6 @@ select {
   border: 1px inset #333333;
   line-height: 1.5;
   background-color: #f8f8ff;
-}
-@media screen and (min-width:750px) {
-   .test-quest {padding: 20px 10px; line-height: 1.7;}
 }
 
 .test-correct-count {
@@ -120,11 +111,8 @@ select {
 }
 
 .test-obj {
-  max-width: 520px;
+  max-width: 600px;
   margin: 20px 6px 5px 6px;
-}
-@media screen and (min-width:750px) {
-  .test-obj {margin-left: 100px;}
 }
 
 .test-obj img {
@@ -138,7 +126,7 @@ select {
 }
 
 .test-result {
-  max-width: 520px;
+  max-width: 600px;
   margin: 10px 5px;
   text-align: center;
 }
@@ -166,8 +154,12 @@ span {
   padding-right: 0;
 }
 
-@media screen and (min-width:750px) {
- span {padding-left: 7px; padding-right: 2px;}
+@media screen and (min-width:900px) {
+  .page-header {top: 10px; left: 100px;}    
+  .content {margin: 50px 0 20px 100px;}    
+  span {padding-left: 7px; padding-right: 2px;}
+  .test-quest {padding: 20px 10px; line-height: 1.7;}
+  .test-obj {margin-left: 100px;} 
 }
 
 }
