@@ -1,0 +1,51 @@
+body {
+	margin: 15px 10px;
+	font-size: 18px;
+	line-height: 1.4;
+}
+/*---*/@media screen and (max-width:450px){body{font-size:16px;line-height:1.2}}
+
+.header {
+	margin: 5px;
+	padding: 5px;
+	text-align: center;
+	background-color:#1E90FF ;
+}
+
+.footer {
+	margin: 5px;
+	padding: 5px;
+	text-align: right;
+	background-color:#CD853F ;
+	text-align: center;
+	color: white;
+}
+
+.flexbox {
+	margin: 5px;
+	padding: 5px;
+
+	display: flex;
+	flex-wrap: wrap;				/* nowrap */
+	justify-content: space-around;	/* flex-end  center  flex-start  space-beetween */
+	align-items: flex-start;		/* flex-end  center  stretch */
+
+	border: 1px solid #CD853F;
+	border-radius: 15 px;
+}
+.dayt{
+	Font-family: Georgia;
+	font-size: 140%;
+	font-style: italic;
+	background-color: #ADFF2F;
+	margin:7px;
+	text-align: center;
+	border:1px solid #ADFF2F;
+	border-radius: 15 px;
+}
+.day{
+	font-style: italic;
+	padding: 5px;
+	border: 2px solid #CD853F;
+	border-radius: 15px;
+}

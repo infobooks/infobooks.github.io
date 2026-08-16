@@ -1,0 +1,84 @@
+		/*  не змінюйте!  */
+body {
+	margin: 10px 10%;
+	padding: 5px;
+	max-width: 360px;
+	font-size: 18px;
+}
+/*---*/@media screen and (max-width:450px){body{margin:15px 10px;font-size:16px}}
+
+		/*  Головний заголовок  */
+
+
+
+h2 {
+border: 2px solid black;
+border-radius: 15px;
+text-align: center;
+color:Maroon;
+}
+
+		/*  «Усі новини» - можна додати межі або заливку і поля  */
+.all-news {
+	border: 4px double DarkRed;
+	border-radius: 15px;
+	padding: 20px;
+}
+
+		/*  «Дата усіх новин»  */
+h3 {
+	text-decoration: underline;
+	font-family: sans-serif;
+	background-color: LightPink;
+	border-radius: 6px;
+	text-align: center;
+	}
+
+		/*  «Час новини» - можна додати межу чи відступ зверху, зменшити розмір шрифту  */
+.news-time {
+	background-color:Silver;
+	color: black;
+	border-radius: 6px;
+	text-align: left;
+	float: left;
+	margin: 5px;
+	
+	
+}
+
+		/*  «Текст новини» - можна додати межу чи відступ знизу  */
+.news-text {
+	font-family: sans-serif;
+}
+
+		/*  «Нижній колонтитул»: знаходиться ПІД «Усіма новинами»  */
+.footer {
+	padding: 10px;
+}
+
+		/*  посилання для перегляду усіх новин: знаходиться у «нижньому колонтитулі» і не працює :)  */
+a {
+	text-decoration: none;
+	color: brown;
+}
+
+
+		/*  «Гаряча новина» - застосуйте до якої-небудь новини  */
+.hot-news {
+	padding: 0 20px 20px 20px;
+	line-height: 1.5;
+	text-align: center;
+	font-weight: bold;
+	font-style: italic;
+	color: Crimson;
+}
+
+		/*  «Слово-рубрика» - слово коло часу новини: ДУМКА, Екслюзив, Школа  */
+.rubrika {
+	color: DarkMagenta;
+	font-style: italic;
+	text-decoration: underline;
+	
+	
+}
+

@@ -1,0 +1,47 @@
+body {
+	margin: 15px 10px;
+	font-size: 18px;
+	line-height: 1.4;
+}
+/*---*/@media screen and (max-width:450px){body{font-size:16px;line-height:1.2}}
+
+.header {
+	margin: 5px;
+	padding: 5px;
+	text-align: center;
+	background-color: LightCyan;
+	font-size: 100%;
+}
+
+.footer {
+	margin: 5px;
+	padding: 5px;
+	text-align: right;
+	background-color: Cornsilk;
+	text-align: center;
+	font-size: 100%;
+}
+
+.flexbox {
+	margin: 5px;
+	padding: 5px;
+
+	display: flex;
+	flex-wrap: wrap;				/* nowrap */
+	justify-content: space-around;	/* flex-end  center  flex-start  space-beetween */
+	align-items: flex-start;		/* flex-end  center  stretch */
+
+	border: 1px solid blue;
+}
+.day{
+	border: 2px dotted black;
+	background-color: NavajoWhite;
+	border-radius: 5px;
+	padding: 5px 5px 5px 5px;
+	margin: 5px 5px 5px 5px;
+}
+.day-title{
+	color:red;
+	text-decoration: underline;
+	text-align: left;
+}
