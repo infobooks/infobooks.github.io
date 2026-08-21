@@ -19,7 +19,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-start;
   line-height: 1;
 }
 .data-container {
@@ -169,6 +169,7 @@ function Start(txt) {
   }
 
   let folder = INFO_FOLDER + '/' + par[0].slice(1) + '/';
+  let group = par[0][1];
   let n1 = 1;
   let n2 = MAX_DATA;
   if (par.length >= 3) {
@@ -178,13 +179,14 @@ function Start(txt) {
   if (par.length === 2 && !isNaN(par[1]) && Number.isInteger(Number(par[1])) && par[1] !== '') n2 = Number(par[1]);
   if (n1 > n2) n2 = n1;
 
-  loadData(folder, n1, n2);
+  loadData(folder, n1, n2, group);
 }
 
-function loadData(folder, n1, n2) {
+function loadData(folder, n1, n2, group) {
   const data_div = document.createElement('div');
   data_div.className = 'data-content';
   document.body.appendChild(data_div);
+
   for (let i = n1; i <= n2; i++) {
     const img = new Image();
     img.src = `${folder}Слайд${i}.PNG`;
@@ -193,6 +195,23 @@ function loadData(folder, n1, n2) {
     div.appendChild(img);
     data_div.appendChild(div);
   }
+
+  if (['5', '6', '7', '8', '9'].includes(group)) {
+    const div = document.createElement('div');
+    div.className = 'data-container';
+    const a = document.createElement('a');
+    if (group === '5') a.href = 'https://drive.google.com/drive/folders/1JPmytkkoc60pZfKeSLZBXVC-3vOXb3I-?usp=sharing';
+    if (group === '6') a.href = 'https://drive.google.com/drive/folders/1yyrp7K1ravTEEc4DXuevnC-Be6o2DnDu?usp=sharing';
+    if (group === '7') a.href = 'https://drive.google.com/drive/folders/13In2tBScs5iVqsfQz60oYx9wQaJtwL0m?usp=sharing';
+    if (group === '8') a.href = 'https://drive.google.com/drive/folders/1fxdcxeeHhXSzC-gq4OU7RePqyf9ahFN4?usp=sharing';
+    if (group === '9') a.href = 'https://drive.google.com/drive/folders/1uvii852Y3MJr6TpfDZTPFxR7Q2_UCjyG?usp=sharing';
+    a.className = 'menu-item menu--color-2';
+    a.textContent = 'Завантажити Д/з вчителю для перевірки';
+    a.target = '_blank';
+    div.appendChild(a);
+    data_div.appendChild(div);
+  }
+  
 }
 
 //-------------------------------------
