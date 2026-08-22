@@ -56,11 +56,15 @@ select {
 .task-main {
   padding: 5px;
 }
-.task-number {
-  font-size: 0.9em;
-  font-weight: bold;
+.task-title {
+  padding: 20px 0 10px 0;
   text-align: center;
 }
+.task-number {
+  padding-right: 7px;
+  font-weight: bold;
+}
+.task-name {}
 .task-text {
   padding: 5px;
 }
@@ -107,24 +111,26 @@ select {
 .task-tests td {
   min-width: 30px;
   padding: 2px 3px;
+  text-align: left;
+  vertical-align: top;
 }
 .task-solve {
   padding: 5px;
   border: 1px dotted #0000ff;
 }
-.taks-solve-title {
+.task-solve-title {
   padding: 5px;
   font-size: 0.9em;
-  text-align: center;
   font-style: italic;
-  background-color: #f8f8ff;  
+  text-align: center;
   font-weight: bold;
 }
 .my-css-style {
+  font-family: "Consolas", monospace;
   margin: 5px;
   padding: 5px;
   text-align: center;
-  font-size: 0.8em;
+  font-size: 0.7em;
   line-height: 1.2;
 }
 </style>
@@ -140,7 +146,7 @@ select {
   </div>
 
   <div class="task-main">
-    <div id="taskNumber" class="task-number"></div>
+    <div class="task-title"><span class="task-number" id="taskNumber"></span><span class="task-name" id="taskName"></span></div>
     <div id="taskText" class="task-text"></div>
     <div id="taskHint" class="task-hint"></div>
     <div class="task-container"><img id="taskImage" src="" alt=""></div>
@@ -153,12 +159,12 @@ select {
     <div id="taskOut" class="task-out"></div>
   </div>
 
-  <div id="tasktests" class="task-tests">Тести</div>
+  <div id="taskTests" class="task-tests">Тести</div>
   <div id="taskSolve" class="task-solve">
     <div class="task-solve-title">Розв'язок</div>
     <div class="task-solve-container"><img id="taskSolveImage" src="" alt=""></div>
     <div class="my-css-style">Для красивого вигляду першим рядком запишіть:<br><br>
-        &lt;link rel="stylesheet" href="https://infobooks.github.io/task.css"&gt;
+        &lt;link rel="stylesheet" href= "https://infobooks.github.io/task.css"&gt;
     </div>
   </div>
 
@@ -171,12 +177,13 @@ select {
 var startX, startY;
 var myList = document.getElementById('listBox');
 var myNumber = document.getElementById('taskNumber');
+var myName = document.getElementById('taskName');
 var myText = document.getElementById('taskText');
 var myIn = document.getElementById('taskIn');
 var myInTitle = document.getElementById('taskInTitle');
 var myOut = document.getElementById('taskOut');
 var myOutTitle = document.getElementById('taskOutTitle');
-var mytests = document.getElementById('tasktests');
+var myTests = document.getElementById('taskTests');
 var myHint = document.getElementById('taskHint');
 var myImage = document.getElementById('taskImage');
 var mySolve = document.getElementById('taskSolve');
@@ -206,7 +213,8 @@ function ShowItem(n) {
   let task = tasks[n];
   
     //-----------------
-  myNumber.innerHTML = '№&nbsp;' + (n + 1);
+  myNumber.innerHTML = '№&nbsp;' + (n + 1) + '.';
+  myName.innerHTML = task.name ?? 'Noname';
   if ('noView' in task) {
     myText.innerHTML = '';
     myText.style.display = 'none';  
@@ -216,8 +224,8 @@ function ShowItem(n) {
     myOut.innerHTML = '';
     myOut.style.display = 'none';
     myOutTitle.style.display = 'none';
-    mytests.innerHTML = '';
-    mytests.style.display = 'none';
+    myTests.innerHTML = '';
+    myTests.style.display = 'none';
     myHint.innerHTML = '';
     myHint.style.display = 'none';
     myImage.src = '';
@@ -252,12 +260,12 @@ function ShowItem(n) {
       myOutTitle.style.display = 'none';
     }
     if ('tests' in task) {
-      mytests.innerHTML = '<table>' + task.tests.map(row => '<tr>' + 
+      myTests.innerHTML = '<table>' + task.tests.map(row => '<tr>' + 
         row.map(item => `<td>${item}</td>`).join('') + '</tr>').join('') + '</table>';
-      mytests.style.display = '';
+      myTests.style.display = '';
     } else {
-      mytests.innerHTML = '';
-      mytests.style.display = 'none';
+      myTests.innerHTML = '';
+      myTests.style.display = 'none';
     }
     if ('hint' in task) {
       myHint.innerHTML = '(підказка: ' + task.hint + ')';
@@ -267,14 +275,14 @@ function ShowItem(n) {
       myHint.style.display = 'none';
     }
     if ('img' in task) {
-      myImage.src = JS_FOLDER + (n + 1) + '.png';
+      myImage.src = JS_FOLDER + task.name + '.png';
       myImage.style.display = '';
     } else {
       myImage.src = '';
       myImage.style.display = 'none';
     }
     if ('solve' in task) {
-      mySolveImage.src = JS_FOLDER + (n + 1) + ' - solve.png'
+      mySolveImage.src = JS_FOLDER + task.name + '-s.png'
       mySolve.style.display = '';
     } else {
       mySolveImage.src = '';
@@ -299,6 +307,15 @@ function touchEnd(n) {
 
 //=====================================
 const tasks = [
+
+/* масив */ {name:'Поїзд-1', text: 'На залізничну станцію прибув пасажирський потяг з кількома вагонами. Задано масив – кількість пасажирів у кожному вагоні.',
+  inTitle: ['масив цілих чисел - кількість пасажирів у вагонах'],
+  outTitle: ['пасажирів у 2-му вагоні', 'всього вагонів', 'пасажирів у кожному вагоні<br>+ у стовпчик<br>+ дописати "пас."'],
+  img:true, solve:true,
+  tests: [
+    ['4  13  7  55', '==>', '13', '4', '4&nbsp;пас.<br>13&nbsp;пас.<br>7&nbsp;пас.<br>55&nbsp;пас.'],
+    ['3  1', '==>', '1', '2', '3&nbsp;пас.<br>1&nbsp;пас.'],
+  ]},
 
 {text: 'Обчисліть значення математичного прикладу.',
   img:true, solve:true,
@@ -1183,6 +1200,7 @@ const tasks = [
     [12000, '==>', 'газ'],   
     [328, '==>', 'рідина'],    
   ]},
+
 
 ]
 
