@@ -130,7 +130,7 @@ function ShowItem(n) {
   let task = tasks[n];
 
   myNumber.innerHTML = '№&nbsp;' + (n + 1) + '.';
-  myName.innerHTML = task.name ?? 'Noname';
+  myName.innerHTML = task.name ?? '-';
   if ('noView' in task) {
     myVideo.src = '';
     myVideo.style.display = 'none';

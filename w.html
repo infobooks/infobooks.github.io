@@ -194,7 +194,7 @@ function ShowItem(n) {
   let folder = PROJECTS_FOLDER + (n + 1) + '/';  ////////////////////////
 
   myNumber.innerHTML = '№&nbsp;' + (n + 1) + '.';
-  myName.innerHTML = task.name ?? 'Noname';
+  myName.innerHTML = task.name ?? '-';
   mySolves.replaceChildren();
   
   if ('noView' in task) {
