@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport"content="width=device-width,initial-scale=1.0">
+<title>Тестування</title>
+<link rel="stylesheet" href="/tests.css">
+<script src="/tests.js" defer></script>
+
+<!--================================-->
+<body onload="StartTest()"><table class="page-header"id="tests_header"><tr><td class="btn btn__exit-test"onclick="ExitTest()">x</td><td class="page-title"><span>№</span><span class="quest-num"id="questNum"></span><span class="quest-count" id="questCount"></span></td><td class="btn btn__next-quest"onclick="NextQuestion()">&#9658;&#9658;</td></tr></table><table class="content" id="testForm"><tr><td class="test-quest" id="quest"></td></tr><tr><td class="test-correct-count"id="correctCount"></td></tr><tr><td class="test-answer"id="answer0"onclick="CheckAnswer(0)"><span class="test-answer-num">1.</span><input id="radio0"type="radio"name="answers"><span id="label0"></span></td></tr><tr><td class="test-answer"id="answer1"onclick="CheckAnswer(1)"><span class="test-answer-num">2.</span><input id="radio1"type="radio"name="answers"><span id="label1"></span></td></tr><tr><td class="test-answer"id="answer2"onclick="CheckAnswer(2)"><span class="test-answer-num">3.</span><input id="radio2"type="radio"name="answers"><span id="label2"></span></td></tr><tr><td class="test-answer"id="answer3"onclick="CheckAnswer(3)"><span class="test-answer-num">4.</span><input id="radio3"type="radio"name="answers"><span id="label3"></span></td></tr><tr><td class="test-answer"id="answer4"onclick="CheckAnswer(4)"><span class="test-answer-num">5.</span><input id="radio4"type="radio"name="answers"><span id="label4"></span></td></tr><tr><td class="test-answer"id="answer5"onclick="CheckAnswer(5)"><span class="test-answer-num">6.</span><input id="radio5"type="radio"name="answers"><span id="label5"></span></td></tr></table><div class="test-obj"><img id="questImg"src=""alt=""></div><div class="test-result"id="resForm"hidden><div><span>Результат:</span><span class="test-result-percent"id="resPercent"></span></div><div class="test-result-mark"id="testMark"></div></div></body>
+
+<!--================================-->
+<script>
+var test = {type:'view', questions:[  // « »  ’  ?nbsp;–  …
+
+{text:"Як називають людину чи організацію, якій надсилають лист?", mas:[
+  "блогер", "юзер", "відправник", "адресат "  ]},
+ 
+{text:"Як називається пошта, що надходить без згоди користувача?", mas:[
+  "банер", "троян", "вірус", "спам "  ]},
+ 
+{text:"Як називається послуга поштового сервера, яка блокує задані користувачем адреси?", mas:[
+  "«чорний» список ", "автовідповідач", "сортувальник пошти", "переадресування"  ]},
+ 
+{text:"Що використовують для передавання емоцій у листах?", mas:[
+  "кольори", "різні розміри букв", "кнопки", "смайлики "  ]},
+ 
+{text:"Які листи зазвичай зберігаються у папці «Чернетки»?", mas:[
+  "ті, що не дійшли", "недописані ", "ті, що мають вкладення", "підозрілі на вірус"  ]},
+ 
+{text:"Виберіть назву поширеної загрози при роботі з електронною поштою.", mas:[
+  "моніторинг", "булінг", "фішинг ", "хостинг"  ]},
+ 
+{text:"Виберіть правильне позначення електронної пошти.", mas:[
+  "WWW", "E-mail ", "Network", "Skype"  ]},
+ 
+{text:"Виберіть правильно записану адресу електронної пошти.", mas:[
+  "www.i.ua", "mail.ua\\stas", "korol@inbox.net ", "http:\\\\google.com"  ]},
+ 
+{notRnd:true, text:"Чи можна до одного листа вкласти не один, а декілька файлів?", mas:[
+  "так, можна ", "ні, не можна"  ]},
+ 
+{notRnd:true, text:"Чи можна надіслати один лист одразу на декілька адрес?", mas:[
+  "так, звичайно ", "так, якщо їх об’єднати в групу", "ні, одночасно не можна"  ]},
+ 
+{notRnd:true, text:"Чи потрібно згідно етикету листування вказувати тему листа?", mas:[
+  "так, для усіх ", "тільки для важливих листів", "ні, не обов’язково"  ]},
+ 
+{notRnd:true, text:"Чи потрібно згідно етикету листування відповідати на всі листи?", mas:[
+  "так, звичайно", "на «підозрілі» листи не треба ", "ні, не треба"  ]},
+ 
+{text:"Що означає текст у листі, записаний лише великими буквами?", mas:[
+  "автор вважає лист дуже важливим", "автор листа «сміється» з вас", "автор листа «кричить» на вас "  ]},
+ 
+{text:"Виберіть папки, які використовують поштові сервери для роботи з листами.", mas:[
+  "особисті", "збережені", "непрочитані", "вхідні ", "надіслані "  ]},
+ 
+{text:"Як називається програма (додаток), яка призначена для роботи з електронною поштою?", mas:[
+  "поштовий процесор", "поштовий браузер", "поштовий клієнт ", "поштовий робот"  ]},
+ 
+{text:"Які дані необхідно ввести, щоб увійти у власний обліковий запис?", mas:[
+  "дату", "місцезнаходження", "пароль ", "секретну відповідь", "логін "  ]},
+ 
+{text:"Як називаються всі персональні дані користувача, що зберігаються на поштовому сервері?", mas:[
+  "аватар", "записник", "акаунт ", "нікнейм"  ]},
+ 
+{text:"Де зберігаються всі контактні дані користувачів пошти?", mas:[
+  "у карантині", "в адресній книзі ", "у нотатках", "у «Вибраному»"  ]},
+
+]}
+</script>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport"content="width=device-width,initial-scale=1.0">
+<title>Тестування</title>
+<link rel="stylesheet" href="/tests.css">
+<script src="/tests.js" defer></script>
+
+<!--================================-->
+<body onload="StartTest()"><table class="page-header"id="tests_header"><tr><td class="btn btn__exit-test"onclick="ExitTest()">x</td><td class="page-title"><span>№</span><span class="quest-num"id="questNum"></span><span class="quest-count" id="questCount"></span></td><td class="btn btn__next-quest"onclick="NextQuestion()">&#9658;&#9658;</td></tr></table><table class="content" id="testForm"><tr><td class="test-quest" id="quest"></td></tr><tr><td class="test-correct-count"id="correctCount"></td></tr><tr><td class="test-answer"id="answer0"onclick="CheckAnswer(0)"><span class="test-answer-num">1.</span><input id="radio0"type="radio"name="answers"><span id="label0"></span></td></tr><tr><td class="test-answer"id="answer1"onclick="CheckAnswer(1)"><span class="test-answer-num">2.</span><input id="radio1"type="radio"name="answers"><span id="label1"></span></td></tr><tr><td class="test-answer"id="answer2"onclick="CheckAnswer(2)"><span class="test-answer-num">3.</span><input id="radio2"type="radio"name="answers"><span id="label2"></span></td></tr><tr><td class="test-answer"id="answer3"onclick="CheckAnswer(3)"><span class="test-answer-num">4.</span><input id="radio3"type="radio"name="answers"><span id="label3"></span></td></tr><tr><td class="test-answer"id="answer4"onclick="CheckAnswer(4)"><span class="test-answer-num">5.</span><input id="radio4"type="radio"name="answers"><span id="label4"></span></td></tr><tr><td class="test-answer"id="answer5"onclick="CheckAnswer(5)"><span class="test-answer-num">6.</span><input id="radio5"type="radio"name="answers"><span id="label5"></span></td></tr></table><div class="test-obj"><img id="questImg"src=""alt=""></div><div class="test-result"id="resForm"hidden><div><span>Результат:</span><span class="test-result-percent"id="resPercent"></span></div><div class="test-result-mark"id="testMark"></div></div></body>
+
+<!--================================-->
+<script>
+var test = {type:'view', questions:[  // « »  ’  ?nbsp;–  …
+
+{text:"Виберіть формати зображень, які можуть містити анімацію.", mas:[
+  "png", "gif ", "webp ", "jpg", "pdf"  ]},
+ 
+{text:"Несправжній рух об'єктів шляхом швидкої зміни кадрів з&nbsp;ними&nbsp;- це...", mas:[
+  "презентація", "варпінг", "анімація ", "дизайн"  ]},
+
+{text:"Анімація, у якій об'єкт плавно перетворюється в інший називається...", mas:[
+  "твінінг", "скролінг", "морфінг ", "стрімінг"  ]},
+  
+{text:"Виберіть співвідношення сторін, яке сьогодні використовується для демонстрації відео.", mas:[
+  "16:9 ", "4:3", "2:1", "3,5:1"  ]},
+  
+{text:"Як скорочено називають програвач відео?", mas:[
+  "кодек", "плеєр ", "в’ювер", "грабер"  ]},
+
+{text:"Виберіть роздільну здатність екрану (або відеофільма).", mas:[
+  "OLED", "320 кбіт/c", "50:1", "1920 х 1080 "  ]},
+
+{text:"Редагування відео, зміна його тривалості, додавання звуку, тексту - це...", mas:[
+  "рендеринг", "графування", "кадрування", "монтаж "  ]},
+
+{text:"З яких найменших частин складається відео?", mas:[
+  "з кадрів ", "з моментів", "з пікселів", "зі слайдів"  ]},
+  
+{text:"Виберіть мови програмування.", mas:[
+  "Ubuntu", "JavaScript ", "VisualStudio", "Python ", "WordPress"  ]},
+
+{notRnd:true, text:"Що виведе програма при обчисленні такого прикладу:  16 / 4 * (0.5 + 2) ", mas:[
+  "1.6", "4", "10 ", "28"  ]},
+  
+{text:"Виберіть у JavaScript метод заокруглення чисел до двох знаків після коми.", mas:[
+  "split(2)", "toFixed(2) ", "toSorted(2)", "alert(2)"  ]},
+ 
+{text:"Виберіть команду створення змінної величини у JavaScript.", mas:[
+  "dir a = 5", "in a = 5", "\'a = 5\'", "let a = 5 "  ]},
+  
+{text:"Перекладіть англ. термін \"debug\" - частина середовища програмування, яка перевіряє на помилки.", mas:[
+  "транслятор", "налагоджувач ", "консоль", "конвертер"   ]},
+  
+{text:"Як називається пошта, що надходить без згоди користувача?", mas:[
+  "банер", "троян", "вірус", "спам "  ]},
+  
+{text:"Виберіть правильне позначення електронної пошти.", mas:[
+  "WWW", "E-mail ", "Network", "Skype"  ]},
+  
+{text:"Які дані необхідно ввести, щоб увійти у власний обліковий запис?", mas:[
+  "дату", "місцезнаходження", "пароль ", "секретну відповідь", "логін "  ]},
+
+{text:"Як називаються всі персональні дані користувача, що зберігаються на поштовому сервері?", mas:[
+  "аватар", "записник", "акаунт ", "нікнейм"  ]},
+ 
+{text:"Де зберігаються всі контактні дані користувачів пошти?", mas:[
+  "у карантині", "в адресній книзі ", "у нотатках", "у «Вибраному»"  ]},
+  
+
+ 
+]}
+
+
+</script>
