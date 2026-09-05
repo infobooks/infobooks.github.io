@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 5px;
   font-family: "Arial", sans-serif;
+  font-size: '';
   line-height: 2;
   color: #333333;
   background-color: #f5f4e5;
@@ -155,6 +156,7 @@ span {
 }
 
 @media screen and (min-width:900px) {
+  body {font-size: 20px;}
   .page-header {top: 10px; left: 100px;}    
   .content {margin: 50px 0 20px 100px;}    
   span {padding-left: 7px; padding-right: 2px;}
