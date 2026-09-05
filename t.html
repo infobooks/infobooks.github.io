@@ -10,17 +10,16 @@ body {
   margin: 0;
   padding: 5px;
   font-family: "Arial", sans-serif;
+  font-size: '';  
   color: #333333;
   background-color: #f5f4e5;
 }
 .menu-content {
   margin: 5px;
   padding: 2px;
+  width: 94%;  
   max-width: 600px;
   line-height: 1.5;
-}
-@media screen and (min-width:900px) {
-  .menu-content {margin: 5px 100px}
 }
 .menu-header {
   width: 100%;
@@ -32,12 +31,13 @@ body {
   background-color: #8fbc8f;
 }
 .menu-content-group {
+  width: 100%;
   margin: 5px;
   padding: 2px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-around;
+  justify-content: left;
   line-height: 1.3;
   border: 1px dotted #333333;
   border-radius: 5px;
@@ -45,6 +45,7 @@ body {
 .menu-item {
   display: block;
   min-width: 3em;
+  width: 100px;
   padding: 10px 10px;
   margin: 7px 10px;
   text-align: center;
@@ -53,11 +54,22 @@ body {
   border: 1px dotted #333333;
   border-radius: 5px;
 }
+@media screen and (min-width:900px) {
+  body {font-size: 18px;}
+  .menu-content {margin: 5px 120px}
+  .menu-item {width: 120px;}
+}
 .menu--color-1 {
   background-color: #ffffff;
 }
 .menu--color-2 {
   background-color: #f8f8ff;
+}
+.menu--color-3 {
+  background-color: #DCFCE7;
+}
+.menu--color-4 {
+   background-color: #FEF9C3;
 }
 .menu--group-header {
   background-color: #8fbc8f;
@@ -70,7 +82,7 @@ body {
 
   <div class="menu-header">Тестування</div>
 
-  <div class="menu-content-group">
+  <div class="menu-content-group menu--color-3">
     <div class="menu-item menu--group-header">5&nbsp;кл.&nbsp;=></div>
     <a class="menu-item menu--color-2" href="/tests/5-Information.html">Інформаційні<br>процеси</a>    
     <a class="menu-item menu--color-1" href="/tests/5-Device.html">Пристрої<br>&nbsp;</a>
@@ -82,7 +94,7 @@ body {
     <a class="menu-item menu--color-1" href="/tests/5-Scratch.html">Алгоритми<br>та&nbsp;програми</a>
   </div>
 
-  <div class="menu-content-group">
+  <div class="menu-content-group menu--color-4">
     <div class="menu-item menu--group-header">6&nbsp;кл.&nbsp;=></div>
     <a class="menu-item menu--color-1" href="/tests/6-Repeat.html">Повторення<br>за 5&nbsp;клас</a>
     <a class="menu-item menu--color-2" href="/tests/6-IT.html">Цифрові<br>технології</a>
@@ -93,7 +105,7 @@ body {
     <a class="menu-item menu--color-1" href="/tests/6-Scratch.html">Алгоритми<br>та&nbsp;програми</a>
   </div>
 
- <div class="menu-content-group">
+ <div class="menu-content-group menu--color-3">
   <div class="menu-item menu--group-header">7&nbsp;кл.&nbsp;=></div>
   <a class="menu-item menu--color-1" href="/tests/7-Repeat.html">Повторення<br>за 6&nbsp;клас</a>
   <a class="menu-item menu--color-2" href="/tests/7-Cloud.html">Хмарні<br>сервіси</a>
@@ -103,7 +115,7 @@ body {
   <a class="menu-item menu--color-2" href="/tests/7-Animation.html">Комп'ютерна<br>анімація</a>
  </div>
 
-  <div class="menu-content-group">
+  <div class="menu-content-group menu--color-4">
     <div class="menu-item menu--group-header">8&nbsp;кл.&nbsp;=></div>
     <a class="menu-item menu--color-1" href="/tests/8-Repeat.html">Повторення<br>за 7&nbsp;клас</a>
     <a class="menu-item menu--color-2" href="/tests/8-Code.html">Кодування<br>даних</a>
@@ -115,7 +127,7 @@ body {
     <a class="menu-item menu--color-2" href="/tests/8-AI.html">Штучний<br>інтелект</a>
   </div>
 
-  <div class="menu-content-group">
+  <div class="menu-content-group menu--color-3">
     <div class="menu-item menu--group-header">9&nbsp;кл.&nbsp;=></div>
     <a class="menu-item menu--color-1" href="/tests/9-Repeat.html">Повторення<br>за 8&nbsp;клас</a>
     <a class="menu-item menu--color-2" href="/tests/9-Software.html">Програмне<br>забезпечення</a>
