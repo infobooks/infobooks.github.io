@@ -77,8 +77,8 @@ body {
 }
 @media screen and (min-width:900px) {
   body {font-size: 18px;}
-  .data-content {margin: 5px 150px}
-  .menu-content {margin: 5px 150px}
+  .data-content {margin: 5px 120px}
+  .menu-content {margin: 5px 120px}
   .menu-item {width: 120px;}
 }
 .menu--color-1 {
@@ -96,6 +96,18 @@ body {
 .menu--group-header {
   background-color: #8fbc8f;
   color: inherit;
+}
+.homework {
+  display: block;
+  min-width: 3em;
+  padding: 20px 10px;
+  margin: 0;
+  text-align: center;
+  color: #992211;
+  text-decoration: none;
+  border: 1px dotted #333333;
+  border-radius: 5px;
+  background-color: #DCFCE7;
 }
 </style>
 
@@ -217,7 +229,7 @@ function loadData(folder, n1, n2, group) {
     if (group === '7') a.href = 'https://drive.google.com/drive/folders/13In2tBScs5iVqsfQz60oYx9wQaJtwL0m?usp=sharing';
     if (group === '8') a.href = 'https://drive.google.com/drive/folders/1fxdcxeeHhXSzC-gq4OU7RePqyf9ahFN4?usp=sharing';
     if (group === '9') a.href = 'https://drive.google.com/drive/folders/1uvii852Y3MJr6TpfDZTPFxR7Q2_UCjyG?usp=sharing';
-    a.className = 'menu-item menu--color-2';
+    a.className = 'homework';
     a.textContent = 'Завантажити Д/з вчителю для перевірки';
     a.target = '_blank';
     div.appendChild(a);
