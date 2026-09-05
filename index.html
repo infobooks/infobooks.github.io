@@ -21,12 +21,9 @@ body {
 .menu-content {
   margin: 5px;
   padding: 2px;
+  width: 94%;  
   max-width: 600px;  
   line-height: 1.3;
-}
-@media screen and (min-width:900px) {
-  body {font-size: 18px;}
-  .menu-content {margin: 5px 100px}
 }
 .menu-header {
   width: 100%;
@@ -37,7 +34,8 @@ body {
   text-align: center;
   background-color: #8fbc8f;
 }
-.menu-content-group {
+.menu-content-group {  
+  width: 100%;
   margin: 5px;
   padding: 2px;
   display: flex;
@@ -51,6 +49,7 @@ body {
 .menu-item {
   display: block;
   min-width: 3em;
+  width: 100px;  
   padding: 10px 10px;
   margin: 7px 10px;
   text-align: center;
@@ -59,11 +58,22 @@ body {
   border: 1px dotted #333333;
   border-radius: 5px;
 }
+@media screen and (min-width:900px) {
+  body {font-size: 18px;}
+  .menu-content {margin: 5px 150px}
+  .menu-item {width: 120px;}
+}  
 .menu--color-1 {
   background-color: #ffffff;
 }
 .menu--color-2 {
    background-color: #f8f8ff;
+}
+.menu--color-3 {
+  background-color: #DCFCE7;
+}
+.menu--color-4 {
+   background-color: #FEF9C3;
 }
 </style>
 
@@ -71,15 +81,15 @@ body {
 <div class="menu-content">
   <div class="menu-header">Інформатика<br>Гімназія ім. родини&nbsp;Луговських</div>
 
-  <div class="menu-content-group">
+  <div class="menu-content-group menu--color-3">
     <a class="menu-item menu--color-1" href="i.html">Треба<br>знати!</a>
-    <a class="menu-item menu--color-2" href="j.html">Задачі<br>(програмування)</a>
-    <a class="menu-item menu--color-1" href="s.html">Задачі<br>(Scratch)</a>
     <a class="menu-item menu--color-2" href="p.html">Великі<br>завдання</a>
-    <a class="menu-item menu--color-1" href="t.html">Тестування<br></a>
+    <a class="menu-item menu--color-1" href="t.html">Тестування<br>&nbsp;</a>
+    <a class="menu-item menu--color-2" href="j.html">Задачі<br>(JavaScript)</a>
+    <a class="menu-item menu--color-1" href="s.html">Задачі<br>(Scratch)</a>
   </div>
 
-  <div class="menu-content-group">
+  <div class="menu-content-group menu--color-4">
     <a class="menu-item menu--color-2" href="/w.html">Роботи<br>учнів</a>
     <a class="menu-item menu--color-1" href="/i.html?tb&12">Техніка<br>безпеки</a>
     <a class="menu-item menu--color-2" href="/mark.html">Критерії<br>оцінювання</a>

@@ -38,13 +38,9 @@ body {
 .menu-content {
   margin: 5px;
   padding: 2px;
+  width: 94%;  
   max-width: 600px;
   line-height: 1.3;
-}
-@media screen and (min-width:900px) {
-  body {font-size: 18px;}
-  .data-content {margin: 5px 100px}
-  .menu-content {margin: 5px 100px}
 }
 .menu-header {
   width: 100%;
@@ -56,12 +52,13 @@ body {
   background-color: #8fbc8f;
 }
 .menu-content-group {
+  width: 100%;
   margin: 5px;
   padding: 2px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-around;
+  justify-content: left;
   line-height: 1.3;
   border: 1px dotted #333333;
   border-radius: 5px;
@@ -69,6 +66,7 @@ body {
 .menu-item {
   display: block;
   min-width: 3em;
+  width: 100px;
   padding: 10px 10px;
   margin: 7px 10px;
   text-align: center;
@@ -77,11 +75,23 @@ body {
   border: 1px dotted #333333;
   border-radius: 5px;
 }
+@media screen and (min-width:900px) {
+  body {font-size: 18px;}
+  .data-content {margin: 5px 150px}
+  .menu-content {margin: 5px 150px}
+  .menu-item {width: 120px;}
+}
 .menu--color-1 {
   background-color: #ffffff;
 }
 .menu--color-2 {
   background-color: #f8f8ff;
+}
+.menu--color-3 {
+  background-color: #DCFCE7;
+}
+.menu--color-4 {
+   background-color: #FEF9C3;
 }
 .menu--group-header {
   background-color: #8fbc8f;
@@ -96,7 +106,7 @@ body {
 
   <div class="menu-header">Треба знати!</div>
 
-  <div class="menu-content-group">
+  <div class="menu-content-group menu--color-3">
     <div class="menu-item menu--group-header">5&nbsp;кл.&nbsp;=></div>
     <a class="menu-item menu--color-2" href="/i.html?5inf&88">Інформаційні<br>процеси</a>
     <a class="menu-item menu--color-1" href="/i.html?5net&30">Комп'ютерні<br>мережі</a>
@@ -105,7 +115,7 @@ body {
     <a class="menu-item menu--color-2" href="/i.html?5alg&61">Алгоритми<br>та&nbsp;програми</a>
   </div>
 
-  <div class="menu-content-group">
+  <div class="menu-content-group menu--color-4">
     <div class="menu-item menu--group-header">6&nbsp;кл.&nbsp;=></div>
     <a class="menu-item menu--color-1" href="/i.html?6rep&19">Повторення<br>за 5&nbsp;клас</a>
     <a class="menu-item menu--color-2" href="/i.html?6inf&10">Цифрові<br>технології</a>
@@ -116,31 +126,31 @@ body {
     <a class="menu-item menu--color-1" href="/i.html?6alg&52">Алгоритми<br>та&nbsp;програми</a>
   </div>
 
- <div class="menu-content-group">
+ <div class="menu-content-group menu--color-3">
   <div class="menu-item menu--group-header">7&nbsp;кл.&nbsp;=></div>
   <a class="menu-item menu--color-1" href="/i.html?7rep&14">Повторення<br>за 6&nbsp;клас</a>
   <a class="menu-item menu--color-2" href="/i.html?7net&62">Хмарні<br>сервіси</a>
   <a class="menu-item menu--color-1" href="/i.html?7alg&34">Алгоритми<br>та&nbsp;програми</a>
-  <a class="menu-item menu--color-1" href="/i.html?7alg2&5">Алгоритми<br>та&nbsp;програми-2</a>
-  <a class="menu-item menu--color-2" href="/i.html?7ppt&15">Комп'ютерні<br>презентації</a>
-  <a class="menu-item menu--color-1" href="/i.html?7avi&24">Об'єкти<br>мультимедіа</a>
-  <a class="menu-item menu--color-2" href="/i.html?7gif&35">Комп'ютерна<br>анімація</a>
+  <a class="menu-item menu--color-2" href="/i.html?7alg2&5">Алгоритми<br>та&nbsp;програми-2</a>
+  <a class="menu-item menu--color-1" href="/i.html?7ppt&15">Комп'ютерні<br>презентації</a>
+  <a class="menu-item menu--color-2" href="/i.html?7avi&24">Об'єкти<br>мультимедіа</a>
+  <a class="menu-item menu--color-1" href="/i.html?7gif&35">Комп'ютерна<br>анімація</a>
  </div>
 
-  <div class="menu-content-group">
+  <div class="menu-content-group menu--color-4">
     <div class="menu-item menu--group-header">8&nbsp;кл.&nbsp;=></div>
     <a class="menu-item menu--color-1" href="/i.html?8rep&16">Повторення<br>за 7&nbsp;клас</a>
     <a class="menu-item menu--color-2" href="/i.html?8kod&30">Кодування<br>даних</a>
     <a class="menu-item menu--color-1" href="/i.html?8rar&10">Архіви<br>даних</a>
     <a class="menu-item menu--color-2" href="/i.html?8bud&37">Апаратне<br>забезпечення</a>
     <a class="menu-item menu--color-1" href="/i.html?8alg&35">Алгоритми<br>та&nbsp;програми</a>
-    <a class="menu-item menu--color-1" href="/i.html?8alg2&10">Алгоритми<br>та&nbsp;програми-2</a>
-    <a class="menu-item menu--color-2" href="/i.html?8net&59">Створення<br>вебресурсів<br></a>
-    <a class="menu-item menu--color-1" href="/i.html?8xls&51">Електронні<br>таблиці</a>
-    <a class="menu-item menu--color-2" href="/i.html?8ai&5">Штучний<br>інтелект</a>
+    <a class="menu-item menu--color-2" href="/i.html?8alg2&10">Алгоритми<br>та&nbsp;програми-2</a>
+    <a class="menu-item menu--color-1" href="/i.html?8net&59">Створення<br>вебресурсів<br></a>
+    <a class="menu-item menu--color-2" href="/i.html?8xls&51">Електронні<br>таблиці</a>
+    <a class="menu-item menu--color-1" href="/i.html?8ai&5">Штучний<br>інтелект</a>
   </div>
 
-  <div class="menu-content-group">
+  <div class="menu-content-group menu--color-3">
     <div class="menu-item menu--group-header">9&nbsp;кл.&nbsp;=></div>
     <a class="menu-item menu--color-1" href="/i.html?9rep&18">Повторення<br>за 8&nbsp;клас</a>
     <a class="menu-item menu--color-2" href="/i.html?9win&38">Програмне<br>забезпечення</a>
