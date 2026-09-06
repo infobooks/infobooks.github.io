@@ -119,10 +119,10 @@ select {
 }
 .task-solve {
   padding: 5px;
-  border: 1px dotted #0000ff;
 }
 .task-solve-title {
-  padding: 5px;
+  padding: 7px;
+  border-top: 1px dotted #333333;  
   font-size: 0.9em;
   font-style: italic;
   text-align: center;
@@ -305,12 +305,12 @@ function ShowItem(num) {
       myImage.style.display = 'none';
     }
     myIsSolve.checked = false;
+    mySolveImage.src = '';
+    mySolve.style.display = 'none';    
     if ('solve' in task) {
       mySolveTitle.style.display = '';
     } else {
       mySolveTitle.style.display = 'none';
-      mySolveImage.src = '';
-      mySolve.style.display = 'none';
     }
   }
   
