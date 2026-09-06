@@ -63,12 +63,12 @@ select {
   font-weight: bold;
 }
 .task-name {}
-.task-obj {
+.task-obj, .task-solve-container  {
   max-width: 600px;
   margin: 10px auto;
   text-align: center;
  }
-.task-obj img, .task-obj video {
+.task-obj img, .task-obj video, .task-solve-container img {
   max-width: 100%;
   width: auto;
   height: auto;
@@ -80,6 +80,20 @@ select {
   padding: 5px 15px 10px 15px;
   text-align: left;
   line-height: 1.5;  
+}
+.task-solve {
+  padding: 5px;
+}
+.task-solve-title {
+  padding: 7px;
+  border-top: 1px dotted #333333;  
+  font-size: 0.9em;
+  font-style: italic;
+  text-align: center;
+  font-weight: bold;
+}
+input {
+  margin: 2px 10px;
 }
 </style>
 
@@ -95,6 +109,14 @@ select {
   <div class="task-title"><span class="task-number" id="taskNumber"></span><span class="task-name" id="taskName"></span></div>
   <div class="task-obj"><video id="taskVideo" controls><source src="" type="video/mp4"></video></div>
   <div class="task-text" id="taskText"></div>
+  
+  <div id="taskSolveTitle" class="task-solve-title">
+    <label><input type="checkbox" id="taskIsSolve" onclick="ViewSolve()"> Розв'язок </label>
+  </div>
+  <div id="taskSolve" class="task-solve">
+    <div class="task-solve-container"><img id="taskSolveImage" src="" alt=""></div>
+  </div>
+  
 </div>
 
 </body>
@@ -107,25 +129,42 @@ var myNumber = document.getElementById('taskNumber');
 var myName = document.getElementById('taskName');
 var myVideo = document.getElementById('taskVideo');
 var myText = document.getElementById('taskText');
+var mySolve = document.getElementById('taskSolve');
+var myIsSolve = document.getElementById('taskIsSolve');
+var mySolveTitle = document.getElementById('taskSolveTitle');
+var mySolveImage = document.getElementById('taskSolveImage');
+
+var n = 0;
+const SCRATCH_FOLDER = 'scratch/';
 
 //-------------------------------------
 function Start(txt) {
   let s = '';
   for (let i = 0; i < tasks.length; i++) {
-    s += '<option>' + (i + 1) + '</option>';
-  }
+    s += '<option>' + (i + 1) + ('solve' in tasks[i] ? '°' : '') + '</option>';
+  }  
   myList.innerHTML = s;
   
   const par = decodeURI(txt).trim().slice(1);
-  let n = (par.length > 0 && !isNaN(par) && Number.isInteger(Number(par))) ? Number(par) - 1 : 0
+  n = (par.length > 0 && !isNaN(par) && Number.isInteger(Number(par))) ? Number(par) - 1 : 0
   ShowItem(n);
 }
 
 //-------------------------------------
-function ShowItem(n) {
-  const SCRATCH_FOLDER = 'scratch/';
+function ViewSolve() {
+  if (myIsSolve.checked) {
+    mySolveImage.src = SCRATCH_FOLDER + tasks[n].name + '.png'
+    mySolve.style.display = '';
+  } else {
+    mySolveImage.src = '';
+    mySolve.style.display = 'none';
+  }
+}
 
+//-------------------------------------
+function ShowItem(num) {
   if (tasks.length === 0) return;
+  n = num;  
   if (n >= tasks.length) n = tasks.length - 1;
   if (n < 0) n = 0;
 
@@ -149,6 +188,15 @@ function ShowItem(n) {
       myText.innerHTML = '';
       myText.style.display = 'none';  
     }
+    
+    myIsSolve.checked = false;
+    mySolveImage.src = '';
+    mySolve.style.display = 'none';    
+    if ('solve' in task) {
+      mySolveTitle.style.display = '';
+    } else {
+      mySolveTitle.style.display = 'none';
+    }
   }
 
   myList.selectedIndex = n;
@@ -170,12 +218,12 @@ function touchEnd(n) {
 const tasks = [
 
 //-------------------------------------
-/* лін */ {name:'На пляжі', text:'Встановіть сцену&nbsp;– морське узбережжя (наприклад, Beach&nbsp;Malibu). Розташуйте на&nbsp;суші і воді (правильно!) декількох тваринок.'},  
+/* лін */ {name:'На пляжі', solve:true, text:'Встановіть сцену&nbsp;– морське узбережжя (наприклад, Beach&nbsp;Malibu). Розташуйте на&nbsp;суші і воді (правильно!) декількох тваринок.'},  
 /* лін */ {name:'Діалог', text:'Зустрічаються двоє виконавців. Між&nbsp;ними відбувається невеликий діалог, і вони розходяться.'},
 /* лін */ {name:'Лякалки', text:'Привиди чи страшні тварини лякають інших.'},
 /* лін */ {name:'Переправа', text:'Намалюйте власний образ сцени&nbsp;– річку і міст через&nbsp;неї. Створіть сім’ю тваринок, яка повинна перейти через&nbsp;річку по&nbsp;мосту (можна з&nbsp;різних сторін).'},
 /* лін */ {name:'Хижаки', text:'Зустрічаються двоє звірів. Один з&nbsp;них великий і страшний (наприклад, Слон, Акула, Динозавр, Сова, Ведмідь). Цей&nbsp;звір при зустрічі з&nbsp;меншою тваринкою повинен змінити образ на&nbsp;інший&nbsp;– грізнішій, таким&nbsp;чином відлякуючи меншу тваринку.'},
-/* лін */ {name:'Акула'},
+/* лін */ {name:'Акула', solve:true},
 /* лін */ {name:'Футбол', noView:true},
 
 /* олів */ {name:'Прапорець', text:'Команди групи Олівець'},
