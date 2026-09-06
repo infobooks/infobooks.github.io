@@ -220,7 +220,8 @@ function SaveToFile(p, m) {
 function ViewRes(p, m) {
   let choiceCount = Array.from({length: qCount}, (_, i) => GetSelectCount(i)).filter(res => res > 0).length;
   if (choiceCount < 0.75 * qCount) {
-    myResPercent.innerHTML = 'Замало відповідей для оцінки :(';
+    myResForm.style = 'border:1px #333333 dotted; border-radius:10px; background-color:#eeeeee; text-align:center; font-size:1.4em; line-height:1.3;';
+    myResForm.innerHTML = 'Замало відповідей<br>для&nbsp;оцінки!<br>:(';
     return;
   }
   myResPercent.innerHTML = (p < 0) ? '< 0&nbsp;%' : Math.round(p) + '&nbsp;%';
