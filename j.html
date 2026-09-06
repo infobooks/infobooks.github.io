@@ -136,6 +136,9 @@ select {
   font-size: 0.7em;
   line-height: 1.2;
 }
+input {
+  margin: 2px 10px;
+}
 </style>
 
 <!--================================-->
@@ -163,8 +166,10 @@ select {
   </div>
 
   <div id="taskTests" class="task-tests">Тести</div>
+  <div id="taskSolveTitle" class="task-solve-title">
+    <label><input type="checkbox" id="taskIsSolve" onclick="ViewSolve()"> Розв'язок </label>
+  </div>
   <div id="taskSolve" class="task-solve">
-    <div class="task-solve-title">Розв'язок</div>
     <div class="task-solve-container"><img id="taskSolveImage" src="" alt=""></div>
     <div class="my-css-style">Для красивого вигляду першим рядком запишіть:<br><br>
         &lt;link rel="stylesheet" href= "https://infobooks.github.io/task.css"&gt;
@@ -190,8 +195,13 @@ var myTests = document.getElementById('taskTests');
 var myHint = document.getElementById('taskHint');
 var myImage = document.getElementById('taskImage');
 var mySolve = document.getElementById('taskSolve');
+var myIsSolve = document.getElementById('taskIsSolve');
+var mySolveTitle = document.getElementById('taskSolveTitle');
 var mySolveImage = document.getElementById('taskSolveImage');
 
+var n = 0;
+const JS_FOLDER = 'javascript/';
+  
 //-------------------------------------
 function Start(txt) {
   let s = '';
@@ -201,15 +211,25 @@ function Start(txt) {
   myList.innerHTML = s;
   
   const par = decodeURI(txt).trim().slice(1);
-  let n = (par.length > 0 && !isNaN(par) && Number.isInteger(Number(par))) ? Number(par) - 1 : 0;
+  n = (par.length > 0 && !isNaN(par) && Number.isInteger(Number(par))) ? Number(par) - 1 : 0;
   ShowItem(n);
 }
 
 //-------------------------------------
-function ShowItem(n) {
-  const JS_FOLDER = 'javascript/';
+function ViewSolve() {
+  if (myIsSolve.checked) {
+    mySolveImage.src = JS_FOLDER + tasks[n].name + '+.png'
+    mySolve.style.display = '';
+  } else {
+    mySolveImage.src = '';
+    mySolve.style.display = 'none';
+  }
+}
 
+//-------------------------------------
+function ShowItem(num) {
   if (tasks.length === 0) return;
+  n = num;
   if (n >= tasks.length) n = tasks.length - 1;
   if (n < 0) n = 0;
 
@@ -284,10 +304,11 @@ function ShowItem(n) {
       myImage.src = '';
       myImage.style.display = 'none';
     }
+    myIsSolve.checked = false;
     if ('solve' in task) {
-      mySolveImage.src = JS_FOLDER + task.name + '+.png'
-      mySolve.style.display = '';
+      mySolveTitle.style.display = '';
     } else {
+      mySolveTitle.style.display = 'none';
       mySolveImage.src = '';
       mySolve.style.display = 'none';
     }
@@ -310,7 +331,6 @@ function touchEnd(n) {
 
 //=====================================
 const tasks = [
-
 
 
 /* приклад */ {name:'Приклад-1', text:'Обчисліть значення математичного прикладу.',
