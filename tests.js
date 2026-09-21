@@ -45,6 +45,7 @@ function GetCorrectCount(n) {
 
 //-------------------------------------
 function StartTest() {
+  let count = 0;  
   test.minMark ??= 1;
   test.maxMark ??= 12;
   test.type ??= 'ctrl';
@@ -59,7 +60,14 @@ function StartTest() {
       if (c) s.slice(0, -1);
       test.questions[i].answers.push({text:s, correct:c, select:false});
     }
+      // Помилки -------------
+    if (test.questions[i].mas.length < 2) {alert(`Замало варіантів відповідей (${test.questions[i].mas.length}) у питанні № ${i + 1}`); return}
+    if (test.questions[i].mas.length > 6) {alert(`Забагато варіантів відповідей (${test.questions[i].mas.length}) у питанні № ${i + 1}`); return}   
+    count = GetCorrectCount(i);
+    if (count === 0) {alert(`Немає правильних відповідей у питанні № ${i + 1}`); return}
+    if (count >= test.questions[i].mas.length) {alert(`Забагато правильних відповідей у питанні  №${i + 1}`); return}
   }
+
   globalRes += new Date().toLocaleString() + ' - ' + test.minMark + '-' + test.maxMark + 
     ' - ' + decodeURI(window.location.href) + '\n';
 
@@ -144,12 +152,12 @@ function ExitTest() {
 // - - - - - - - - - - - - - - - - - - 
 function GetPointsPercent() {
   let pointSum = 0;
-  let wronganswersCount = 0;
+  let wrongAnswersCount = 0;
   for (let i = 0; i < qCount; i++) {
     pointSum += CorrectSelectCount(i) / GetCorrectCount(i);
-    wronganswersCount += WrongSelectCount(i);
+    wrongAnswersCount += WrongSelectCount(i);
   }
-  pointSum -= wronganswersCount * GetPenaltyPoint();
+  pointSum -= wrongAnswersCount * GetPenaltyPoint();
   return 100 * pointSum / qCount;
 }
 function CorrectSelectCount(n) {
