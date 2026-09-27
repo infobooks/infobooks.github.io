@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Презентація</title>
+
+<!--================================-->
+<style>
+body {
+  margin: 0;
+  padding: 5px;
+  font-family: "Arial", sans-serif;
+  font-size: '';
+  color: #333333;
+  background-color: #f5f4e5;
+}
+.data-content {
+  margin: 5px;
+  padding: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  line-height: 1;
+}
+.data-container {
+  max-width: 600px;
+  margin: 7px 10px;
+ }
+.data-container img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain; 
+  border-radius: 5px;
+  border: 1px dotted #333333;
+}
+.menu-content {
+  margin: 5px;
+  padding: 2px;
+  width: 94%;  
+  max-width: 600px;
+  line-height: 1.3;
+}
+.menu-header {
+  width: 100%;
+  padding: 5px;
+  margin: 10px 2px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  text-align: center;
+  background-color: #8fbc8f;
+}
+.menu-content-group {
+  width: 100%;
+  margin: 5px;
+  padding: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: left;
+  line-height: 1.3;
+  border: 1px dotted #333333;
+  border-radius: 5px;
+}
+.menu-item {
+  display: block;
+  min-width: 3em;
+  width: 100px;
+  padding: 10px 10px;
+  margin: 7px 10px;
+  text-align: center;
+  color: #992211;
+  text-decoration: none;
+  border: 1px dotted #333333;
+  border-radius: 5px;
+}
+@media screen and (min-width:900px) {
+  body {font-size: 18px;}
+  .data-content {margin: 5px 120px}
+  .menu-content {margin: 5px 120px}
+  .menu-item {width: 120px;}
+}
+.menu--color-1 {
+  background-color: #ffffff;
+}
+.menu--color-2 {
+  background-color: #f8f8ff;
+}
+.menu--color-3 {
+  background-color: #DCFCE7;
+}
+.menu--color-4 {
+   background-color: #FEF9C3;
+}
+.menu--group-header {
+  background-color: #8fbc8f;
+  color: inherit;
+}
+.homework {
+  display: block;
+  min-width: 3em;
+  padding: 20px 10px;
+  margin: 0;
+  text-align: center;
+  color: #992211;
+  text-decoration: none;
+  border: 1px dotted #333333;
+  border-radius: 5px;
+  background-color: #DCFCE7;
+}
+</style>
+
+<!--================================-->
+<body onload="Start(location.search)">
+
+<div class="menu-content" id="menu" style="display:none">
+
+  <div class="menu-header">Треба знати!</div>
+
+  <div class="menu-content-group menu--color-3">
+    <div class="menu-item menu--group-header">5&nbsp;кл.&nbsp;=></div>
+    <a class="menu-item menu--color-2" href="/group5/inf.pdf">Інформаційні<br>процеси-1</a>
+    <a class="menu-item menu--color-1" href="/group5/win.pdf">Інформаційні<br>процеси-2</a>    
+    <a class="menu-item menu--color-2" href="/group5/doc.pdf">Текстові<br>документи</a>
+    <a class="menu-item menu--color-1" href="/group5/net.pdf">Комп'ютерні<br>мережі</a>
+    <a class="menu-item menu--color-2" href="/group5/ppt.pdf">Комп'ютерні<br>презентації</a>
+    <a class="menu-item menu--color-1" href="/group5/alg.pdf">Алгоритми<br>та&nbsp;програми-1</a>
+    <a class="menu-item menu--color-2" href="/group5/scr.pdf">Алгоритми<br>та&nbsp;програми-2</a>    
+  </div>
+
+  <div class="menu-content-group menu--color-4">
+    <div class="menu-item menu--group-header">6&nbsp;кл.&nbsp;=></div>
+    <a class="menu-item menu--color-1" href="/group6/rep.pdf">Повторення<br>за 5&nbsp;клас</a>
+    <a class="menu-item menu--color-2" href="/group6/bmp.pdf">Графічні<br>зображення-1</a>
+    <a class="menu-item menu--color-1" href="/group6/jpg.pdf">Графічні<br>зображення-2</a>
+    <a class="menu-item menu--color-2" href="/group6/doc.pdf">Текстові<br>документи</a>
+    <a class="menu-item menu--color-1" href="/group6/ppt.pdf">Комп'ютерні<br>презентації</a>
+    <a class="menu-item menu--color-2" href="/group6/inf.pdf">Цифрові<br>технології</a>
+    <a class="menu-item menu--color-1" href="/group6/xls.pdf">Електронні<br>таблиці</a>
+    <a class="menu-item menu--color-2" href="/group6/scr.pdf">Алгоритми<br>та&nbsp;програми-1</a>
+    <a class="menu-item menu--color-1" href="/group6/prj.pdf">Алгоритми<br>та&nbsp;програми-2</a>    
+  </div>
+
+ <div class="menu-content-group menu--color-3">
+  <div class="menu-item menu--group-header">7&nbsp;кл.&nbsp;=></div>
+    <a class="menu-item menu--color-1" href="/group7/rep.pdf">Повторення<br>за 6&nbsp;клас</a>
+    <a class="menu-item menu--color-2" href="/group7/mail.pdf">Хмарні<br>сервіси-1</a>
+    <a class="menu-item menu--color-1" href="/group7/net.pdf">Хмарні<br>сервіси-2</a>  
+    <a class="menu-item menu--color-2" href="/group7/js.pdf">Алгоритми<br>та&nbsp;програми-1</a>
+    <a class="menu-item menu--color-1" href="/group7/obj.pdf">Алгоритми<br>та&nbsp;програми-2</a>  
+    <a class="menu-item menu--color-2" href="/group7/ppt.pdf">Комп'ютерні<br>презентації</a>
+    <a class="menu-item menu--color-1" href="/group7/avi.pdf">Об'єкти<br>мультимедіа</a>
+    <a class="menu-item menu--color-2" href="/group7/gif.pdf">Комп'ютерна<br>анімація</a>
+ </div>
+
+  <div class="menu-content-group menu--color-4">
+    <div class="menu-item menu--group-header">8&nbsp;кл.&nbsp;=></div>
+    <a class="menu-item menu--color-1" href="/group8/rep.pdf">Повторення<br>за 7&nbsp;клас</a>
+    <a class="menu-item menu--color-2" href="/group8/kod.pdf">Кодування<br>даних</a>
+    <a class="menu-item menu--color-1" href="/group8/rar.pdf">Архіви<br>даних</a>
+    <a class="menu-item menu--color-2" href="/group8/bud.pdf">Апаратне<br>забезпечення</a>
+    <a class="menu-item menu--color-1" href="/group8/js.pdf">Алгоритми<br>та&nbsp;програми-1</a>
+    <a class="menu-item menu--color-2" href="/group8/log.pdf">Алгоритми<br>та&nbsp;програми-2</a>
+    <a class="menu-item menu--color-1" href="/group8/check.pdf">Алгоритми<br>та&nbsp;програми-3</a>
+    <a class="menu-item menu--color-2" href="/group8/for.pdf">Алгоритми<br>та&nbsp;програми-4</a>    
+    <a class="menu-item menu--color-1" href="/group8/net.pdf">Створення<br>вебресурсів-1<br></a>
+    <a class="menu-item menu--color-2" href="/group8/html.pdf">Створення<br>вебресурсів-2<br></a>    
+    <a class="menu-item menu--color-1" href="/group8/xls.pdf">Електронні<br>таблиці</a>
+    <a class="menu-item menu--color-2" href="/group8/ai.pdf">Штучний<br>інтелект</a>
+  </div>
+
+  <div class="menu-content-group menu--color-3">
+    <div class="menu-item menu--group-header">9&nbsp;кл.&nbsp;=></div>
+    <a class="menu-item menu--color-1" href="/group9/rep.pdf">Повторення<br>за 8&nbsp;клас</a>
+    <a class="menu-item menu--color-2" href="/group9/win.pdf">Програмне<br>забезпечення</a>
+    <a class="menu-item menu--color-1" href="/group9/vir.pdf">Інформаційна<br>безпека</a>
+    <a class="menu-item menu--color-2" href="/group9/arr.pdf">Алгоритми<br>та&nbsp;програми-1</a>
+    <a class="menu-item menu--color-1" href="/group9/str.pdf">Алгоритми<br>та&nbsp;програми-2</a>    
+    <a class="menu-item menu--color-2" href="/group9/bld.pdf">3D<br>графіка</a>
+    <a class="menu-item menu--color-1" href="/group9/doc.pdf">Текстові<br>дані</a>
+    <a class="menu-item menu--color-2" href="/group9/mdb.pdf">Бази<br>даних</a>
+  </div>
+
+</div>
+
+</body>
+<!--================================-->
+
+<script>
+
+//-------------------------------------
+function Start(txt) {
+  const MAX_DATA = 50;
+  const INFO_FOLDER = 'info';
+
+  const par = decodeURI(txt).split('&').map(item => item.trim()).filter(item => item !== '')
+
+  if (par.length === 0 || par.length === 1 && par[0].length === 1) {
+    document.getElementById('menu').style.display = '';
+    return;
+  }
+
+  let folder = INFO_FOLDER + '/' + par[0].slice(1) + '/';
+  let group = par[0][1];
+  let n1 = 1;
+  let n2 = MAX_DATA;
+  if (par.length >= 3) {
+    if (!isNaN(par[1]) && Number.isInteger(Number(par[1])) && par[1] !== '') n1 = Number(par[1]);
+    if (!isNaN(par[2]) && Number.isInteger(Number(par[2])) && par[2] !== '') n2 = Number(par[2]);
+  }
+  if (par.length === 2 && !isNaN(par[1]) && Number.isInteger(Number(par[1])) && par[1] !== '') n2 = Number(par[1]);
+  if (n1 > n2) n2 = n1;
+
+  loadData(folder, n1, n2, group);
+}
+
+function loadData(folder, n1, n2, group) {
+  const data_div = document.createElement('div');
+  data_div.className = 'data-content';
+  document.body.appendChild(data_div);
+
+  for (let i = n1; i <= n2; i++) {
+    const img = new Image();
+    img.src = `${folder}Слайд${i}.PNG`;
+    const div = document.createElement('div');
+    div.className = 'data-container';
+    div.appendChild(img);
+    data_div.appendChild(div);
+  }
+
+  if (['5', '6', '7', '8', '9'].includes(group)) {
+    const div = document.createElement('div');
+    div.className = 'data-container';
+    const a = document.createElement('a');
+    if (group === '5') a.href = 'https://drive.google.com/drive/folders/1JPmytkkoc60pZfKeSLZBXVC-3vOXb3I-?usp=sharing';
+    if (group === '6') a.href = 'https://drive.google.com/drive/folders/1yyrp7K1ravTEEc4DXuevnC-Be6o2DnDu?usp=sharing';
+    if (group === '7') a.href = 'https://drive.google.com/drive/folders/13In2tBScs5iVqsfQz60oYx9wQaJtwL0m?usp=sharing';
+    if (group === '8') a.href = 'https://drive.google.com/drive/folders/1fxdcxeeHhXSzC-gq4OU7RePqyf9ahFN4?usp=sharing';
+    if (group === '9') a.href = 'https://drive.google.com/drive/folders/1uvii852Y3MJr6TpfDZTPFxR7Q2_UCjyG?usp=sharing';
+    a.className = 'homework';
+    a.textContent = 'Завантажити Д/з вчителю для перевірки';
+    a.target = '_blank';
+    div.appendChild(a);
+    data_div.appendChild(div);
+  }
+  
+}
+
+//-------------------------------------
+</script>
