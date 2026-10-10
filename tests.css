@@ -144,7 +144,7 @@ select {
   margin: 15px auto;
   padding: 0 10px;
   border: 2px outset #333333;
-  font-size: 7em;
+  font-size: 5em;
   font-weight: bold;
   line-height: 1.5;
   background-color: #ffffff;
@@ -162,6 +162,7 @@ span {
   span {padding-left: 7px; padding-right: 2px;}
   .test-quest {padding: 20px 10px; line-height: 1.7;}
   .test-obj {margin-left: 150px;} 
+  .test-result-mark {font-size: 7em;}
 }
 
 }

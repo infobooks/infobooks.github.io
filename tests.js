@@ -240,7 +240,7 @@ function ViewRes(p, m) {
     myResPercent.innerHTML = (p < 0) ? '< 0&nbsp;%' : Math.round(p) + '&nbsp;%';
     myTestMark.innerHTML = m;
   } else {
-    myResPercent.innerHTML = m;
+    myResPercent.innerHTML = '';
     myTestMark.innerHTML = (p < 0) ? '< 0&nbsp;%' : Math.round(p) + '&nbsp;%';
   }
   let s = '#c0c0c0';
