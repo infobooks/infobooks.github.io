@@ -48,7 +48,7 @@ function StartTest() {
   let count = 0;  
   test.minMark ??= 1;
   test.maxMark ??= 12;
-  test.type ??= 'ctrl';
+  test.type ??= 'view';
   for (let i = 0; i < test.questions.length; i++) {
     test.questions[i].text ??= '---';
     test.questions[i].notRnd ??= false;
@@ -157,7 +157,7 @@ function GetPointsPercent() {
     pointSum += CorrectSelectCount(i) / GetCorrectCount(i);
     wrongAnswersCount += WrongSelectCount(i);
   }
-  pointSum -= wrongAnswersCount * GetPenaltyPoint();
+  if (test.type === 'ctrl') pointSum -= wrongAnswersCount * GetPenaltyPoint();
   return 100 * pointSum / qCount;
 }
 function CorrectSelectCount(n) {
@@ -227,13 +227,18 @@ function SaveToFile(p, m) {
 // - - - - - - - - - - - - - - - - - - 
 function ViewRes(p, m) {
   let choiceCount = Array.from({length: qCount}, (_, i) => GetSelectCount(i)).filter(res => res > 0).length;
-  if (choiceCount < 0.75 * qCount) {
+  if (choiceCount < 0.5 * qCount) {
     myResForm.style = 'border:1px #333333 dotted; border-radius:10px; background-color:#eeeeee; text-align:center; font-size:1.4em; line-height:1.3;';
     myResForm.innerHTML = 'Замало відповідей<br>для&nbsp;оцінки!<br>:(';
     return;
   }
-  myResPercent.innerHTML = (p < 0) ? '< 0&nbsp;%' : Math.round(p) + '&nbsp;%';
-  myTestMark.innerHTML = m;
+  if (test.type === 'ctrl') {
+    myResPercent.innerHTML = (p < 0) ? '< 0&nbsp;%' : Math.round(p) + '&nbsp;%';
+    myTestMark.innerHTML = m;
+  } else {
+    myResPercent.innerHTML = m;
+    myTestMark.innerHTML = (p < 0) ? '< 0&nbsp;%' : Math.round(p) + '&nbsp;%';
+  }
   let s = '#c0c0c0';
   if (p > 14) s = '#ff69b4';
   if (p > 28) s = '#ffa07a';
