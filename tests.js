@@ -51,7 +51,11 @@ function StartTest() {
   test.offline ??= false;
   test.minMark ??= 1;
   test.maxMark ??= 12;
+
   test.type ??= 'view';
+  const par = decodeURI(location.search).trim().slice(1);
+  if (test.type === 'view' && par === '+') test.type = 'rep';
+
   for (let i = 0; i < test.questions.length; i++) {
     test.questions[i].text ??= '---';
     test.questions[i].notRnd ??= false;
