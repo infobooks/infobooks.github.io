@@ -47,6 +47,13 @@ function GetCorrectCount(n) {
 
 //-------------------------------------
 function StartTest() {
+  const x = window.location.href;
+  let lastA = x.lastIndexOf('/');
+  if (lastA === -1) lastA = 0;
+  let firstB = x.indexOf('.', lastA);
+  if (firstB === -1) firstB = x.length;
+  document.title = 'Тести - ' + x.slice(lastA + 1, firstB);
+
   let count = 0;  
   test.offline ??= false;
   test.minMark ??= 1;
