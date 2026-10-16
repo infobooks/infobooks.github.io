@@ -87,8 +87,8 @@ textarea {
   min-height: 4em;
   max-width: 95%;
   max-height: 25em;
-  width: 15em;
-  height: 15em;
+  width: 12em;
+  height: 10em;
   font: 0.9em "Consolas", monospace;
   vertical-align: top;
   border: 2px inset #cccccc;
