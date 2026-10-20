@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  margin: 20px 10%;
+  margin: 20px 5%;
   padding: 7px;
   max-width: 35em;
   min-height: 10em;
@@ -93,6 +93,11 @@ textarea {
   vertical-align: top;
   border: 2px inset #cccccc;
   border-radius: 3px;
+}
+
+textarea:read-only {
+  background-color: #f8f8ff; 
+  cursor: inherit;
 }
 
 label {
