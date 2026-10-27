@@ -1,5 +1,3 @@
-const offlineFolder = 'D:/TST/';  // for obj offline work
-
 var A = [];          // mix questions
 var B = [];          // mix answers
 var gOrderN = -1;    // order number task in User window: 1, 2, 3...
@@ -55,7 +53,7 @@ function StartTest() {
   document.title = 'Тести - ' + x.slice(lastA + 1, firstB);
 
   let count = 0;
-  test.offline ??= false;
+  test.offlineFolder ??= '';
   test.minMark ??= 1;
   test.maxMark ??= 12;
 
@@ -68,7 +66,7 @@ function StartTest() {
     test.questions[i].text ??= '---';
     test.questions[i].notRnd ??= false;
     test.questions[i].img ??= '';
-    if (test.questions[i].img !== '' && test.offline) test.questions[i].img = offlineFolder + test.questions[i].img;
+    if (test.questions[i].img !== '') test.questions[i].img = offlineFolder + test.questions[i].img;
     test.questions[i].answers ??= [];
     for (let j = 0; j < test.questions[i].mas.length; j++) {
       let c = test.questions[i].mas[j].endsWith(' ');
