@@ -95,8 +95,8 @@ select {
   width: auto;
   height: auto;
   border-radius: 5px;
-  border: 1px dotted #333333;  
-  object-fit: contain;   
+  border: 1px dotted #333333;
+  object-fit: contain;
 }
 .task-tests {
   padding: 10px;
@@ -118,7 +118,7 @@ select {
 }
 .task-solve-title {
   padding: 7px;
-  border-top: 1px dotted #333333;  
+  border-top: 1px dotted #333333;
   font-size: 0.9em;
   font-style: italic;
   text-align: center;
@@ -172,7 +172,9 @@ input {
     <div class="my-css-style">
       Для красивого вигляду першим рядком запишіть:<br>
       &lt;link rel="stylesheet" href= "https://infobooks.github.io/task.css"&gt;<br><br>
-      Код вводьте у&nbsp;<b>Блокноті</b> і перший&nbsp;раз <b><i>Збережіть&nbsp;як</i></b>&nbsp;&nbsp;=>&nbsp;&nbsp;Задача.html<br>
+      Крім VSCode можна програмувати на&nbsp;онлайн-ресурсах:<br>
+      1) <a href="https://www.w3schools.com/html/tryit.asp?filename=tryhtml_basic"> w3schools </a>(не шукає помилок)
+      2) <a href="https://jsfiddle.net/"> jsfiddle </a><br>
     </div>
   </div>
 
@@ -200,7 +202,7 @@ var mySolveImage = document.getElementById('taskSolveImage');
 
 var n = 0;
 const JS_FOLDER = 'javascript/';
-  
+
 //-------------------------------------
 function Start(txt) {
   let s = '';
@@ -212,7 +214,7 @@ function Start(txt) {
     s += '<option>' + (i + 1) + sign + '</option>';
   }
   myList.innerHTML = s;
-  
+
   const par = decodeURI(txt).trim().slice(1);
   n = (par.length > 0 && !isNaN(par) && Number.isInteger(Number(par))) ? Number(par) - 1 : 0;
   ShowItem(n);
@@ -237,7 +239,7 @@ function ShowItem(num) {
   if (n < 0) n = 0;
 
   let task = tasks[n];
-  
+
     //-----------------
   myNumber.innerHTML = '№&nbsp;' + (n + 1) + '.';
   if ('noView' in task) {
@@ -272,7 +274,7 @@ function ShowItem(num) {
       myIn.innerHTML = '';
       myIn.style.display = 'none';
       myInTitle.style.display = 'none';
-    } 
+    }
     if ('outTitle' in task) {
       myOut.innerHTML = task.outTitle.map((num, index) => `${index + 1}) ${num}`).join('<br>');
       myOut.style.display = '';
@@ -283,7 +285,7 @@ function ShowItem(num) {
       myOutTitle.style.display = 'none';
     }
     if ('tests' in task) {
-      myTests.innerHTML = '<table>' + task.tests.map(row => '<tr>' + 
+      myTests.innerHTML = '<table>' + task.tests.map(row => '<tr>' +
         row.map(item => `<td>${item}</td>`).join('') + '</tr>').join('') + '</table>';
       myTests.style.display = '';
     } else {
@@ -306,14 +308,14 @@ function ShowItem(num) {
     }
     myIsSolve.checked = false;
     mySolveImage.src = '';
-    mySolve.style.display = 'none';    
+    mySolve.style.display = 'none';
     if ('solve' in task) {
       mySolveTitle.style.display = '';
     } else {
       mySolveTitle.style.display = 'none';
     }
   }
-  
+
   myList.selectedIndex = n;
 }
 
@@ -340,8 +342,8 @@ const tasks = [
   tests: [
     [8560, '==>', 'село'],
     [12000, '==>', 'місто'],
-    [1234500, '==>', 'мегаполіс'], 
-    [850678, '==>', 'місто'],  
+    [1234500, '==>', 'мегаполіс'],
+    [850678, '==>', 'місто'],
   ]},
 
 // 2
@@ -381,7 +383,7 @@ const tasks = [
   tests: [
     ['[2, 27, 16, 8]', '==>', 'У 4-му'],
     ['[3, 1, 9, 0, 8]', '==>', 'У 1-му'],
-    ['[10, 4, 12, 10, 5, 9]', '==>', 'Порівну'],    
+    ['[10, 4, 12, 10, 5, 9]', '==>', 'Порівну'],
   ]},
 
 // 6
@@ -393,7 +395,7 @@ const tasks = [
     ['[4, 2, 7, 1, 5, 13, 12, 7, 11]', '==>', '[&nbsp;2.4грн, 3.14грн, 4.2грн, 5.10грн&nbsp;]'],
     ['[3, 1, 0, 100, 34, 9]', '==>', '[&nbsp;2.2грн, 3.0грн, 4.200грн, 5.68грн&nbsp;]'],
   ]},
-    
+
 // 7
 /* масив */ {text:'Микола працює у&nbsp;фірмі «Сонечко» і знає початкові доходи фірми за останні кілька місяців. Хакери «вкрали» усі доходи за останні кілька місяців. Як тепер «виглядають» доходи?',
   inTitle: ['масив чисел&nbsp;-- початкові доходи фірми', 'місяць, після якого усі доходи зникли'],
@@ -402,10 +404,10 @@ const tasks = [
     ['[12, 27, 6, 8, 1, 9, 3]', 3, '==>', '[12, 27, 6, 0, 0, 0, 0]'],
     ['[7, 9,  9, 11]', 3, '==>', '[7, 9, 9, 0]'],
     ['[3, 1, 9, 8]', 1, '==>', '[3, 0, 0, 0]'],
-    ['[5, 5, 8, 9, 10]', 5, '==>', '[5, 5, 8, 9, 10]'],    
+    ['[5, 5, 8, 9, 10]', 5, '==>', '[5, 5, 8, 9, 10]'],
   ]},
 
-// 8    
+// 8
 /* масив */ {text:'Микола працює у фірмі&nbsp;«Сонечко» і знає початкові доходи фірми за останні кілька місяців. А як «виглядають» доходи за парні місяці?',
   inTitle: ['масив чисел&nbsp;-- початкові доходи фірми'],
   outTitle: ['масив чисел&nbsp;-- доходи фірми по парних місяцях'],
@@ -554,7 +556,7 @@ const tasks = [
     [54, 31, '==>', 42.5, 23],
     [12, 7, '==>', 9.5, 5],
   ]},
-  
+
 // 23
 /* лін-3 */ {text: 'Найповільніша тварина у&nbsp;світі равлик намагається «здолати» город Марічки. Відомо, скільки сантиметрів за&nbsp;хвилину проповзає в&nbsp;середньому равлик.<br>За&nbsp;скільки годин равлик проповзе через город Марічки?',
   inTitle: ['довжина городу (у&nbsp;метрах)', 'швидкість равлика (см&nbsp;за&nbsp;хвилину)'],
