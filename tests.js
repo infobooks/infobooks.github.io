@@ -62,6 +62,7 @@ function StartTest() {
   test.type ??= 'view';
   const par = decodeURI(location.search).trim().slice(1);
   if (test.type === 'view' && par === '+') test.type = 'rep';
+  if (par === 'x') test.type = 'ctrl';
 
   for (let i = 0; i < test.questions.length; i++) {
     test.questions[i].text ??= '---';
@@ -76,8 +77,10 @@ function StartTest() {
       test.questions[i].answers.push({text:s, correct:c, select:false});
     }
       // Помилки -------------
-    if (test.questions[i].mas.length < 2) {alert(`Замало варіантів відповідей (${test.questions[i].mas.length}) у питанні № ${i + 1}`); return}
-    if (test.questions[i].mas.length > 6) {alert(`Забагато варіантів відповідей (${test.questions[i].mas.length}) у питанні № ${i + 1}`); return}
+    if (test.questions[i].mas.length < 2) {alert(`Замало варіантів відповідей (${test.questions[i].mas.length})
+      у питанні № ${i + 1}`); return}
+    if (test.questions[i].mas.length > 6) {alert(`Забагато варіантів відповідей (${test.questions[i].mas.length})
+      у питанні № ${i + 1}`); return}
     count = GetCorrectCount(i);
     if (count === 0) {alert(`Немає правильних відповідей у питанні № ${i + 1}`); return}
     if (count >= test.questions[i].mas.length) {alert(`Забагато правильних відповідей у питанні  №${i + 1}`); return}
@@ -228,7 +231,7 @@ function SaveToFile(p, m) {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'res.dtn';
+    link.download = 'res.txt';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -243,7 +246,8 @@ function SaveToFile(p, m) {
 function ViewRes(p, m) {
   let choiceCount = Array.from({length: qCount}, (_, i) => GetSelectCount(i)).filter(res => res > 0).length;
   if (choiceCount < 0.5 * qCount) {
-    myResForm.style = 'border:1px #333333 dotted; border-radius:10px; background-color:#eeeeee; text-align:center; font-size:1.4em; line-height:1.3;';
+    myResForm.style = `border:1px #333333 dotted; border-radius:10px; background-color:#eeeeee; text-align:center;
+    font-size:1.4em; line-height:1.3;`;
     myResForm.innerHTML = 'Замало відповідей<br>для&nbsp;оцінки!<br>:(';
     return;
   }

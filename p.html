@@ -9,7 +9,7 @@
 body {
   margin: 0;
   padding: 5px;
-  text-align: center;  
+  text-align: center;
   font-family: "Arial", sans-serif;
   font-size: '';
   color: #333333;
@@ -62,7 +62,6 @@ select {
   padding-right: 7px;
   font-weight: bold;
 }
-.task-name {}
 .task-obj {
   max-width: 600px;
   text-align: center;
@@ -79,13 +78,13 @@ select {
 .task-text {
   padding: 5px 15px 10px 15px;
   text-align: left;
-  line-height: 1.5;  
+  line-height: 1.5;
 }
 .solve-title {
   padding: 15px;
   margin: 5px;
   border-top: 3px double #333333;
-  background-color: #f8f8ff;  
+  background-color: #f8f8ff;
   font-weight: bold;
 }
 .task-solves {
@@ -113,13 +112,13 @@ a {
     <select id="listBox" size="1" onchange="ShowItem(this.selectedIndex)"></select>
     <div class="task-button" onclick="ShowItem(listBox.selectedIndex + 1)">&#9658;</div>
   </div>
-  <div class="task-title"><span class="task-number" id="taskNumber"></span><span class="task-name" id="taskName"></span></div>
-  <div class="task-obj"><img id="taskImage" src="" alt=""></div> 
+  <div class="task-title"><span class="task-number" id="taskNumber"></span><span id="taskName"></span></div>
+  <div class="task-obj"><img id="taskImage" src="" alt=""></div>
   <div class="task-text" id="taskText" ></div>
   <div class="solve-title">Приклади виконання</div>
   <div class="task-solves" id="taskSolves"></div>
 </div>
-  
+
 </body>
 
 <!--================================-->
@@ -139,7 +138,7 @@ function Start(txt) {
     s += '<option>' + (i + 1) + '</option>';
   }
   myList.innerHTML = s;
-  
+
   const par = decodeURI(txt).trim().slice(1);
   let n = (par.length > 0 && !isNaN(par) && Number.isInteger(Number(par))) ? Number(par) - 1 : 0
   ShowItem(n);
@@ -181,7 +180,7 @@ function loadData(folder, type, n) {
     }
     mySolves.appendChild(div);
     return;
-  }  
+  }
 }
 
 //-------------------------------------
@@ -199,12 +198,12 @@ function ShowItem(n) {
   myNumber.innerHTML = '№&nbsp;' + (n + 1) + '.';
   myName.innerHTML = task.name ?? '-';
   mySolves.replaceChildren();
-  
+
   if ('noView' in task) {
     myImage.src = '';
-    myImage.style.display = 'none'; 
+    myImage.style.display = 'none';
     myText.innerHTML = '';
-    myText.style.display = 'none';      
+    myText.style.display = 'none';
   } else {
 
     if ('img' in task) {
@@ -219,7 +218,7 @@ function ShowItem(n) {
       myText.style.display = '';
     } else {
       myText.innerHTML = '';
-      myText.style.display = 'none';  
+      myText.style.display = 'none';
     }
     let typeDef = (task.type === 'v' || task.type === 'h') ? task.type : 'i';
     if ('solveCount' in task) loadData(folder, typeDef, task.solveCount);
