@@ -121,7 +121,7 @@ select {
   max-height: 300px;
   width: auto;
   height: auto;
-  object-fit: contain;  
+  object-fit: contain;
   border-radius: 5px;
   border: 1px dotted #333333;
 }
@@ -151,18 +151,16 @@ select {
 }
 
 span {
-  padding-left: 5px; 
+  padding-left: 5px;
   padding-right: 0;
 }
 
 @media screen and (min-width:900px) {
   body {font-size: 18px;}
-  .page-header {top: 10px; left: 150px;}    
-  .content {margin: 50px 0 20px 150px;}    
+  .page-header {top: 10px; left: 150px;}
+  .content {margin: 50px 0 20px 150px;}
   span {padding-left: 7px; padding-right: 2px;}
   .test-quest {padding: 20px 10px; line-height: 1.7;}
-  .test-obj {margin-left: 150px;} 
+  .test-obj {margin-left: 150px;}
   .test-result-mark {font-size: 7em;}
-}
-
 }

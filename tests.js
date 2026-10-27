@@ -54,7 +54,7 @@ function StartTest() {
   if (firstB === -1) firstB = x.length;
   document.title = 'Тести - ' + x.slice(lastA + 1, firstB);
 
-  let count = 0;  
+  let count = 0;
   test.offline ??= false;
   test.minMark ??= 1;
   test.maxMark ??= 12;
@@ -70,20 +70,20 @@ function StartTest() {
     if (test.questions[i].img !== '' && test.offline) test.questions[i].img = offlineFolder + test.questions[i].img;
     test.questions[i].answers ??= [];
     for (let j = 0; j < test.questions[i].mas.length; j++) {
-      let c = test.questions[i].mas[j].endsWith(' '); 
+      let c = test.questions[i].mas[j].endsWith(' ');
       let s = test.questions[i].mas[j];
       if (c) s.slice(0, -1);
       test.questions[i].answers.push({text:s, correct:c, select:false});
     }
       // Помилки -------------
     if (test.questions[i].mas.length < 2) {alert(`Замало варіантів відповідей (${test.questions[i].mas.length}) у питанні № ${i + 1}`); return}
-    if (test.questions[i].mas.length > 6) {alert(`Забагато варіантів відповідей (${test.questions[i].mas.length}) у питанні № ${i + 1}`); return}   
+    if (test.questions[i].mas.length > 6) {alert(`Забагато варіантів відповідей (${test.questions[i].mas.length}) у питанні № ${i + 1}`); return}
     count = GetCorrectCount(i);
     if (count === 0) {alert(`Немає правильних відповідей у питанні № ${i + 1}`); return}
     if (count >= test.questions[i].mas.length) {alert(`Забагато правильних відповідей у питанні  №${i + 1}`); return}
   }
 
-  globalRes += new Date().toLocaleString() + ' - ' + test.minMark + '-' + test.maxMark + 
+  globalRes += new Date().toLocaleString() + ' - ' + test.minMark + '-' + test.maxMark +
     ' - ' + decodeURI(window.location.href) + '\n';
 
   myQuestCount.innerHTML = '(' + qCount + ' пит.)';
@@ -158,13 +158,13 @@ function ExitTest() {
   myQuestImg.src = '';
   myQuestImg.hidden = true;
   myResForm.hidden = false;
-  
+
   let p = GetPointsPercent();
   let m = GetMark(p);
   test.type === 'ctrl' ? SaveToFile(p, m) : ViewRes(p, m);
 }
 
-// - - - - - - - - - - - - - - - - - - 
+// - - - - - - - - - - - - - - - - - -
 function GetPointsPercent() {
   let pointSum = 0;
   let wrongAnswersCount = 0;
@@ -203,7 +203,7 @@ function factorial(n) {
   }
   return result;
 }
-// - - - - - - - - - - - - - - - - - - 
+// - - - - - - - - - - - - - - - - - -
 function GetMark(markPercent) {
   if (test.minMark < 0 || test.maxMark < 0 || test.minMark >= test.maxMark) return -1;
   if (markPercent > 100) markPercent = 100;
@@ -219,7 +219,7 @@ function GetMark(markPercent) {
   }
   return String(res);
 }
-// - - - - - - - - - - - - - - - - - - 
+// - - - - - - - - - - - - - - - - - -
 function SaveToFile(p, m) {
   myResPercent.innerHTML = 'Кінець тестування';
   globalRes += new Date().toLocaleString() + '73-0+149' + m + '94+132+435-6149' + Math.round(p) + '94+24359-310+';
@@ -239,7 +239,7 @@ function SaveToFile(p, m) {
   }
   return true;
 }
-// - - - - - - - - - - - - - - - - - - 
+// - - - - - - - - - - - - - - - - - -
 function ViewRes(p, m) {
   let choiceCount = Array.from({length: qCount}, (_, i) => GetSelectCount(i)).filter(res => res > 0).length;
   if (choiceCount < 0.5 * qCount) {
@@ -254,12 +254,17 @@ function ViewRes(p, m) {
     myResPercent.innerHTML = '';
     myTestMark.innerHTML = (p < 0) ? '< 0&nbsp;%' : Math.round(p) + '&nbsp;%';
   }
-  let s = '#c0c0c0';
-  if (p > 14) s = '#ff69b4';
-  if (p > 28) s = '#ffa07a';
-  if (p > 43) s = '#ffd700';
-  if (p > 57) s = '#7fffd4';
-  if (p > 71) s = '#00ff7f';
-  if (p > 85) s = '#00ff00';
+  let s = '#FFD1D1';
+  if (p > 0) s = '#FFE1E1';
+  if (p > 10) s = '#FFEAA7';
+  if (p > 20) s = '#FFE0B2';
+  if (p > 30) s = '#FFF9C4';
+  if (p > 40) s = '#FFFDE7';
+  if (p > 50) s = '#E8F5E9';
+  if (p > 60) s = '#A3E4D7';
+  if (p > 70) s = '#C8E6C9';
+  if (p > 80) s = '#E3F2FD';
+  if (p > 90) s = '#BBDEFB';
+  if (p === 100) s = '#E1BEE7';
   myTestMark.style.backgroundColor = s;
 }

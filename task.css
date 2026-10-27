@@ -96,7 +96,7 @@ textarea {
 }
 
 textarea:read-only {
-  background-color: #f8f8ff; 
+  background-color: #f8f8ff;
   cursor: inherit;
 }
 
@@ -143,7 +143,7 @@ fieldset {
 p {
   padding: 5px 10px;
   margin: 20px 0 0 0;
-  border-radius: 5px;   
+  border-radius: 5px;
   font: 0.8em/1.5 "Consolas", monospace;
   background-color: #f8f8ff;
   text-align: left;
