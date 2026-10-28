@@ -66,7 +66,7 @@ function StartTest() {
     test.questions[i].text ??= '---';
     test.questions[i].notRnd ??= false;
     test.questions[i].img ??= '';
-    if (test.questions[i].img !== '') test.questions[i].img = offlineFolder + test.questions[i].img;
+    if (test.questions[i].img !== '') test.questions[i].img = test.offlineFolder + test.questions[i].img;
     test.questions[i].answers ??= [];
     for (let j = 0; j < test.questions[i].mas.length; j++) {
       let c = test.questions[i].mas[j].endsWith(' ');
