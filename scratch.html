@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="uk" ontouchstart="touchStart()" ontouchend="touchEnd(listBox.selectedIndex)">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Задачі (Scratch)</title>
+
+<!--================================-->
+<style>
+body {
+  margin: 0;
+  padding: 5px;
+  text-align: center;
+  font-family: "Arial", sans-serif;
+  font-size: '';
+  color: #333333;
+  background-color: #f5f4e5;
+}
+.task-content {
+  margin: 5px;
+  padding: 2px;
+  max-width: 600px;
+  line-height: 1.3;
+  background-color: #ffffff;
+}
+@media screen and (min-width:900px) {
+  body {font-size: 18px;}
+  .task-content {margin: 5px 120px}
+}
+.task-header {
+  margin: 0;
+  padding: 2px;
+  display: flex;
+  border-radius: 5px;
+  line-height: 2;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #8fbc8f;
+}
+.task-button {
+  overflow: hidden;
+  margin: 1px;
+  padding: 2px 4px;
+  width: 35px;
+  border: 1px solid #333333;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #d0ecf4, #5bc9e1, #d0ecf4);
+  cursor: pointer;
+}
+select {
+  min-width: 120px;
+  padding: 2px 5px;
+  font-size: 1em;
+  border: 2px outset #333333;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #ffffff, #b0c4de, #ffffff);
+}
+.task-title {
+  padding: 20px 0 10px 0;
+}
+.task-number {
+  padding-right: 7px;
+  font-weight: bold;
+}
+.task-obj, .task-solve-container  {
+  max-width: 600px;
+  margin: 10px auto;
+  text-align: center;
+ }
+.task-obj img, .task-obj video, .task-solve-container img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 1px dotted #333333;
+  border-radius: 5px;
+}
+.task-text {
+  padding: 5px 15px 10px 15px;
+  text-align: left;
+  line-height: 1.5;
+}
+.task-solve {
+  padding: 5px;
+}
+.task-solve-title {
+  padding: 7px;
+  border-top: 1px dotted #333333;
+  font-size: 0.9em;
+  font-style: italic;
+  text-align: center;
+  font-weight: bold;
+}
+input {
+  margin: 2px 10px;
+}
+</style>
+
+<!--================================-->
+<body onload="Start(location.search)">
+
+<div class="task-content">
+  <div class="task-header">
+    <div class="task-button" onclick="ShowItem(listBox.selectedIndex - 1)">&#9668;</div>
+    <select id="listBox" size="1" onchange="ShowItem(this.selectedIndex)"></select>
+    <div class="task-button" onclick="ShowItem(listBox.selectedIndex + 1)">&#9658;</div>
+  </div>
+  <div class="task-title"><span class="task-number" id="taskNumber"></span><span id="taskName"></span></div>
+  <div class="task-obj"><video id="taskVideo" controls><source src="" type="video/mp4"></video></div>
+  <div class="task-text" id="taskText"></div>
+
+  <div id="taskSolveTitle" class="task-solve-title">
+    <label><input type="checkbox" id="taskIsSolve" onclick="ViewSolve()"> Розв'язок </label>
+  </div>
+  <div id="taskSolve" class="task-solve">
+    <div class="task-solve-container"><img id="taskSolveImage" src="" alt=""></div>
+  </div>
+
+</div>
+
+</body>
+
+<!--================================-->
+<script>
+var startX, startY;
+var myList = document.getElementById('listBox');
+var myNumber = document.getElementById('taskNumber');
+var myName = document.getElementById('taskName');
+var myVideo = document.getElementById('taskVideo');
+var myText = document.getElementById('taskText');
+var mySolve = document.getElementById('taskSolve');
+var myIsSolve = document.getElementById('taskIsSolve');
+var mySolveTitle = document.getElementById('taskSolveTitle');
+var mySolveImage = document.getElementById('taskSolveImage');
+
+var n = 0;
+const SCRATCH_FOLDER = 'scratch/';
+
+//-------------------------------------
+function Start(txt) {
+  let s = '';
+  for (let i = 0; i < tasks.length; i++) {
+    s += '<option>' + (i + 1) + ('solve' in tasks[i] ? '°' : '') + '</option>';
+  }
+  myList.innerHTML = s;
+
+  const par = decodeURI(txt).trim().slice(1);
+  n = (par.length > 0 && !isNaN(par) && Number.isInteger(Number(par))) ? Number(par) - 1 : 0
+  ShowItem(n);
+}
+
+//-------------------------------------
+function ViewSolve() {
+  if (myIsSolve.checked) {
+    mySolveImage.src = SCRATCH_FOLDER + tasks[n].name + '.png'
+    mySolve.style.display = '';
+  } else {
+    mySolveImage.src = '';
+    mySolve.style.display = 'none';
+  }
+}
+
+//-------------------------------------
+function ShowItem(num) {
+  if (tasks.length === 0) return;
+  n = num;
+  if (n >= tasks.length) n = tasks.length - 1;
+  if (n < 0) n = 0;
+
+  let task = tasks[n];
+
+  myNumber.innerHTML = '№&nbsp;' + (n + 1) + '.';
+  myName.innerHTML = task.name ?? '-';
+  if ('noView' in task) {
+    myVideo.src = '';
+    myVideo.style.display = 'none';
+    myText.innerHTML = '';
+    myText.style.display = 'none';
+  } else {
+
+    myVideo.src = SCRATCH_FOLDER + task.name + '.mp4';
+    myVideo.style.display = '';
+    if ('text' in task) {
+      myText.innerHTML = task.text;
+      myText.style.display = '';
+    } else {
+      myText.innerHTML = '';
+      myText.style.display = 'none';
+    }
+
+    myIsSolve.checked = false;
+    mySolveImage.src = '';
+    mySolve.style.display = 'none';
+    if ('solve' in task) {
+      mySolveTitle.style.display = '';
+    } else {
+      mySolveTitle.style.display = 'none';
+    }
+  }
+
+  myList.selectedIndex = n;
+}
+
+//-------------------------------------
+function touchStart() {
+  startX = event.touches[0].clientX;
+  startY = event.touches[0].clientY;
+}
+function touchEnd(n) {
+  let dX = event.changedTouches[0].clientX - startX;
+  let dY = event.changedTouches[0].clientY - startY;
+  if (dX > 50 && Math.abs(dX) > Math.abs(dY)) ShowItem(n - 1);
+  if (dX < -50 && Math.abs(dX) > Math.abs(dY)) ShowItem(n + 1);
+}
+
+//=====================================
+const tasks = [
+
+//-------------------------------------
+/* лін */ {name:'На пляжі', text:'Встановіть сцену&nbsp;– морське узбережжя (наприклад, Beach&nbsp;Malibu). Розташуйте на&nbsp;суші і воді (правильно!) декількох тваринок.'},
+/* лін */ {name:'Діалог', text:'Зустрічаються двоє виконавців. Між&nbsp;ними відбувається невеликий діалог, і вони розходяться.'},
+/* лін */ {name:'Лякалки', text:'Привиди чи страшні тварини лякають інших.'},
+/* лін */ {name:'Переправа', text:'Намалюйте власний образ сцени&nbsp;– річку і міст через&nbsp;неї. Створіть сім’ю тваринок, яка повинна перейти через&nbsp;річку по&nbsp;мосту (можна з&nbsp;різних сторін).'},
+/* лін */ {name:'Хижаки', text:'Зустрічаються двоє звірів. Один з&nbsp;них великий і страшний (наприклад, Слон, Акула, Динозавр, Сова, Ведмідь). Цей&nbsp;звір при зустрічі з&nbsp;меншою тваринкою повинен змінити образ на&nbsp;інший&nbsp;– грізнішій, таким&nbsp;чином відлякуючи меншу тваринку.'},
+/* лін */ {name:'Акула'},
+/* лін */ {name:'Футбол', noView:true},
+
+/* олів */ {name:'Прапорець', text:'Команди групи Олівець'},
+/* олів */ {name:'Лінії', text:'Команди групи Олівець'},
+/* олів */ {name:'Пунктир', text:'Команди групи Олівець'},
+/* олів */ {name:'Літера Л', text:'Команди групи Олівець'},
+/* олів */ {name:'Літера И', text:'Команди групи Олівець'},
+/* олів */ {name:'Слово', text:'Команди групи Олівець'},
+
+/* цикл */ {name:'Гімнастика', text:'Двоє людей роблять гімнастику.'},
+/* цикл */ {name:'Вартовий', text:'Вартовий постійно ходить туди і&nbsp;назад.'},
+/* цикл */ {name:'Вітряки', text:'Намалюйте 2&nbsp;вітряки, що обертаються.'},
+/* цикл */ {name:'Жабка на лавці', text:'Жабка постійно стрибає з&nbsp;одного кінця лавки на&nbsp;інший.'},
+/* цикл */ {name:'Сонце і Земля', text:'Намалюйте Сонце і&nbsp;Землю, яка постійно крутиться довкола Сонця.'},
+/* цикл */ {name:'Футболіст', text:'Кіт бігає разом з&nbsp;м’ячем по&nbsp;полю.'},
+/* цикл */ {name:'Годинник', text:'Намалюйте працюючий годинник.'},
+/* цикл */ {name:'Заєць-утікач', text:'Заєць віддаляється і потрохи зникає вдалині.'},
+/* цикл */ {name:'Заставка'},
+/* цикл */ {name:'Обхід'},
+/* цикл */ {name:'Тунель', text:'Домалюйте тунель. Кіт повинен пройти крізь нього.'},
+/* цикл */ {name:'Таймер', text:'Домалюйте кнопку, яка запускає таймер'},
+
+/* штамп */ {name:'Полуниці', text:'Маючи 1&nbsp;полуницю, «посадіть» 5-7&nbsp;полуниць у&nbsp;ряд.'},
+/* штамп */ {name:'Веселка', text:'Намалювавши 1&nbsp;червону смугу, створіть веселку.'},
+/* штамп */ {name:'Зоряне небо', text:'З&nbsp;однієї намальованої зірки створіть 20&nbsp;різнокольорових.'},
+/* штамп */ {name:'Квітка', text:'Намалювавши 1&nbsp;пелюстку, створіть квітку.'},
+
+/* вип */ {name:'Спритна мишка', text:'Мишка повинна з’являтись у&nbspрізних місцях екрану і щось говорити.'},
+/* вип */ {name:'Рулетка', text:'Намалюйте рулетку і покрутіть&nbsp;її!'},
+/* вип */ {name:'Гральний кубик', text:'Вкидання грального кубика: через певний час випадає число від&nbsp;1 до&nbsp;6'},
+/* вип+штамп */ {name:'Парк', text:'«Посадіть» 15&nbsp;дерев та метеликів різного розміру у&nbsp;різних місцях, маючи лише 1&nbsp;дерево і 1&nbsp;метелик.'},
+/* вип+штамп */ {name:'Мозаїка', text:'Вкидання грального кубика: через певний час випадає число від&nbsp;1 до&nbsp;6'},
+/* вип+штамп */ {name:'Зоряне небо-2', text:'З&nbsp;однієї намальованої зірки створіть 20&nbsp;різнокольорових. Зірки різного розміру, кольору та напрямку'},
+/* вип+штамп */ {name:'Випадковий номер', text:'З’являються 10&nbsp;випадкових чисел&nbsp;- номер телефону'},
+
+/* олів+цикл */ {name:'Сніжинка', text:'Команди групи Олівець.<br>Можете змінити число 8&nbsp;(повторити) і число 45&nbsp;(градусів).'},
+/* олів+цикл */ {name:'Зірочки', text:'Команди групи Олівець.<br>Можете змінити число повторень на&nbsp;9, а&nbsp;градуси на&nbsp;– 80.'},
+/* олів+цикл */ {name:'Фігура', text:'Команди групи Олівець.<br>Намалюйте 5-кутник, або&nbsp;8-кутник, або&nbsp;10-кутник.'},
+/* олів+цикл */ {name:'Сходи', text:'Команди групи Олівець'},
+/* олів+цикл */ {name:'Пішохідний перехід', text:'Команди групи Олівець'},
+/* олів+цикл */ {name:'Похилі прямокутники', text:'Команди групи Олівець'},
+
+/* розг */ {name:'Де я', text:'Кіт говорить про&nbsp;своє розташування: вступив у&nbsp;калюжу чи ще&nbsp;ні; торкається Собаки чи&nbsp;ні.<br>Додайте перевірку того, чи&nbsp;Кіт наблизився на&nbsp;певну відстань до&nbsp;Собаки.'},
+/* розг */ {name:'Так-Ні', text:'Кіт задає вам питання і каже чи&nbsp;ваша відповідь на&nbsp;запитання правильна чи&nbsp;ні'},
+/* розг */ {name:'Опитування', text:'Кіт питає про ваш&nbsp;знак зодіаку і розповідає про цей&nbsp;знак щось цікаве.'},
+/* розг (розг+розг) */ {name:'Багато-Мало', text:'Кіт задає вам питання і каже чи&nbsp;ваша відповідь на&nbsp;запитання завелика, замала чи правильна'},
+/* розг (розг+розг) */ {name:'Світлофор', text:'Кіт питає, який колір світлофора і каже: можна йти, зачекати чи стояти'},
+/* розг+розг */ {name:'Погода', text:'Кіт питає, яка погода і скільки градусів і дає пораду, як одягнутись'},
+/* розг+розг */ {name:'Квиток', text:'Кіт перевіряє чи є квиток і скільки років (адже до 12&nbsp;років можна йти з&nbsp;батьками).'},
+/* розг+розг */ {name:'Оцінка', noView:true, text:'Кіт питає, яка оцінка і каже: нормальна, погана чи добра'},
+
+/* розг+цикл */ {name:'Туди-сюди'},
+/* розг+цикл */ {name:'Дощ', text:'Кіт перемішується стрілками ліворуч-праворуч.<br>Якщо торкнеться болота&nbsp;- то тікає з&nbspнього.<br>Якщо на&nbsp;нього попаде крапля&nbsp;- то Кіт змінює колір.'},
+/* розг+цикл */ {name:'Дощ-2'},
+/* розг+цикл */ {name:'Світ тварин', text:'Натискаємо клавішу «1»&nbsp;- виконавець підходить до&nbsp;однієї тварини і розповідає щось про&nbsp;неї,<br>натискаємо клавішу «2»&nbsp- до&nbsp;іншої тварини.'},
+/* розг+цикл */ {name:'Титанік', noView:true},
+/* розг+цикл (передумов) */ {name:'Більярд'},
+/* розг+цикл (передумов) */ {name:'Зустріч'},
+/* передумов */ {name:'Світ тварин-2'},
+/* передумов */ {name:'Кролик і кавун', text:'Кавун з’являється «де&nbsp;захоче». Кролик намагається його піймати'},
+/* передумов */ {name:'Перешкода', noView:true},
+
+/* олів+розг+цикл */ {name:'Власний Paint'},
+
+/* розг+цикл+опер */ {name:'Рух по дорозі'},
+/* розг+цикл+опер */ {name:'Шлюз', text:'Шлюз відкривається, коли кораблик наблизиться на&nbsp;певну відстань.'},
+/* розг+цикл+опер */ {name:'Серце'},
+
+/* розг+цикл+опер+вип */ {name:'Поміж кульками'},
+
+/* цикл+цикл+штамп */ {name:'Палички'},
+/* цикл+цикл+штамп */ {name:'Намисто', text:'Зобразіть не&nbsp; шестикутник, а квадрат або п’ятикутник'},
+/* цикл+цикл+штамп */ {name:'Клони'},
+/* цикл+цикл+штамп */ {name:'Квіткове поле', text:'Квітки з’являються «де&nbsp;захочуть», різних&nbsp;кольорів та різного&nbsp;розміру.'},
+/* цикл+цикл+штамп */ {name:'Шахівниця', noView:true},
+
+/* цикл+цикл+розг+опер */ {name:'Стрибунець на дорозі'},
+
+/* підпрг */ {name:'До корабля'},
+/* підпрг */ {name:'На_дорозі'},
+/* підпрг */ {name:'Екскурсія', text:'Натискаємо на кнопку - людина показує і говорить по-різному'},
+/* підпрг */ {name:'Космічна подорож', text:'Ракету треба малювати!'},
+/* підпрг */ {name:'Пенальті', noView:true, text:'Поле з&nbsp;воротами треба малювати!'},
+/* підпрг */ {name:'Ліфт'},
+/* підпрг */ {name:'Свято', noView:true},
+/* підпрг */ {name:'ППО'},
+
+/* цикл+цикл+підпрг */ {name:'НЛО'},
+/* цикл+цикл+підпрг */ {name:'Таймер-2', text:'Домалюйте кнопку, яка запускає таймер'},
+
+/* олів+цикл+змін */ {name:'Похилі трикутники'},
+/* олів+цикл+змін */ {name:'Спіралі'},
+/* олів+цикл+цикл+змін */ {name:'Павутиння'},
+
+]
+
+//-------------------------------------
+</script>

@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="uk" ontouchstart="touchStart()" ontouchend="touchEnd(listBox.selectedIndex)">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Задачі (JavaScript)</title>
+
+<!--================================-->
+<style>
+  body {
+    margin: 0;
+    padding: 5px;
+    font-family: "Arial", sans-serif;
+    font-size: '';
+    color: #333333;
+    background-color: #f5f4e5;
+  }
+
+  .task-content {
+    margin: 5px;
+    padding: 2px;
+    max-width: 600px;
+    line-height: 1.5;
+    background-color: #ffffff;
+  }
+
+  @media screen and (min-width:900px) {
+    body {
+      font-size: 18px
+    }
+
+    .task-content {
+      margin: 5px 120px
+    }
+  }
+
+  .task-header {
+    margin: 0;
+    padding: 2px;
+    display: flex;
+    border-radius: 5px;
+    line-height: 2;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    background-color: #8fbc8f;
+  }
+
+  .task-button {
+    overflow: hidden;
+    margin: 1px;
+    padding: 2px 4px;
+    width: 35px;
+    border: 1px solid #333333;
+    border-radius: 5px;
+    background: linear-gradient(to bottom, #d0ecf4, #5bc9e1, #d0ecf4);
+    cursor: pointer;
+  }
+
+  select {
+    min-width: 120px;
+    padding: 2px 5px;
+    font-size: 1em;
+    border: 2px outset #333333;
+    border-radius: 5px;
+    background: linear-gradient(to bottom, #ffffff, #b0c4de, #ffffff);
+  }
+
+  .task-main {
+    padding: 10px 5px 5px 5px;
+  }
+
+  .task-number {
+    padding-right: 7px;
+    font-weight: bold;
+  }
+
+  .task-text {
+    padding: 5px;
+  }
+
+  .task-hint {
+    padding-bottom: 5px;
+    font-size: 0.9em;
+  }
+
+  .task-in-out {
+    padding: 5px;
+    background-color: #fffff0;
+    border: 1px dotted #333333;
+  }
+
+  .task-in-title,
+  .task-out-title {
+    padding: 5px 30px;
+    font-size: 0.9em;
+    font-style: italic;
+    font-weight: bold;
+  }
+
+  .task-in,
+  .task-out {
+    padding: 5px 10px;
+    font-size: 0.9em;
+  }
+
+  .task-container,
+  .task-solve-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .task-container img,
+  .task-solve-container img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    border-radius: 5px;
+    border: 1px dotted #333333;
+    object-fit: contain;
+  }
+
+  .task-tests {
+    padding: 10px;
+    font-size: 0.9em;
+    font-family: "Consolas", monospace;
+    background-color: #f8f8ff;
+  }
+
+  .task-tests table {
+    border-spacing: 5px;
+  }
+
+  .task-tests td {
+    min-width: 30px;
+    padding: 2px 3px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .task-solve {
+    padding: 5px;
+  }
+
+  .task-solve-title {
+    padding: 7px;
+    border-top: 1px dotted #333333;
+    font-size: 0.9em;
+    font-style: italic;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .my-css-style {
+    margin: 2px;
+    border-top: 1px dotted #333333;
+    background-color: #f8f8ff;
+    padding: 5px;
+    font-size: 0.8em;
+    line-height: 1.4;
+  }
+
+  input {
+    margin: 2px 10px;
+  }
+</style>
+
+<!--================================-->
+
+<body onload="Start(location.search)">
+
+  <div class="task-content">
+    <div class="task-header">
+      <div class="task-button" onclick="ShowItem(listBox.selectedIndex - 1)">&#9668;</div>
+      <select id="listBox" size="1" onchange="ShowItem(this.selectedIndex)"></select>
+      <div class="task-button" onclick="ShowItem(listBox.selectedIndex + 1)">&#9658;</div>
+    </div>
+
+    <div class="task-main">
+      <div class="task-text">
+        <span class="task-number" id="taskNumber"></span>
+        <span id="taskText"></span>
+      </div>
+      <div id="taskHint" class="task-hint"></div>
+      <div class="task-container"><img id="taskImage" src="" alt=""></div>
+    </div>
+
+    <div class="task-in-out">
+      <div id="taskInTitle" class="task-in-title">Дано:</div>
+      <div id="taskIn" class="task-in"></div>
+      <div id="taskOutTitle" class="task-out-title">Результат:</div>
+      <div id="taskOut" class="task-out"></div>
+    </div>
+
+    <div id="taskTests" class="task-tests">Тести</div>
+    <div id="taskSolveTitle" class="task-solve-title">
+      <label><input type="checkbox" id="taskIsSolve" onclick="ViewSolve()"> Розв'язок </label>
+    </div>
+    <div id="taskSolve" class="task-solve">
+      <div class="task-solve-container"><img id="taskSolveImage" src="" alt=""></div>
+      <div class="my-css-style">
+        Для красивого вигляду першим рядком запишіть:<br>
+        &lt;link rel="stylesheet" href= "https://infobooks.github.io/task.css"&gt;<br><br>
+        Крім VSCode можна програмувати на&nbsp;онлайн-ресурсах:<br>
+        1) <a href="https://w3schoolsua.github.io/htmltryit/tryhtml_default.html" target="_blank">W3SchoolsUA</a>
+        2) <a href="https://jsfiddle.net/" target="_blank">JSFiddle</a>
+        3) <a href="https://onecompiler.com/html" target="_blank">OneCompiler</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+<!--================================-->
+<script>
+  var startX, startY;
+  var myList = document.getElementById('listBox');
+  var myNumber = document.getElementById('taskNumber');
+  var myText = document.getElementById('taskText');
+  var myIn = document.getElementById('taskIn');
+  var myInTitle = document.getElementById('taskInTitle');
+  var myOut = document.getElementById('taskOut');
+  var myOutTitle = document.getElementById('taskOutTitle');
+  var myTests = document.getElementById('taskTests');
+  var myHint = document.getElementById('taskHint');
+  var myImage = document.getElementById('taskImage');
+  var mySolve = document.getElementById('taskSolve');
+  var myIsSolve = document.getElementById('taskIsSolve');
+  var mySolveTitle = document.getElementById('taskSolveTitle');
+  var mySolveImage = document.getElementById('taskSolveImage');
+
+  var n = 0;
+  const JS_FOLDER = 'javascript/';
+
+  //-------------------------------------
+  function Start(txt) {
+    let s = '';
+    let sign = '';
+    for (let i = 0; i < tasks.length; i++) {
+      sign = '';
+      if ('solve' in tasks[i]) sign = '°';
+      if (!('text' in tasks[i])) sign = ' -';
+      s += '<option>' + (i + 1) + sign + '</option>';
+    }
+    myList.innerHTML = s;
+
+    const par = decodeURI(txt).trim().slice(1);
+    n = (par.length > 0 && !isNaN(par) && Number.isInteger(Number(par))) ? Number(par) - 1 : 0;
+    ShowItem(n);
+  }
+
+  //-------------------------------------
+  function ViewSolve() {
+    if (myIsSolve.checked) {
+      mySolveImage.src = JS_FOLDER + 'js' + (n + 1) + '+.png'
+      mySolve.style.display = '';
+    } else {
+      mySolveImage.src = '';
+      mySolve.style.display = 'none';
+    }
+  }
+
+  //-------------------------------------
+  function ShowItem(num) {
+    if (tasks.length === 0) return;
+    n = num;
+    if (n >= tasks.length) n = tasks.length - 1;
+    if (n < 0) n = 0;
+
+    let task = tasks[n];
+
+    //-----------------
+    myNumber.innerHTML = '№&nbsp;' + (n + 1) + '.';
+    if ('noView' in task) {
+      myText.innerHTML = 'Приховано!';
+      myIn.innerHTML = '';
+      myIn.style.display = 'none';
+      myInTitle.style.display = 'none';
+      myOut.innerHTML = '';
+      myOut.style.display = 'none';
+      myOutTitle.style.display = 'none';
+      myTests.innerHTML = '';
+      myTests.style.display = 'none';
+      myHint.innerHTML = '';
+      myHint.style.display = 'none';
+      myImage.src = '';
+      myImage.style.display = 'none';
+      mySolveImage.src = '';
+      mySolve.style.display = 'none';
+    } else {
+
+      if ('text' in task) {
+        myText.innerHTML = task.text;
+        myText.style.display = '';
+      } else {
+        myText.innerHTML = 'Приховано!';
+      }
+      if ('inTitle' in task) {
+        myIn.innerHTML = task.inTitle.map((num, index) => `${index + 1}) ${num}`).join('<br>');
+        myIn.style.display = '';
+        myInTitle.style.display = '';
+      } else {
+        myIn.innerHTML = '';
+        myIn.style.display = 'none';
+        myInTitle.style.display = 'none';
+      }
+      if ('outTitle' in task) {
+        myOut.innerHTML = task.outTitle.map((num, index) => `${index + 1}) ${num}`).join('<br>');
+        myOut.style.display = '';
+        myOutTitle.style.display = '';
+      } else {
+        myOut.innerHTML = '';
+        myOut.style.display = 'none';
+        myOutTitle.style.display = 'none';
+      }
+      if ('tests' in task) {
+        myTests.innerHTML = '<table>' + task.tests.map(row => '<tr>' +
+          row.map(item => `<td>${item}</td>`).join('') + '</tr>').join('') + '</table>';
+        myTests.style.display = '';
+      } else {
+        myTests.innerHTML = '';
+        myTests.style.display = 'none';
+      }
+      if ('hint' in task) {
+        myHint.innerHTML = '(підказка: ' + task.hint + ')';
+        myHint.style.display = '';
+      } else {
+        myHint.innerHTML = '';
+        myHint.style.display = 'none';
+      }
+      if ('img' in task) {
+        myImage.src = JS_FOLDER + 'js' + (n + 1) + '.png';
+        myImage.style.display = '';
+      } else {
+        myImage.src = '';
+        myImage.style.display = 'none';
+      }
+      myIsSolve.checked = false;
+      mySolveImage.src = '';
+      mySolve.style.display = 'none';
+      if ('solve' in task) {
+        mySolveTitle.style.display = '';
+      } else {
+        mySolveTitle.style.display = 'none';
+      }
+    }
+
+    myList.selectedIndex = n;
+  }
+
+  //-------------------------------------
+  function touchStart() {
+    startX = event.touches[0].clientX;
+    startY = event.touches[0].clientY;
+  }
+  function touchEnd(n) {
+    let dX = event.changedTouches[0].clientX - startX;
+    let dY = event.changedTouches[0].clientY - startY;
+    if (dX > 50 && Math.abs(dX) > Math.abs(dY)) ShowItem(n - 1);
+    if (dX < -50 && Math.abs(dX) > Math.abs(dY)) ShowItem(n + 1);
+  }
+
+  //=====================================
+  const tasks = [
+
+// 9
+/* лін */ {
+      text: 'Микола отримав премію 20% від&nbsp;зарплати.<br>А&nbsp;скільки це гривень?',
+      inTitle: ['зарплата Миколи'],
+      outTitle: ['премія Миколи (в&nbsp;гривнях)'],
+      tests: [
+        [4254.57, '==>', 850.91],
+        [12356.13, '==>', 2471.23],
+        [110, '==>', 22.00],
+      ]
+    },
+
+// 10
+/* лін */ {
+      text: 'Курс долара&nbsp;США зріс протягом року на&nbsp;4,59.<br>Який курс долара у&nbsp;кінці року, якщо відомий його курс на&nbsp;початку року?',
+      inTitle: ['курс долара на&nbsp;початку року'],
+      outTitle: ['курс долара у&nbsp;кінці року'],
+      tests: [
+        [23.69, '==>', 28.28],
+        [3.2, '==>', 7.79],
+      ]
+    },
+
+// 11
+/* лін */ {
+      text: 'У&nbsp;Миколи є брат молодший за&nbsp;нього на&nbsp;4&nbsp;роки.<br>Скільки років брату, якщо відомий вік Миколи?',
+      inTitle: ['вік Миколи'],
+      outTitle: ['вік брата'],
+      tests: [
+        [11, '==>', 7],
+        [54, '==>', 50],
+      ]
+    },
+
+// 12
+/* лін */ {
+      text: 'Микола щомісяця платить за користування Інтернетом.<br>Скільки він заплатив за&nbsp;останні півроку Інтернет-провайдеру?',
+      inTitle: ['щомісячна плата за&nbsp;Інтернет'],
+      outTitle: ['плата за&nbsp;півроку'],
+      tests: [
+        [123, '==>', 738],
+        [55, '==>', 330],
+        [400, '==>', 2400],
+      ]
+    },
+
+// 13
+/* лін */ {
+      text: 'Микола купив декілька однакових подарункових коробок з&nbsp;цукерками.<br>Скільки всього купив цукерок Микола, якщо відома кількість цукерок в&nbsp;одній коробці?',
+      inTitle: ['кількість коробок', 'кількість цукерок в&nbsp;одній коробці'],
+      outTitle: ['уся кількість цукерок'],
+      tests: [
+        [1, 6, '==>', 6],
+        [15, 4, '==>', 60],
+        [98, 0, '==>', 0],
+      ]
+    },
+
+// 15
+/* лін */ {
+      text: '7-і та 8-і класи зібрали разом макулатуру та запакували в&nbsp;ящики по&nbsp;40&nbsp;кг.<br>Скільки утворилось ящиків?',
+      inTitle: ['вага макулатури 7-класників', 'вага макулатури 8-класників'],
+      outTitle: ['кількість створених ящиків'],
+      tests: [
+        [212, 456, '==>', 16.7],
+        [31, 2, '==>', 0.8],
+        [1011, 37, '==>', 26.2],
+      ]
+    },
+
+// 17
+/* лін-2 */ {
+      text: 'Микола узяв в&nbsp;банку кредит на декілька років.<br>Яку однакову суму повинен виплачувати Микола кожен рік?<br>А&nbsp;кожен місяць?',
+      inTitle: ['сума кредиту', 'кількість років для&nbsp;сплати кредиту'],
+      outTitle: ['щорічна сплата кредиту', 'щомісячна сплата кредиту'],
+      tests: [
+        [10000, 5, '==>', 2000.00, 166.67],
+        [125000, 7, '==>', 17857.14, 1488.10],
+        [4500, 10, '==>', 450.00, 37.50],
+      ]
+    },
+
+// 20
+/* лін-2 */ {
+      text: 'Складіть програму, яка переводить години в доби та хвилини.',
+      inTitle: ['кількість годин'],
+      outTitle: ['кількість діб', 'кількість хвилин'],
+      tests: [
+        [26, '==>', 1.083, 1560],
+        [217, '==>', 9.0416, 13020],
+      ]
+    },
+
+// 43
+/* ф-ли */ {text: 'Яка кінетична енергія літака, що летить з&nbsp;відомою швидкістю?',
+  inTitle: ['маса літака - <b>m</b>', 'швидкість літака - <b>v</b>'],
+  outTitle: ['кінетична енергія літака - <b>K</b>'],
+  img: true,
+  tests: [
+    [720, 111, '==>', 4435560],
+    [13, 29, '==>', 5467],
+  ]},
+
+
+// 23
+/* лін-2 */ {
+      text: 'Микола мав декілька доларів. Спочатку він їх перевів у&nbsp;гривні, а&nbsp;потім розміняв по&nbsp;25&nbsp;копійок.<br>Скільки гривень, а потім монет отримав Микола?',
+      hint: '1&nbsp;$&nbsp;= 41.53&nbsp;грн',
+      inTitle: ['кількість доларів'],
+      outTitle: ['кількість гривень', 'кількість 25-копійчаних монет'],
+      tests: [
+        [20, '==>', 830.60, 3322],
+        [7, '==>', 290.71, 1163],
+        [217, '==>', 9012.01, 36048],
+      ]
+    },
+
+//////////////////////////////////////////////////////
+// 24
+/* лін-3 */ {
+      text: 'Микола зі свого доходу віддає:<br>19,5&nbsp;%&nbsp;– податки і військовий збір;<br>500&nbsp;грн&nbsp;– на&nbsp;ЗСУ (але, якщо дохід більше 10000&nbsp;грн);<br>1/4&nbsp;– своїй бабусі (з&nbsp;того, що&nbsp;залишилось).<br>Скільки грошей отримає бабуся? А&nbsp;скільки залишиться у&nbsp;самого Миколи?',
+      inTitle: ['дохід Миколи'],
+      outTitle: ['гроші, які отримає бабуся', 'зарплата, що&nbsp;залишиться в&nbsp;Миколи'],
+      tests: [
+        [23560.56, '==>', 4617, 13849.69],
+        [12400, '==>', 2371, 7111.50],
+        [5680.24, '==>', 1143, 3429.44],
+      ]
+    },
+
+// 26
+/* лін-3 */ {
+      text: 'Згідно статистики одна викурена сигарета в&nbsp;середньому вкорочує життя людини на&nbsp;4&nbsp;хв.<br>Скільки днів за своє життя «втратив» курець від сигарет, якщо відомо, скільки він їх викурює за&nbsp;день?',
+      inTitle: ['вік курця', 'кількість сигарет, що викурюються за&nbsp;день'],
+      outTitle: ['кількість днів життя, які «втратив» курець'],
+      tests: [
+        [42, 5, '==>', 212.9],
+        [120, 1, '==>', 123.70],
+        [17, 16, '==>', 275.8],
+      ]
+    },
+
+// 48
+/* розг */ {
+      text: 'Микола отримав у&nbsp;спадщину деяку суму&nbsp;грошей.<br>Чи&nbsp;може він купити собі будинок ціною 250000&nbsp;грн?',
+      inTitle: ['сума грошей'],
+      outTitle: ['чи можна купити будинок'],
+      tests: [
+        [5500, '==>', 'Не можна купити'],
+        [1350000, '==>', 'Можна купити'],
+        [250000, '==>', 'Можна купити'],
+      ]
+    },
+
+// 49
+/* розг */ {
+      text: 'Відомий вік людини.<br>Чи&nbsp;є вона повнолітньою?',
+      inTitle: ['вік людини'],
+      outTitle: ['чи&nbsp;є людина повнолітньою'],
+      tests: [
+        [99, '==>', 'Повнолітня'],
+        [7, '==>', 'Неповнолітня'],
+        [18, '==>', 'Повнолітня'],
+      ]
+    },
+
+// 52
+/* розг */ {
+      text: 'У&nbsp;супермаркеті при купівлі більше 10&nbsp;пляшок води 1&nbsp;пляшку («бонус») дають безкоштовно. Микола купив у&nbsp;цьому магазині воду.<br>Скільки він заплатив?',
+      inTitle: ['ціна 1&nbsp;пляшки води', 'кількість пляшок, які купив Микола'],
+      outTitle: ['сума грошей, яку заплатив Микола'],
+      tests: [
+        [12.45, 3, '==>', 37.35],
+        [15.50, 12, '==>', 170.50],
+        [3.00, 26, '==>', 75.00],
+      ]
+    },
+
+// 53
+/* розг */ {
+      text: 'У&nbsp;супермаркеті при купівлі більше&nbsp;20&nbsp;кг гречки надається знижка -5&nbsp;грн за&nbsp;кожен&nbsp;кг. Микола купив у&nbsp;цьому магазині гречку.<br>Скільки він заплатив?',
+      inTitle: ['вага гречки в&nbsp;Миколи', 'ціна 1&nbsp;кг&nbsp;гречки (без&nbsp;знижки)'],
+      outTitle: ['сума грошей, яку заплатив Микола'],
+      tests: [
+        [4, 47.80, '==>', 191.20],
+        [30, 15.50, '==>', 315.00],
+        [57, 23.00, '==>', 1026.00],
+      ]
+    },
+
+// 54
+/* розг */ {
+      text: 'Складіть програму, яка «пояснює» різні бали оцінювання у&nbsp;школі.',
+      hint: 'придумайте власні 4-5 описів',
+      inTitle: ['оцінка'],
+      outTitle: ['«пояснення» оцінки'],
+      tests: [
+        [6, '==>', 'нормально'],
+        [4, '==>', 'можна краще'],
+        [5, '==>', 'можна краще'],
+        [8, '==>', 'нормально'],
+        [12, '==>', 'супер!'],
+        [1, '==>', 'сумно :('],
+      ]
+    },
+
+// 58
+/* розг-2 */ {
+      text: 'Микола працював на&nbsp;заробітках у&nbsp;Польщі і в&nbsp;Німеччині.<br>В&nbsp;якій країні були більші заробітки і на&nbsp;скільки гривень?',
+      hint: '1&nbsp;євро&nbsp;=&nbsp;45&nbsp;грн; 1&nbsp;злотий&nbsp;=&nbsp;10.50&nbsp;грн',
+      inTitle: ['зарплата у&nbsp;Німеччині', 'зарплата у&nbsp;Польщі'],
+      outTitle: ['країна з&nbsp;більшим заробітком', 'різниця зарплат'],
+      tests: [
+        [40, 220, '==>', 'Польща', 510],
+        [525, 2250, '==>', 'Однаково у обох країнах', 0],
+        [250, 700, '==>', 'Німеччина', 3900],
+      ]
+    },
+
+//////////////////////////////////////////////
+// 59
+/* графіка */ {
+      name: 'Трикутник', text: 'Створіть форму, на&nbsp;якій зобразіть зафарбований трикутник.',
+      img: true, solve: true,
+      outTitle: ['зафарбований трикутник'],
+    },
+
+// 60
+/* графіка */ {
+      name: 'Трикутник-2', text: 'Створіть форму, на&nbsp;якій зобразіть зафарбований прямокутний трикутник.',
+      img: true,
+      outTitle: ['прямокутний трикутник'],
+    },
+
+// 61
+/* графіка */ {
+      name: 'Швейцарія', text: 'Створіть форму, на&nbsp;якій зобразіть прапор Швейцарії.',
+      img: true,
+      outTitle: ['прапор Швейцарії'],
+    },
+
+// 62
+/* графіка */ {
+      name: 'Коло у квадраті', text: 'Створіть форму, на&nbsp;якій коло, вписане у&nbsp;квадрат.',
+      img: true, solve: true,
+      outTitle: ['коло у квадраті'],
+    },
+
+// 63
+/* графіка */ {
+      name: 'Велика Британія', text: 'Створіть форму, на&nbsp;якій зобразіть прапор Великої Британії.',
+      img: true,
+      outTitle: ['прапор Великої Британії'],
+    },
+
+// 64
+/* графіка */ {
+      name: 'Хатинка', text: 'Створіть форму, на&nbsp;якій зобразіть хатинку.',
+      img: true,
+      outTitle: ['намальована хатинка'],
+    },
+
+// 65
+/* графіка */ {
+      name: 'Прапори', text: 'Створіть 4&nbsp;форми, на&nbsp;яких зобразіть прапори України, Японії, Бразилії, Чехії.',
+      hint: 'Можете спробувати розмістити усі прапори на&nbsp;одній формі',
+      img: true,
+      outTitle: ['4 прапори'],
+    },
+
+// 66
+/* графіка */ {},
+
+// 67
+/* графіка */ {},
+
+// 68
+/* графіка */ {},
+
+// 69
+/* графіка */ {},
+
+// 70
+/* графіка */ {},
+//////////////////////////////////////////////
+
+// 71
+/* форма-лін */ {
+      name: 'Обмін валют', text: 'Створіть форму для&nbsp;переведення гривень в&nbsp;іноземну валюту (наприклад, канадські&nbsp;долари).',
+      hint: 'зображення треба завантажувати у&nbsp;папку із&nbsp;задачею',
+      inTitle: ['кількість гривень'],
+      outTitle: ['кількість валюти'],
+      img: true,
+      tests: [
+        [10000, '==>', 335.22],
+        [587.50, '==>', 19.69],
+      ]
+    },
+
+// 72
+/* форма-лін-2 */ {
+      name: '9 клас', text: 'Створіть форму для&nbsp;обчислення суми і середньої кількості учнів у&nbsp;трьох 9-х&nbsp;класах.',
+      hint: 'зображення треба завантажувати у&nbsp;папку із&nbsp;задачею',
+      inTitle: ['учнів в&nbsp;9-А', 'учнів в&nbsp;9-Б', 'учнів в&nbsp;9-В'],
+      outTitle: ['усього учнів', 'середня кількість'],
+      img: true, solve: true,
+      tests: [
+        [30, 24, 17, '==>', 71, 23.7],
+        [11, 4, 7, '==>', 22, 7.3],
+      ]
+    },
+
+// 73
+/* форма-розг */ {
+      name: 'Тест', text: 'Створіть форму-тест. На&nbsp;задане запитання треба увести номер правильної відповіді.<br>Форма перевіряє правильність.',
+      hint: 'запитання і варіанти відповідей змініть на&nbsp;власні',
+      inTitle: ['номер відповіді'],
+      outTitle: ['чи правильна віповідь'],
+      img: true, solve: true,
+      tests: [
+        [2, '==>', 'Неправильно'],
+        [3, '==>', 'Правильно'],
+        [1, '==>', 'Неправильно'],
+      ]
+    },
+
+// 74
+/* форма-розг */ {
+      name: 'Тест-2', text: 'Створіть форму-тест. На&nbsp;задане запитання треба увести номер правильної відповіді.<br>На&nbsp;кожен варіант з\'являється різний коментар.',
+      hint: 'запитання і варіанти відповідей змініть на&nbsp;власні',
+      inTitle: ['номер відповіді'],
+      outTitle: ['коментар щодо вибору'],
+      img: true,
+      tests: [
+        [2, '==>', 'Дуу-у-у-же неправильно'],
+        [3, '==>', 'Правильно! Молодець!'],
+        [1, '==>', 'Хіба можна такого не знати!'],
+      ]
+    },
+
+///////////////////////////////////////////////////////
+// 75
+/* діап */ {
+      text: 'Банківські кредити на період від&nbsp;12 до&nbsp;36&nbsp;місяців вважаються середньостроковими. Микола узяв кредит у&nbsp;банку.<br>Чи&nbsp;відноситься його кредит до середньострокового?',
+      inTitle: ['кількість місяців, на&nbsp;які Микола узяв кредит'],
+      outTitle: ['чи&nbsp;є кредит середньостроковим'],
+      tests: [
+        [13, '==>', 'Середньостроковий'],
+        [7, '==>', 'Інший кредит'],
+        [120, '==>', 'Інший кредит'],
+        [25, '==>', 'Середньостроковий'],
+        [36, '==>', 'Середньостроковий'],
+        [39, '==>', 'Інший кредит'],
+      ]
+    },
+
+// 76
+/* діап */ {
+      text: 'Оператор у&nbsp;школі вводить у&nbsp;комп’ютер оцінки учнів. Створіть програму, яка перевіряє правильність уведення.',
+      inTitle: ['число, яке вводить оператор'],
+      outTitle: ['правильність уведення'],
+      tests: [
+        [4, '==>', 'оцінка правильна'],
+        [-9, '==>', 'помилка!'],
+        [56, '==>', 'помилка!'],
+        [1, '==>', 'оцінка правильна'],
+        [12, '==>', 'оцінка правильна'],
+        [0, '==>', 'помилка!'],
+      ]
+    },
+
+// 77
+/* діап */ {
+      text: 'Нормальна температура тіла здорової людини повинна бути в&nbsp;межах 36,5&nbsp;–&nbsp;37&nbsp;градусів. Микола виміряв власну температуру тіла.<br>Чи&nbsp;потрібно йому звернутись до&nbsp;лікаря?',
+      inTitle: ['температура тіла'],
+      outTitle: ['стан здоров’я'],
+      tests: [
+        [39.5, '==>', 'Ознака хвороби'],
+        [34.1, '==>', 'Ознака хвороби'],
+        [36.6, '==>', 'Все нормально'],
+        [37, '==>', 'Все нормально'],
+      ]
+    },
+
+// 78
+/* діап */ {
+      text: 'Нормальний пульс для людини віку Миколи становить від&nbsp;58 до&nbsp;100&nbsp;ударів за&nbsp;хвилину. Микола виміряв свій пульс.<br>Чи&nbsp;є його пульс у&nbsp;допустимих межах?',
+      inTitle: ['пульс Миколи'],
+      outTitle: ['чи&nbsp;є пульс у&nbsp;допустимих межах для здорової людини'],
+      tests: [
+        [143, '==>', 'Пульс поза межами'],
+        [99, '==>', 'Пульс у межах'],
+        [67, '==>', 'Пульс у межах'],
+        [58, '==>', 'Пульс поза межами'],
+        [80, '==>', 'Пульс у межах'],
+        [2, '==>', 'Пульс поза межами'],
+      ]
+    },
+
+
+
+
+
+// 81
+/* діап */ {
+      text: 'Із&nbsp;Землі запустили космічну ракету. Відома максимальна її швидкість.<br>А&nbsp;куди може долетіти така ракета?',
+      hint: 'до 7,9&nbsp;км/c&nbsp;– упаде на&nbsp;землю, від 7,9&nbsp;км/c&nbsp;– рух довкола Землі, від 11,2&nbsp;км/c&nbsp;– рух довкола Сонця, від 16,7&nbsp;км/c&nbsp;– рух за&nbsp;межі Сонячної системи, від 550&nbsp;км/c&nbsp;– рух за&nbsp;межі Галактики',
+      inTitle: ['швидкість ракети'],
+      outTitle: ['межа польоту ракети'],
+      tests: [
+        [13.8, '==>', 'довкола Сонця'],
+        [6, '==>', 'упаде на землю'],
+        [53, '==>', 'за Сонячну систему'],
+        [7.9, '==>', 'довкола Землі'],
+        [750, '==>', 'за межі Галактики'],
+        [11.1, '==>', 'довкола Землі'],
+      ]
+    },
+
+// 82
+/* діап */ {
+      text: 'До&nbsp;якої соціально-економічної групи людей відноситься Микола? Відомий вік&nbsp;Миколи.',
+      hint: 'до 14&nbsp;років&nbsp;– дитина, від 15 до 24&nbsp;років&nbsp;– рання працездатна, від 25 до 54&nbsp;років&nbsp;– основна працездатна, від 55 до 65&nbsp;років&nbsp;– зріла працездатна, від 65&nbsp;років&nbsp;– літні люди',
+      inTitle: ['вік людини&nbsp;(роки)'],
+      outTitle: ['назва соціально-економічної групи'],
+      tests: [
+        [80, '==>', 'літні люди'],
+        [6, '==>', 'дитина'],
+        [40, '==>', 'основна працездатна'],
+        [55, '==>', 'зріла працездатна'],
+        [15, '==>', 'рання працездатна'],
+        [65, '==>', 'зріла працездатна'],
+      ]
+    },
+
+// 83
+/* діап */ {
+      text: 'В&nbsp;Україні максимально дозволена швидкість у населених пунктах 50&nbsp;км/год. Відомо, з&nbsp;якою швидкістю рухається автомобіль Миколи.<br>Якщо Микола порушує правила, то яке покарання його очікує від дорожньої поліції?<br><span class="task-hint">(до&nbsp;50&nbsp;км/год&nbsp;– не&nbsp;порушує правил;<br>від&nbsp;51 до&nbsp;70&nbsp;км/год&nbsp;– усне попередження;<br>від&nbsp;71 до&nbsp;100&nbsp;км/год&nbsp;– штраф 340&nbsp;грн;<br>більше 100&nbsp;км/год&nbsp;– штраф 1700&nbsp;грн)</span>',
+      inTitle: ['швидкість автомобіля'],
+      outTitle: ['покарання за порушення правил'],
+      tests: [
+        [85, '==>', 'штраф 340&nbsp;грн'],
+        [55, '==>', 'усне попередження'],
+        [20, '==>', 'не порушує правил'],
+        [100, '==>', 'штраф 340&nbsp;грн'],
+        [150, '==>', 'штраф 1700&nbsp;грн'],
+        [70, '==>', 'усне попередження'],
+      ]
+    },
+
+// 84
+/* діап */ {
+      text: 'Розмір допомоги по непрацездатності («лікарняні») нараховують в&nbsp;залежності від&nbsp;стажу роботи. Микола захворів. Скільки відсотків від&nbsp;зарплати йому нараховують?<br><span class="task-hint">(до&nbsp;3&nbsp;років&nbsp;– 50&nbsp;%;<br>від&nbsp;3 до&nbsp;5&nbsp;років&nbsp;– 60&nbsp;%;<br>від&nbsp;5 до&nbsp;8&nbsp;років&nbsp;– 70&nbsp;%;<br>понад 8&nbsp;років&nbsp;– 100&nbsp;%)</span>',
+      inTitle: ['стаж роботи (тобто, скільки років працює Микола)'],
+      outTitle: ['розмір допомоги, який нараховують Миколі'],
+      tests: [
+        [1.3, '==>', '50&nbsp;%'],
+        [5, '==>', '60&nbsp;%'],
+        [3, '==>', '50&nbsp;%'],
+        [13, '==>', '100&nbsp;%'],
+        [6.7, '==>', '70&nbsp;%'],
+        [4.8, '==>', '60&nbsp;%'],
+      ]
+    },
+
+// 85
+/* діап */ {
+      text: 'До&nbsp;якої категорії належить автомобіль Миколи, якщо відомий об’єм його двигуна?<br><span class="task-hint">(до&nbsp;1,1&nbsp;літра&nbsp;– мікролітражка;<br>від&nbsp;1,2 до&nbsp;1,7&nbsp;літра&nbsp;– малолітражка;<br>від&nbsp;1,8 до&nbsp;3,3&nbsp;літра&nbsp;– середньолітражка;<br>понад 3,4&nbsp;літра&nbsp;– великолітражка)</span>',
+      inTitle: ['об’єм двигуна автомобіля'],
+      outTitle: ['категорія автомобіля'],
+      tests: [
+        [0.9, '==>', 'мікролітражка'],
+        [1.7, '==>', 'малолітражка'],
+        [3.3, '==>', 'середньолітражка'],
+        [4.1, '==>', 'великолітражка'],
+        [2, '==>', 'середньолітражка'],
+        [1.2, '==>', 'малолітражка'],
+      ]
+    },
+
+// 86
+/* діап */ {
+      text: 'Микола зустрів сусіда на&nbsp;вулиці. Як&nbsp;правильно йому слід привітатися в&nbsp;залежності від&nbsp;години&nbsp;дня?<br><span class="task-hint">(до&nbsp;12&nbsp;години&nbsp;– ранок;<br>від&nbsp;12 до&nbsp;18&nbsp;години&nbsp;– день;<br>від 18&nbsp;години&nbsp;– вечір)</span>',
+      inTitle: ['година дня'],
+      outTitle: ['правильне привітання'],
+      tests: [
+        [13, '==>', 'добрий день'],
+        [21, '==>', 'добрий вечір'],
+        [18, '==>', 'добрий вечір'],
+        [7, '==>', 'добрий ранок'],
+        [2, '==>', 'добрий ранок'],
+        [15, '==>', 'добрий день'],
+      ]
+    },
+
+// 87
+/* діап */ {
+      text: 'У&nbsp;лабораторії Микола нагрівав шматок свинцю. В&nbsp;якому агрегатному стані знаходиться свинець, якщо відома його температура?<br><span class="task-hint">(до&nbsp;328&nbsp;градусів&nbsp;– твердий;<br>від&nbsp;328 до&nbsp;1745&nbsp;градусів&nbsp;– рідина;<br>понад 1745&nbsp;градусів&nbsp;– газ)</span>',
+      inTitle: ['температура свинцю'],
+      outTitle: ['агрегатний стан свинцю'],
+      tests: [
+        [113, '==>', 'твердий'],
+        [560, '==>', 'рідина'],
+        [-18, '==>', 'твердий'],
+        [1745, '==>', 'газ'],
+        [12000, '==>', 'газ'],
+        [328, '==>', 'рідина'],
+      ]
+    },
+
+// 89
+/* діап-або */ {
+      text: 'Микола, граючи в&nbsp;рулетку, зробив ставку на&nbsp;числа  «14»  і  «26». Чи&nbsp;отримав Микола виграш?',
+      inTitle: ['число, що&nbsp;випало в&nbsp;рулетці'],
+      outTitle: ['чи&nbsp;заробив Микола гроші'],
+      tests: [
+        [12, '==>', 'ставка програна'],
+        [14, '==>', 'виграш'],
+        [31, '==>', 'ставка програна'],
+        [26, '==>', 'виграш'],
+        [21, '==>', 'ставка програна'],
+      ]
+    },
+
+// 90
+/* діап-або */ {
+      text: 'У&nbsp;родича Миколи через&nbsp;тиждень день&nbsp;народження. Чи&nbsp;потрібно родичу робити додаткові фото для&nbsp;паспорту?<br><span class="task-hint">(у&nbsp;25 і 45&nbsp;років)</span>',
+      inTitle: ['вік родича'],
+      outTitle: ['потреба додавати фото у&nbsp;паспорт'],
+      tests: [
+        [45, '==>', 'нове фото'],
+        [32, '==>', 'немає потреби'],
+        [2, '==>', 'немає потреби'],
+        [25, '==>', 'нове фото'],
+        [58, '==>', 'немає потреби'],
+      ]
+    },
+
+
+
+// 92
+/* діап-або */ {
+      text: 'У&nbsp;магазині залишились футболки тільки трьох&nbsp;розмірів (наприклад, S, XL, XXL). Микола шукає певний розмір футболки.<br>Чи&nbsp;знайде він щось у&nbsp;цьому магазині?',
+      hint: 'розміри придумайте власні',
+      inTitle: ['розмір футболки'],
+      outTitle: ['чи є футболки цього розміру'],
+      tests: [
+        ['XL', '==>', 'є'],
+        ['S', '==>', 'є'],
+        ['XXL', '==>', 'є'],
+        ['будь-який інший', '==>', 'футболок немає'],
+      ]
+    },
+
+// 93
+/* діап-або */ {
+      text: 'У&nbsp;комп’ютерній графіці усі&nbsp;кольори можна утворити змішуванням трьох&nbsp;базових кольорів: червоного, зеленого та&nbsp;синього.<br>Складіть програму, яка перевіряє, чи&nbsp;є заданий колір базовим.',
+      inTitle: ['назва кольору'],
+      outTitle: ['чи є колір базовим'],
+      tests: [
+        ['червоний', '==>', 'базовий'],
+        ['жовтий', '==>', 'не базовий'],
+        ['синій', '==>', 'базовий'],
+        ['коричневий', '==>', 'не базовий'],
+        ['зелений', '==>', 'базовий'],
+      ]
+    },
+
+// 94
+/* діап-або */ {
+      text: 'Микола знає, якого місяця у&nbsp;нього відпустка. Допоможіть йому визначити чи&nbsp;це, бува, не&nbsp;зима.',
+      inTitle: ['номер місяця'],
+      outTitle: ['чи&nbsp;є місяць зимовим'],
+      tests: [
+        [3, '==>', 'не зима'],
+        [2, '==>', 'зима'],
+        [12, '==>', 'зима'],
+        [7, '==>', 'не зима'],
+        [1, '==>', 'зима'],
+        [9, '==>', 'не зима'],
+      ]
+    },
+
+// 95
+/* діап-або */ {
+      text: 'У туристичній фірмі путівки на&nbsp;Мальдіви залишились тільки на&nbsp;деякі місяці (наприклад, червень, лютий, березень, січень). Микола підбирає місяць для&nbsp;поїздки на&nbsp;Мальдіви.<br>Чи&nbsp;знайде він щось у&nbsp;цій фірмі?',
+      hint: 'місяці придумайте власні',
+      inTitle: ['назва місяця'],
+      outTitle: ['чи є ще путівки на цей місяць'],
+      tests: [
+        ['січень', '==>', 'путівки є'],
+        ['березень', '==>', 'путівки є'],
+        ['лютий', '==>', 'путівки є'],
+        ['будь-який інший', '==>', 'путівок немає'],
+      ]
+    },
+
+
+  ]
+
+  //-------------------------------------
+</script>

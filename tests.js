@@ -162,7 +162,9 @@ function ExitTest() {
 
   let p = GetPointsPercent();
   let m = GetMark(p);
-  test.type === 'ctrl' ? SaveToFile(p, m) : ViewRes(p, m);
+  //////////////////// test.type === 'ctrl' ? SaveToFile(p, m) : ViewRes(p, m);
+  ViewRes(p, m);  //////////////////
+  if (test.type === 'ctrl') SaveToFile(p, m);  ///////////////////
 }
 
 // - - - - - - - - - - - - - - - - - -
@@ -222,14 +224,15 @@ function GetMark(markPercent) {
 }
 // - - - - - - - - - - - - - - - - - -
 function SaveToFile(p, m) {
-  myResPercent.innerHTML = 'Кінець тестування';
-  globalRes += new Date().toLocaleString() + '73-0+149' + m + '94+132+435-6149' + Math.round(p) + '94+24359-310+';
+  ///////////////  myResPercent.innerHTML = 'Кінець тестування';
+  globalRes += new Date().toLocaleString() + ' --> Оцінка: ' + m + ' (' + Math.round(p) + '%)';
+    ///////////////// '73-0+149' + m + '94+132+435-6149' + Math.round(p) + '94+24359-310+';
   try {
     const blob = new Blob([globalRes], {type:'text/plain;charset=utf-8'});
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'res.txt';
+    link.download = 'test_result.txt';  ///////////////////
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -246,7 +249,7 @@ function ViewRes(p, m) {
   if (choiceCount < 0.5 * qCount) {
     myResForm.style = `border:1px #333333 dotted; border-radius:10px; background-color:#eeeeee; text-align:center;
     font-size:1.4em; line-height:1.3;`;
-    myResForm.innerHTML = 'Замало відповідей<br>для&nbsp;оцінки!<br>:(';
+    myResForm.innerHTML = '<br>Замало відповідей<br>для&nbsp;оцінки!<br>:(<br>&nbsp;';
     return;
   }
   if (test.type === 'ctrl') {
