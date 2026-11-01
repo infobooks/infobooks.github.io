@@ -24,7 +24,7 @@ var myLabels = document.querySelectorAll("span[id*='label']");
 
 //-------------------------------------
 function GetMixArray(size, mix) {
-  let nums = Array.from({length: size}, (_, i) => i);
+  let nums = Array.from({ length: size }, (_, i) => i);
   if (mix) {
     for (let i = size - 1; i >= 0; i--) {
       let rndNum = Math.floor(Math.random() * (i + 1));
@@ -72,16 +72,20 @@ function StartTest() {
       let c = test.questions[i].mas[j].endsWith(' ');
       let s = test.questions[i].mas[j];
       if (c) s.slice(0, -1);
-      test.questions[i].answers.push({text:s, correct:c, select:false});
+      test.questions[i].answers.push({ text: s, correct: c, select: false });
     }
-      // Помилки -------------
-    if (test.questions[i].mas.length < 2) {alert(`Замало варіантів відповідей (${test.questions[i].mas.length})
-      у питанні № ${i + 1}`); return}
-    if (test.questions[i].mas.length > 6) {alert(`Забагато варіантів відповідей (${test.questions[i].mas.length})
-      у питанні № ${i + 1}`); return}
+    // Помилки -------------
+    if (test.questions[i].mas.length < 2) {
+      alert(`Замало варіантів відповідей (${test.questions[i].mas.length})
+      у питанні № ${i + 1}`); return
+    }
+    if (test.questions[i].mas.length > 6) {
+      alert(`Забагато варіантів відповідей (${test.questions[i].mas.length})
+      у питанні № ${i + 1}`); return
+    }
     count = GetCorrectCount(i);
-    if (count === 0) {alert(`Немає правильних відповідей у питанні № ${i + 1}`); return}
-    if (count >= test.questions[i].mas.length) {alert(`Забагато правильних відповідей у питанні  №${i + 1}`); return}
+    if (count === 0) { alert(`Немає правильних відповідей у питанні № ${i + 1}`); return }
+    if (count >= test.questions[i].mas.length) { alert(`Забагато правильних відповідей у питанні  №${i + 1}`); return }
   }
 
   globalRes += new Date().toLocaleString() + ' - ' + test.minMark + '-' + test.maxMark +
@@ -163,6 +167,13 @@ function ExitTest() {
   let p = GetPointsPercent();
   let m = GetMark(p);
   //////////////////// test.type === 'ctrl' ? SaveToFile(p, m) : ViewRes(p, m);
+  let choiceCount = Array.from({ length: qCount }, (_, i) => GetSelectCount(i)).filter(res => res > 0).length;
+  if (test.type === 'ctrl' && choiceCount < 0.5 * qCount) {
+    myResForm.style = `border:1px #333333 dotted; border-radius:10px; background-color:#eeeeee; text-align:center;
+    font-size:1.4em; line-height:1.3;`;
+    myResForm.innerHTML = '<br>Замало відповідей<br>для&nbsp;оцінки!<br>:(<br>&nbsp;';
+    return;
+  }
   ViewRes(p, m);  //////////////////
   if (test.type === 'ctrl') SaveToFile(p, m);  ///////////////////
 }
@@ -226,9 +237,9 @@ function GetMark(markPercent) {
 function SaveToFile(p, m) {
   ///////////////  myResPercent.innerHTML = 'Кінець тестування';
   globalRes += new Date().toLocaleString() + ' --> Оцінка: ' + m + ' (' + Math.round(p) + '%)';
-    ///////////////// '73-0+149' + m + '94+132+435-6149' + Math.round(p) + '94+24359-310+';
+  ///////////////// '73-0+149' + m + '94+132+435-6149' + Math.round(p) + '94+24359-310+';
   try {
-    const blob = new Blob([globalRes], {type:'text/plain;charset=utf-8'});
+    const blob = new Blob([globalRes], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
@@ -237,7 +248,7 @@ function SaveToFile(p, m) {
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
-  } catch(error) {
+  } catch (error) {
     alert('Помилка! Результат не збережено :(');
     return false;
   }
@@ -245,13 +256,6 @@ function SaveToFile(p, m) {
 }
 // - - - - - - - - - - - - - - - - - -
 function ViewRes(p, m) {
-  let choiceCount = Array.from({length: qCount}, (_, i) => GetSelectCount(i)).filter(res => res > 0).length;
-  if (choiceCount < 0.5 * qCount) {
-    myResForm.style = `border:1px #333333 dotted; border-radius:10px; background-color:#eeeeee; text-align:center;
-    font-size:1.4em; line-height:1.3;`;
-    myResForm.innerHTML = '<br>Замало відповідей<br>для&nbsp;оцінки!<br>:(<br>&nbsp;';
-    return;
-  }
   if (test.type === 'ctrl') {
     myResPercent.innerHTML = (p < 0) ? '< 0&nbsp;%' : Math.round(p) + '&nbsp;%';
     myTestMark.innerHTML = m;

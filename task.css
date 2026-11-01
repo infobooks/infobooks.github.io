@@ -28,7 +28,9 @@ img {
   border-radius: 5px;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   margin: 0.3em auto 0.5em;
   padding: 0.3em;
 }
@@ -65,7 +67,7 @@ button:active {
   border-style: inset;
 }
 
-input{
+input {
   margin: 10px;
   padding: 2px 5px;
   width: 6em;
@@ -73,7 +75,8 @@ input{
   border: 2px inset #cccccc;
 }
 
-input[type="checkbox"], input[type="radio"] {
+input[type="checkbox"],
+input[type="radio"] {
   width: 1.1em;
   height: 1.1em;
   vertical-align: middle;
