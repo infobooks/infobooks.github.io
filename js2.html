@@ -10,7 +10,6 @@
     margin: 0;
     padding: 5px;
     font-family: "Arial", sans-serif;
-    font-size: '';
     color: #333333;
     background-color: #f5f4e5;
   }
@@ -43,7 +42,7 @@
     align-items: center;
     justify-content: space-between;
     text-align: center;
-    background-color: #8fbc8f;
+    background-color: #93d893;
   }
 
   .task-button {
@@ -316,8 +315,12 @@
         myOutTitle.style.display = 'none';
       }
       if ('tests' in task) {
-        myTests.innerHTML = '<table>' + task.tests.map(row => '<tr>' +
-          row.map(item => `<td>${item}</td>`).join('') + '</tr>').join('') + '</table>';
+        myTests.innerHTML =
+          '<table>' +
+          task.tests.map((row) => '<tr>' + row.map((item) =>
+            `<td>${Array.isArray(item) ? ('[' + item.join('; ') + ']') : String(item)}</td>`).join('') +
+            '</tr>').join('') +
+          '</table>';
         myTests.style.display = '';
       } else {
         myTests.innerHTML = '';
@@ -459,14 +462,16 @@
     },
 
 // 43
-/* ф-ли */ {text: 'Яка кінетична енергія літака, що летить з&nbsp;відомою швидкістю?',
-  inTitle: ['маса літака - <b>m</b>', 'швидкість літака - <b>v</b>'],
-  outTitle: ['кінетична енергія літака - <b>K</b>'],
-  img: true,
-  tests: [
-    [720, 111, '==>', 4435560],
-    [13, 29, '==>', 5467],
-  ]},
+/* ф-ли */ {
+      text: 'Яка кінетична енергія літака, що летить з&nbsp;відомою швидкістю?',
+      inTitle: ['маса літака - <b>m</b>', 'швидкість літака - <b>v</b>'],
+      outTitle: ['кінетична енергія літака - <b>K</b>'],
+      img: true,
+      tests: [
+        [720, 111, '==>', 4435560],
+        [13, 29, '==>', 5467],
+      ]
+    },
 
 
 // 23
