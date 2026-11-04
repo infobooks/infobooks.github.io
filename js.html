@@ -150,7 +150,7 @@
     font-weight: bold;
   }
 
-  .my-css-style {
+  .task-comment {
     margin: 2px;
     border-top: 1px dotted #333333;
     background-color: #f8f8ff;
@@ -174,6 +174,7 @@
 <body onload="Start(location.search)">
 
   <div class="task-content">
+
     <div class="task-header">
       <div class="task-button" onclick="ShowItem(listBox.selectedIndex - 1)">&#9668;</div>
       <select id="listBox" size="1" onchange="ShowItem(this.selectedIndex)"></select>
@@ -202,15 +203,16 @@
     </div>
     <div id="taskSolve" class="task-solve">
       <div class="task-solve-container"> <img id="taskSolveImage" src="" alt=""> </div>
-      <div class="my-css-style">
-        Для красивого вигляду першим рядком запишіть:<br>
-        &lt;link rel="stylesheet" href= "https://infobooks.github.io/task.css"&gt;<br><br>
-        Крім VSCode можна програмувати на&nbsp;онлайн-ресурсах:<br>
-        1) <a href="https://w3schoolsua.github.io/htmltryit/tryhtml_default.html" target="_blank">W3SchoolsUA</a>
-        2) <a href="https://jsfiddle.net/" target="_blank">JSFiddle</a>
-        3) <a href="https://onecompiler.com/html" target="_blank">OneCompiler</a>
-      </div>
     </div>
+    <div id="taskComment" class="task-comment">
+      Для красивого вигляду першим рядком запишіть:<br>
+      &lt;link rel="stylesheet" href= "https://infobooks.github.io/task.css"&gt;<br><br>
+      Крім VSCode можна програмувати на&nbsp;онлайн-ресурсах:<br>
+      1) <a href="https://w3schoolsua.github.io/htmltryit/tryhtml_default.html" target="_blank">W3SchoolsUA</a>
+      2) <a href="https://jsfiddle.net/" target="_blank">JSFiddle</a>
+      3) <a href="https://onecompiler.com/html" target="_blank">OneCompiler</a>
+    </div>
+
   </div>
 
 </body>
@@ -232,6 +234,7 @@
   var myIsSolve = document.getElementById('taskIsSolve');
   var mySolveTitle = document.getElementById('taskSolveTitle');
   var mySolveImage = document.getElementById('taskSolveImage');
+  var myComment= document.getElementById('taskComment');
 
   var n = 0;
   const JS_FOLDER = 'js/';
@@ -249,14 +252,21 @@
     myList.innerHTML = s;
 
     const par = decodeURI(txt).trim().slice(1);
-    n = par.length > 0 && !isNaN(par) && Number.isInteger(Number(par)) ? Number(par) - 1 : 0;
+    n = 0;
+    if (par.length > 0) {
+      if (isNaN(par) && Number.isInteger(Number(par))) {
+        n = Number(par) - 1;
+      } else {
+        n = tasks.findIndex(task => task.name === par);
+      }
+    }
     ShowItem(n);
   }
 
   //-------------------------------------
   function ViewSolve() {
     if (myIsSolve.checked) {
-      mySolveImage.src = JS_FOLDER + 'js' + (n + 1) + '+.png';
+      mySolveImage.src = JS_FOLDER + tasks[n].solve + '.png';
       mySolve.style.display = '';
     } else {
       mySolveImage.src = '';
@@ -336,7 +346,7 @@
         myHint.style.display = 'none';
       }
       if ('img' in task) {
-        myImage.src = JS_FOLDER + 'js' + (n + 1) + '.png';
+        myImage.src = JS_FOLDER + task.img + '.png';
         myImage.style.display = '';
       } else {
         myImage.src = '';
@@ -349,6 +359,11 @@
         mySolveTitle.style.display = '';
       } else {
         mySolveTitle.style.display = 'none';
+      }
+      if ('name' in task) {
+        myComment.style.display = '';
+      } else {
+        myComment.style.display = 'none';
       }
     }
 
@@ -384,7 +399,7 @@
       outTitle: [
         `тип населеного пункту`
       ],
-      solve: true,
+      solve: 'bool1+',
 
       tests: [
         [8560, '==>', 'село'],
@@ -408,10 +423,10 @@
         `кілька чисел&nbsp;– вага зерна кожного ранку (виведіть у стовпчик)<br>
         + допишіть номер дня і «кг»`,
       ],
-      solve: true,
+      solve: 'for1+',
       tests: [
-        [5, '==>', '1.66.67кг 2.55.56кг 3.51.85кг 4.50.62кг 5.50.21кг'],
-        [2, '==>', '1.66.67кг 2.55.56кг'],
+        [5, '==>', '1.&nbsp;66.67кг 2.&nbsp55.56кг 3.&nbsp51.85кг 4.&nbsp50.62кг 5.&nbsp50.21кг'],
+        [2, '==>', '1.&nbsp66.67кг 2.&nbsp55.56кг'],
       ],
     },
 
@@ -429,7 +444,7 @@
         `к-ть вагонів`,
         `к-ть пасажирів у кожному вагоні (виведіть у стовпчик)`,
       ],
-      solve: true,
+      solve: 'array1+',
       tests: [
         [[4, 13, 7, 55], '==>', 13, 4, [4, 13, 7, 55]],
         [[3, 1], '==>', 1, 2, [3, 1]],
@@ -473,7 +488,7 @@
       outTitle: [
         `у якому вагоні більше пасажирів`
       ],
-      solve: true,
+      solve: 'array2+',
       tests: [
         [[2, 27, 16, 8], '==>', 'У 4-му'],
         [[3, 1, 9, 0, 8], '==>', 'У 1-му'],
@@ -495,10 +510,10 @@
         + допишіть «грн» і номер місяця<br>
         + виведіть доходи тільки з 2-го по 5-ий місяць`
       ],
-      solve: true,
+      solve: 'array3+',
       tests: [
-        [[4, 2, 7, 1, 5, 13, 12, 7, 11], '==>', ['2. 4грн', '3. 14грн', '4. 2грн', '5. 10грн']],
-        [[3, 1, 0, 100, 34, 9], '==>', ['2. 2грн', '3. 0грн', '4. 200грн', '5. 68грн']],
+        [[4, 2, 7, 1, 5, 13, 12, 7, 11], '==>', ['2.&nbsp4грн', '3.&nbsp14грн', '4.&nbsp2грн', '5.&nbsp10грн']],
+        [[3, 1, 0, 100, 34, 9], '==>', ['2.&nbsp2грн', '3.&nbsp0грн', '4.&nbsp200грн', '5.&nbsp68грн']],
       ],
     },
 
@@ -575,7 +590,7 @@
       outTitle: [
         `к-ть учнів із заданою оцінкою`
       ],
-      solve: true,
+      solve: 'array4+',
       tests: [
         [[9, 1, 9, 3, 9, 9], 9, '==>', 4],
         [[7, 11], 9, '==>', 0],
@@ -598,9 +613,9 @@
         + виведіть номери учнів і букву «б»`
       ],
       tests: [
-        [[3, 2, 7, 8, 3, 8, 4, 1], '==>', ['1. 3б', '2. 2б', '5. 3б', '8. 1б']],
-        [[12, 5, 2], '==>', ['3. 2б']],
-        [[3, 7, 7, 12], '==>', ['1. 3б']],
+        [[3, 2, 7, 8, 3, 8, 4, 1], '==>', ['1.&nbsp3б', '2.&nbsp2б', '5.&nbsp3б', '8.&nbsp1б']],
+        [[12, 5, 2], '==>', ['3.&nbsp2б']],
+        [[3, 7, 7, 12], '==>', ['1.&nbsp3б']],
         [[5, 4, 9], '==>', []],
       ],
     },
@@ -630,11 +645,11 @@
     {
       text: `Обчисліть значення математичного прикладу.`,
 
-      img: true,
+      img: 'line1',
       outTitle: [
         `значення прикладу`
       ],
-      solve: true,
+      solve: 'line1+',
       tests: [
         [' ', '==>', 3.62857]
       ],
@@ -645,7 +660,7 @@
     {
       text: `Обчисліть значення математичного прикладу.`,
 
-      img: true,
+      img: 'line2',
       outTitle: [
         `значення прикладу`
       ],
@@ -659,7 +674,7 @@
     {
       text: `Обчисліть значення математичних прикладів.`,
 
-      img: true,
+      img: 'line3',
       outTitle: [
         `значення прикладу-1`,
         `значення прикладу-2`
@@ -675,7 +690,7 @@
     {
       text: `Обчисліть значення математичних прикладів.`,
 
-      img: true,
+      img: 'line4',
       outTitle: [
         `значення прикладу-1`,
         `значення прикладу-2`
@@ -699,7 +714,7 @@
       outTitle: [
         `всього предметів`
       ],
-      solve: true,
+      solve: 'line5+',
       tests: [
         [17, 6, '==>', 23],
         [1, 134, '==>', 135],
