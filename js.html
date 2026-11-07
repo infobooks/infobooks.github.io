@@ -251,12 +251,8 @@
 
     const par = decodeURI(txt).trim().slice(1);
     n = 0;
-    if (par.length > 0) {
-      if (isNaN(par) && Number.isInteger(Number(par))) {
-        n = Number(par) - 1;
-      } else {
-        n = tasks.findIndex(task => task.name === par);
-      }
+    if (par.length > 0 && !(isNaN(par)) && Number.isInteger(Number(par))) {
+      n = Number(par) - 1;
     }
     ShowItem(n);
   }
