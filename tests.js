@@ -168,7 +168,7 @@ function ExitTest() {
   let m = GetMark(p);
   //////////////////// test.type === 'ctrl' ? SaveToFile(p, m) : ViewRes(p, m);
   let choiceCount = Array.from({ length: qCount }, (_, i) => GetSelectCount(i)).filter(res => res > 0).length;
-  if (test.type === 'ctrl' && choiceCount < 0.5 * qCount) {
+  if (test.type === 'ctrl') {// && choiceCount < 0.5 * qCount) {
     myResForm.style = `border:1px #333333 dotted; border-radius:10px; background-color:#eeeeee; text-align:center;
     font-size:1.4em; line-height:1.3;`;
     myResForm.innerHTML = '<br>Замало відповідей<br>для&nbsp;оцінки!<br>:(<br>&nbsp;';
