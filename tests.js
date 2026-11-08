@@ -60,7 +60,7 @@ function StartTest() {
   test.type ??= 'view';
   const par = decodeURI(location.search).trim().slice(1);
   if (test.type === 'view' && par === '+') test.type = 'rep';
-  if (par === 'x') test.type = 'ctrl';
+  if (par === '*') test.type = 'ctrl';
 
   for (let i = 0; i < test.questions.length; i++) {
     test.questions[i].text ??= '---';
