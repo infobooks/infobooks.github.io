@@ -50,7 +50,8 @@ function StartTest() {
   if (lastA === -1) lastA = 0;
   let firstB = x.indexOf('.', lastA);
   if (firstB === -1) firstB = x.length;
-  document.title = 'Тести - ' + x.slice(lastA + 1, firstB);
+  let fileName = x.slice(lastA + 1, firstB);
+  document.title = 'Тести - ' + fileName;
 
   let count = 0;
   test.offlineFolder ??= '';
@@ -59,7 +60,7 @@ function StartTest() {
 
   test.type ??= 'view';
   const par = decodeURI(location.search).trim().slice(1);
-  if (test.type === 'view' && par === '+') test.type = 'rep';
+  if (test.type === 'view' && (par === '+' || fileName.at(-1) === '1')) test.type = 'rep';
   if (par === '*') test.type = 'ctrl';
 
   for (let i = 0; i < test.questions.length; i++) {
