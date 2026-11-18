@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="uk">
+<meta charset="utf-8">
+<meta name="viewport"content="width=device-width,initial-scale=1.0">
+<title>Тестування</title>
+<link rel="stylesheet" href="/tests.css">
+<script src="/tests.js" defer></script> <!--  D:/Data  -->
+
+<!--================================-->
+<body onload="StartTest()"><table class="page-header"id="tests_header"><tr><td class="btn btn__exit-test"onclick="ExitTest()">x</td><td class="page-title"><span>№</span><span class="quest-num"id="questNum"></span><span class="quest-count" id="questCount"></span></td><td class="btn btn__next-quest"onclick="NextQuestion()">&#9658;&#9658;</td></tr></table><table class="content" id="testForm"><tr><td class="test-quest" id="quest"></td></tr><tr><td class="test-correct-count"id="correctCount"></td></tr><tr><td class="test-answer"id="answer0"onclick="CheckAnswer(0)"><span class="test-answer-num">1.</span><input id="radio0"type="radio"name="answers"><span id="label0"></span></td></tr><tr><td class="test-answer"id="answer1"onclick="CheckAnswer(1)"><span class="test-answer-num">2.</span><input id="radio1"type="radio"name="answers"><span id="label1"></span></td></tr><tr><td class="test-answer"id="answer2"onclick="CheckAnswer(2)"><span class="test-answer-num">3.</span><input id="radio2"type="radio"name="answers"><span id="label2"></span></td></tr><tr><td class="test-answer"id="answer3"onclick="CheckAnswer(3)"><span class="test-answer-num">4.</span><input id="radio3"type="radio"name="answers"><span id="label3"></span></td></tr><tr><td class="test-answer"id="answer4"onclick="CheckAnswer(4)"><span class="test-answer-num">5.</span><input id="radio4"type="radio"name="answers"><span id="label4"></span></td></tr><tr><td class="test-answer"id="answer5"onclick="CheckAnswer(5)"><span class="test-answer-num">6.</span><input id="radio5"type="radio"name="answers"><span id="label5"></span></td></tr></table><div class="test-obj"><img id="questImg"src=""alt=""></div><div class="test-result"id="resForm"hidden><div><span>Результат:</span><span class="test-result-percent"id="resPercent"></span></div><div class="test-result-mark"id="testMark"></div></div></body>
+
+<!--================================-->
+<script>
+
+//rep ctrl
+var test = {type:'view',  offline:false,  questions:[  // « »  ’  ?nbsp;–  …
+
+{text:"«height:100px». Що таке <b>px</b>?", mas:[
+  "відсотки", "пікселі ", "пункти", "рядки"  ]},
+
+{text:"Як витерти власний стиль?", mas:[
+  "style = 'disabled'", "style = 'none'", "style = '0'", "style = '' "  ]},
+
+{text:"Які з елементів мають властивість <b>value</b>?", mas:[
+  "input ", "button", "label", "output ", "h1"  ]},
+
+{text:" Як змінити текст на кнопці на «ОК»?", mas:[
+  "button1.style = 'OK'", "button1 = 'OK'", "button1.id = 'OK'", "button1.textContent = 'OK' "  ]},
+
+{text:"Виберіть НЕпарний елемент (записується одним словом, а не двома).", mas:[
+  "input ", "h2", "button", "output"  ]},
+
+{text:"onclick, ondblclick, onmousenter&nbsp;– це приклади…", mas:[
+  "атрибутів", "подій ", "методів", "функцій"  ]},
+
+{text:"Коли спрацьовує подія <b>oninput</b>?", mas:[
+  "при зміні тексту у полі ", "при натисканні на поле", "при відведенні мишки від поля", "при появі поля"  ]},
+
+{text:"Що означає <b>disabled</b>?", mas:[
+  "прозорий", "прихований", "тільки для читання", "неактивний "  ]},
+
+{text:"Перекладіть властивіcть <b>шрифт</b>.", mas:[
+  "article", "resume", "space", "font "  ]},
+
+{text:"Що означає <b>placeholder</b>?", mas:[
+  "висота", "підказка ", "значення", "шрифт"  ]},
+
+{text:"Перекладіть властивість <b>тло</b>.", mas:[
+  "background ", "form", "surface", "label"  ]},
+
+{text:"Перекладіть властивість <b>значення</b>.", mas:[
+  "number", "content", "count", "value "  ]},
+
+{text:"Перекладіть слово <b>заголовок</b> (повна назва одного із елементів).", mas:[
+  "height", "header ", "hide", "hint"  ]},
+
+{text:"Щоб JavaScript могла змінити елемент, цьому елементу треба задати властивість…", mas:[
+  "id ", "name", "color", "order"  ]},
+
+{text:"Який рядок записаний НЕправильно?", mas:[
+  "textContent:30px ", "color:blue", "width:50px", "font-size:20px"  ]},
+
+{text:"Що означають значення: solid, double, dotted.", mas:[
+  "розмір символів", "кольори", "способи заливки", "види ліній "  ]},
+
+{text:"Виберіть правильно створений елемент.", mas:[
+  "&lt;label> &lt;/label> ", "{label}", "label", "\"label\" \"label\""  ]},
+
+{text:"Яка властивість (крім стилю) є складною, що містить 3 підвластивості: товщину, колір і тип?", mas:[
+  "розміри", "заливка", "заокруглення", "межі "  ]},
+
+{text:"Виберіть правильно записану властивість  <b>заокруглення</b>.", mas:[
+  "border-round", "border-radius ", "border-ellipse", "border-circle"  ]},
+
+{text:"Виберіть правильний запис.", mas:[
+  "\"style color:green\"", "style=\"color:green\" ", "style:color\"green\"", "\"style\":color=green"  ]},
+
+{text:"Щоб два елементи розмістились у різних рядках між ними треба записати…", mas:[
+  "&lt;sub>", "&lt;em>", "&lt;p>", "&lt;br> "  ]},
+
+]}
+
+
+</script>
